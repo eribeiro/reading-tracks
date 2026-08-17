@@ -75,9 +75,12 @@ function wire() {
   $("confirmClearProgress").addEventListener("click",()=>{
     state.completed.clear(); saveProgress(); render();
   });
-  $("toggleAllTracks").addEventListener("click",()=>{
-    const allExpanded=state.visibleTracks.length&&state.visibleTracks.every(name=>state.expandedTracks.has(name));
-    state.visibleTracks.forEach(name=>allExpanded?state.expandedTracks.delete(name):state.expandedTracks.add(name));
+  $("expandAllTracks").addEventListener("click",()=>{
+    state.visibleTracks.forEach(name=>state.expandedTracks.add(name));
+    render();
+  });
+  $("collapseAllTracks").addEventListener("click",()=>{
+    state.visibleTracks.forEach(name=>state.expandedTracks.delete(name));
     render();
   });
   $("results").addEventListener("click",e=>{
@@ -192,7 +195,8 @@ function configureControls() {
   const tracks=state.view==="lineages";
   document.querySelectorAll(".paper-only-filter").forEach(el=>el.hidden=tracks);
   $("trackSortingLabel").hidden=!tracks;
-  $("toggleAllTracks").hidden=!tracks;
+  $("expandAllTracks").hidden=!tracks;
+  $("collapseAllTracks").hidden=true;
   $("clearProgress").hidden=!tracks;
   $("clearProgress").disabled=!state.completed.size;
   $("search").placeholder=tracks?"Search tracks or papers...":state.view==="bookmarks"?"Search bookmarked papers...":"Search title, author, tag, venue...";
@@ -286,9 +290,7 @@ function renderLineages() {
   })].join(" ")).includes(norm(state.search)));
   es.sort(trackSort);
   state.visibleTracks=es.map(([name])=>name);
-  const allExpanded=es.length&&es.every(([name])=>state.expandedTracks.has(name));
-  $("toggleAllTracks").textContent=allExpanded?"Collapse all":"Expand all";
-  $("toggleAllTracks").disabled=!es.length;
+  updateTrackExpansionControls();
   $("resultCount").textContent=`${es.length} tracks`;
   const nav=$("groupingNav");
   if(es.length) {
@@ -297,6 +299,16 @@ function renderLineages() {
     nav.innerHTML=`<span class="grouping-nav-label">Tracks:</span><div class="grouping-nav-links">${es.map(([name])=>`<a href="#${trackAnchor(name)}">${esc(human(name))}</a>`).join('<span class="grouping-nav-separator" aria-hidden="true">·</span>')}</div>`;
   }
   $("results").innerHTML=es.length?es.map(trackCard).join(""):empty();
+}
+function updateTrackExpansionControls() {
+  const total=state.visibleTracks.length;
+  const expanded=state.visibleTracks.filter(name=>state.expandedTracks.has(name)).length;
+  const expand=$("expandAllTracks"), collapse=$("collapseAllTracks");
+  expand.disabled=!total;
+  expand.hidden=Boolean(total)&&expanded===total;
+  expand.textContent=expanded?"Expand remaining":"Expand all";
+  collapse.hidden=!expanded;
+  collapse.textContent=expanded===total?"Collapse all":"Collapse open";
 }
 function trackAnchor(name){return `track-${String(name).replace(/[^a-zA-Z0-9_-]/g,"-")}`;}
 function paperById(id){return state.data.paperMap.get(id);}
