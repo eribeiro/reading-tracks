@@ -4176,7 +4176,6 @@ papers:
       - Aurora
       - consensus avoidance
       - quorum
-      - cloud storage
     type: essential
     lineages:
       - cloud-databases
