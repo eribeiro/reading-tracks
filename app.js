@@ -296,7 +296,7 @@ function renderLineages() {
   if(es.length) {
     nav.hidden=false;
     nav.setAttribute("aria-label","Jump to track");
-    nav.innerHTML=`<span class="grouping-nav-label">Tracks:</span><div class="grouping-nav-links">${es.map(([name])=>`<a href="#${trackAnchor(name)}">${esc(human(name))}</a>`).join('<span class="grouping-nav-separator" aria-hidden="true">·</span>')}</div>`;
+    nav.innerHTML=`<span class="grouping-nav-label">Tracks:</span><div class="grouping-nav-links">${es.map(trackNavLink).join('<span class="grouping-nav-separator" aria-hidden="true">·</span>')}</div>`;
   }
   $("results").innerHTML=es.length?es.map(trackCard).join(""):empty();
 }
@@ -309,6 +309,16 @@ function updateTrackExpansionControls() {
   expand.textContent=expanded?"Expand remaining":"Expand all";
   collapse.hidden=!expanded;
   collapse.textContent=expanded===total?"Collapse all":"Collapse open";
+}
+function trackNavLink([name,ids]) {
+  const s=trackStats(ids), title=human(name);
+  if(s.complete===s.ps.length) {
+    return `<a class="track-nav-link is-complete" href="#${trackAnchor(name)}" aria-label="${esc(`${title}, all ${s.ps.length} papers completed`)}"><span>${esc(title)}</span><span class="track-nav-status" aria-hidden="true">✓</span></a>`;
+  }
+  if(s.complete) {
+    return `<a class="track-nav-link is-progress" href="#${trackAnchor(name)}" aria-label="${esc(`${title}, ${s.complete} of ${s.ps.length} papers completed`)}"><span>${esc(title)}</span><span class="track-nav-status" aria-hidden="true">${s.complete}/${s.ps.length}</span></a>`;
+  }
+  return `<a class="track-nav-link" href="#${trackAnchor(name)}">${esc(title)}</a>`;
 }
 function trackAnchor(name){return `track-${String(name).replace(/[^a-zA-Z0-9_-]/g,"-")}`;}
 function paperById(id){return state.data.paperMap.get(id);}
@@ -340,7 +350,8 @@ function trackCard([name,ids]) {
   const difficulty=["introductory","intermediate","advanced"].filter(key=>s.difficulties[key]).map(key=>`${s.difficulties[key]} ${key}`).join(" · ");
   const progressLabel=`${s.complete} of ${s.ps.length} papers completed`;
   const areas=s.areas.slice(0,4).map(badge).join("")+(s.areas.length>4?badge(`+${s.areas.length-4}`):"");
-  return `<article id="${trackAnchor(name)}" class="card track-card${s.complete===s.ps.length?" track-complete":""}">
+  const progressClass=s.complete===s.ps.length?" track-complete":s.complete?" track-in-progress":"";
+  return `<article id="${trackAnchor(name)}" class="card track-card${progressClass}">
     <div class="track-card-header">
       <div>
         <h2>${esc(human(name))}</h2>

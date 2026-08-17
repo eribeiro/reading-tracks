@@ -170,6 +170,21 @@ input,select,button{ font:inherit; }
   font:600 12px/1 "IBM Plex Mono",monospace;
 }
 .grouping-nav-links a:hover{ text-decoration-color:var(--primary); }
+.grouping-nav-links .track-nav-link{ display:inline-flex; align-items:center; gap:5px; }
+.grouping-nav-links .track-nav-link.is-progress{
+  color:#076B37; font-weight:600; text-decoration-color:var(--accent-light);
+}
+.grouping-nav-links .track-nav-link.is-complete{
+  color:#076B37; text-decoration-color:var(--accent);
+}
+.track-nav-status{
+  display:inline-flex; align-items:center; justify-content:center; min-width:22px; height:18px;
+  padding:0 5px; border-radius:999px; background:#DDF3E6; color:#076B37;
+  font:600 10px/1 "IBM Plex Mono",monospace;
+}
+.track-nav-link.is-complete .track-nav-status{
+  min-width:18px; padding:0; background:var(--accent); color:#fff;
+}
 .grouping-nav-separator{
   flex:0 0 auto; align-self:center; color:var(--text-muted);
   font:400 12px/1 "IBM Plex Mono",monospace;
@@ -219,7 +234,8 @@ input,select,button{ font:inherit; }
 .paper-card.is-bookmarked{ border-left-color:var(--primary); }
 
 /* guided reading tracks */
-.track-card{ padding:20px; scroll-margin-top:var(--scroll-offset); }
+.track-card{ padding:20px; scroll-margin-top:var(--scroll-offset); border-left-color:var(--border); }
+.track-card.track-in-progress{ border-left-color:var(--accent); border-left-width:5px; }
 .track-card.track-complete{ border-left-color:var(--primary); }
 .track-card-header{
   display:grid; grid-template-columns:minmax(0,1fr) auto; gap:18px; align-items:start;
