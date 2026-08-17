@@ -121,6 +121,38 @@ input,select,button{ font:inherit; }
 }
 .summary strong{ color:var(--text); font-weight:600; }
 
+.grouping-nav{
+  display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px; align-items:center;
+  padding:2px 0 14px;
+}
+.grouping-nav[hidden]{ display:none; }
+.grouping-nav-label{
+  color:var(--text-muted);
+  font:600 11px/1 "IBM Plex Mono",monospace;
+  letter-spacing:.08em; text-transform:uppercase;
+}
+.grouping-nav-links{
+  display:flex; flex-wrap:nowrap; gap:7px;
+  min-width:0; overflow-x:auto; overscroll-behavior-inline:contain;
+  padding:2px 5px 7px;
+  scrollbar-width:thin; scrollbar-color:var(--border) transparent;
+  -webkit-overflow-scrolling:touch;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 6px,#000 calc(100% - 6px),transparent);
+  mask-image:linear-gradient(to right,transparent,#000 6px,#000 calc(100% - 6px),transparent);
+}
+.grouping-nav-links a{
+  flex:0 0 auto;
+  color:var(--primary); padding:4px 1px;
+  text-decoration:underline; text-decoration-color:var(--border);
+  text-underline-offset:3px;
+  font:600 12px/1 "IBM Plex Mono",monospace;
+}
+.grouping-nav-links a:hover{ text-decoration-color:var(--primary); }
+.grouping-nav-separator{
+  flex:0 0 auto; align-self:center; color:var(--text-muted);
+  font:400 12px/1 "IBM Plex Mono",monospace;
+}
+
 /* ---------- results ---------- */
 .results{ display:grid; gap:12px; padding-bottom:48px; }
 .card{
@@ -161,7 +193,7 @@ input,select,button{ font:inherit; }
 .arrow{ color:var(--accent); font-weight:600; }
 
 /* grouping by year/decade */
-.year-group{ display:grid; gap:12px; margin-bottom:22px; }
+.year-group{ display:grid; gap:12px; margin-bottom:22px; scroll-margin-top:220px; }
 .year-heading{
   margin:22px 0 4px; padding-bottom:8px; border-bottom:1px solid var(--border);
   font:600 13px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; color:var(--text-muted);
@@ -175,6 +207,8 @@ input,select,button{ font:inherit; }
   .select-row{ grid-template-columns:1fr 1fr; }
   .view-row{ align-items:flex-start; flex-direction:column; }
   .controls{ position:static; }
+  .year-group{ scroll-margin-top:24px; }
+  .grouping-nav{ grid-template-columns:1fr; gap:5px; }
 }
 @media (max-width:480px){
   .header-inner{ align-items:flex-start; gap:12px; }

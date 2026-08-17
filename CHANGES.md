@@ -1,9 +1,9 @@
 # Changes
 
-Paper additions reconstructed from `git log -- data/papers.yaml`. Dates use
+Paper additions contained in the squashed catalog commit. Dates use
 `YYYY-DD-MM`, followed by the abbreviated commit hash.
 
-## 2026-16-08 - 339c57b
+## 2026-16-08 - 01f7077
 
 - `art-2013`
 - `hot-2018`
@@ -12,8 +12,6 @@ Paper additions reconstructed from `git log -- data/papers.yaml`. Dates use
 - `memory-efficient-search-trees-2021`
 - `memento-filter-2024`
 
-## 2026-16-08 - 34e6192
-
 - `data-blocks-2016`
 - `mainlining-databases-2020`
 - `empirical-columnar-formats-2023`
@@ -21,8 +19,6 @@ Paper additions reconstructed from `git log -- data/papers.yaml`. Dates use
 - `fastlanes-file-format-2025`
 - `analytical-dbms-data-formats-2025`
 - `f3-file-format-2025`
-
-## 2026-16-08 - 67c289a
 
 - `relational-model-1970`
 - `hints-computer-system-design-1983`
@@ -68,16 +64,12 @@ Paper additions reconstructed from `git log -- data/papers.yaml`. Dates use
 - `distserve-2024`
 - `sglang-2024`
 
-## 2026-16-08 - 5344e8a
-
 - `dissecting-replication-protocols-2019`
 - `wpaxos-2020`
 - `bunchbft-2022`
 - `mongodb-distributed-transactions-verification-2025`
 - `evaluating-distributed-coordination-2026`
 - `leaseguard-2026`
-
-## 2026-16-08 - 1fcfd10
 
 - `volcano-parallelism-1990`
 - `query-evaluation-techniques-1993`
@@ -94,8 +86,6 @@ Paper additions reconstructed from `git log -- data/papers.yaml`. Dates use
 - `dostoevsky-2018`
 - `lsm-storage-survey-2020`
 - `rocksdb-experience-2021`
-
-## 2026-16-08 - 97968cd
 
 - `memory-access-bottleneck-1999`
 - `dbmss-modern-processor-1999`
@@ -115,8 +105,6 @@ Paper additions reconstructed from `git log -- data/papers.yaml`. Dates use
 - `spanner-becoming-sql-2017`
 - `spanner-truetime-cap-2017`
 - `f1-fault-tolerant-2012`
-
-## 2026-16-08 - 2de3326
 
 - `lamport-time-clocks-1978`
 - `transaction-concept-1981`
@@ -267,3 +255,4 @@ Paper additions reconstructed from `git log -- data/papers.yaml`. Dates use
 - `tidb-2020`
 - `singlestore-2022`
 - `milvus-2021`
+- `wiredtiger-io-2016`

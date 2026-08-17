@@ -90,3 +90,15 @@ Then verify the affected views and filters at `http://localhost:8000/`.
   requested.
 - Workflows should use least-privilege permissions and immutable action pins
   where practical.
+
+## Publishing workflow
+
+When the user asks to publish ReadingTracks:
+
+1. After making changes, but before committing, update `CHANGES.md`.
+2. If commits were squashed, merge all paper additions under the surviving
+   commit's single `YYYY-DD-MM - <commit hex>` heading.
+3. Run `scripts/publish.sh`.
+4. Stop if validation or synchronization fails.
+5. Report the commit hashes from both repositories.
+6. Never force-push unless the user explicitly requests it.

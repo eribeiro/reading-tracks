@@ -121,6 +121,8 @@ function matchPaper(p) {
 }
 function render() {
   if(!state.data) return;
+  $("groupingNav").hidden=true;
+  $("groupingNav").innerHTML="";
   ({papers:renderPapers,researchers:renderResearchers,venues:renderVenues,lineages:renderLineages}[state.view])();
   active();
 }
@@ -134,8 +136,13 @@ function renderPapers() {
   const groups=Map.groupBy ? Map.groupBy(items,groupKey) : items.reduce((m,p)=>{const k=groupKey(p);(m[k]??=[]).push(p);return m;},{});
   const entries=groups instanceof Map?[...groups.entries()]:Object.entries(groups);
   entries.sort((a,b)=>key==="year"?Number(b[0])-Number(a[0]):String(b[0]).localeCompare(String(a[0])));
-  $("results").innerHTML=entries.map(([g,ps])=>`<section class="year-group"><h2 class="year-heading">${esc(g)}</h2>${ps.map(card).join("")}</section>`).join("");
+  const nav=$("groupingNav");
+  nav.hidden=false;
+  nav.setAttribute("aria-label",`Jump to ${key}`);
+  nav.innerHTML=`<span class="grouping-nav-label">${key==="year"?"Years":"Decades"}:</span><div class="grouping-nav-links">${entries.map(([g])=>`<a href="#${groupAnchor(key,g)}">${esc(g)}</a>`).join('<span class="grouping-nav-separator" aria-hidden="true">·</span>')}</div>`;
+  $("results").innerHTML=entries.map(([g,ps])=>`<section id="${groupAnchor(key,g)}" class="year-group"><h2 class="year-heading">${esc(g)}</h2>${ps.map(card).join("")}</section>`).join("");
 }
+function groupAnchor(key,value){return `group-${key}-${String(value).replace(/[^a-zA-Z0-9_-]/g,"-")}`;}
 function card(p) {
   const link=p.links?.paper?`<a href="${esc(p.links.paper)}" target="_blank" rel="noopener">paper ↗</a>`:"";
   return `<article class="card">
