@@ -3,11 +3,12 @@ const state = {
   data:null, config:null, view:"papers", areas:new Set(), search:"",
   year:"", decade:"", era:"", lineage:"", venue:"", type:"", tag:"",
   researcher:"",
-  grouping:"year"
+  grouping:"year", trackSorting:"name", expandedTracks:new Set(), visibleTracks:[], completed:new Set()
 };
 const $ = id => document.getElementById(id);
 const norm = v => (v ?? "").toString().normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase();
 let resultsSummaryVisible=true;
+const PROGRESS_KEY="readingtracks.progress.v1";
 
 async function loadYaml(path) {
   const r = await fetch(path);
@@ -36,7 +37,8 @@ async function init() {
       loadYaml(`${data_dir}/venues.yaml`)
     ]);
     state.config=cfg;
-    state.data={papers:pd.papers,lineages:pd.lineages,metadata:pd.metadata,researchers:rd.researchers,venues:vd.venues};
+    state.data={papers:pd.papers,paperMap:new Map(pd.papers.map(p=>[p.id,p])),lineages:pd.lineages,metadata:pd.metadata,researchers:rd.researchers,venues:vd.venues};
+    loadProgress();
     applyBranding(); wire(); populate(); render();
   } catch(e) {
     $("results").innerHTML=`<div class="empty"><strong>Could not load the YAMLs.</strong><br>${esc(e.message)}<br><br>Serve the folder over HTTP (e.g., python3 -m http.server), not via file://.</div>`;
@@ -60,10 +62,43 @@ function wire() {
   $("search").addEventListener("input", e=>{state.search=e.target.value;render();});
   for (const id of ["year","decade","era","lineage","venue","type","tag","grouping"])
     $(id).addEventListener("change",e=>{state[id]=e.target.value;render();});
+  $("trackSorting").addEventListener("change",e=>{state.trackSorting=e.target.value;render();});
   document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{
     state.view=b.dataset.view; document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b)); render();
   }));
   $("clearFilters").addEventListener("click", clearFilters);
+  $("clearProgress").addEventListener("click",()=>{
+    if(!state.completed.size) return;
+    $("clearProgressDialog").showModal();
+  });
+  $("confirmClearProgress").addEventListener("click",()=>{
+    state.completed.clear(); saveProgress(); render();
+  });
+  $("toggleAllTracks").addEventListener("click",()=>{
+    const allExpanded=state.visibleTracks.length&&state.visibleTracks.every(name=>state.expandedTracks.has(name));
+    state.visibleTracks.forEach(name=>allExpanded?state.expandedTracks.delete(name):state.expandedTracks.add(name));
+    render();
+  });
+  $("results").addEventListener("click",e=>{
+    const toggle=e.target.closest("[data-track-toggle]");
+    if(toggle) {
+      const name=toggle.dataset.trackToggle;
+      state.expandedTracks.has(name)?state.expandedTracks.delete(name):state.expandedTracks.add(name);
+      render();
+      requestAnimationFrame(()=>document.querySelector(`[data-track-toggle="${CSS.escape(name)}"]`)?.focus());
+      return;
+    }
+    const view=e.target.closest("[data-track-papers]");
+    if(view) jumpToPapersFor("lineage",view.dataset.trackPapers);
+  });
+  $("results").addEventListener("change",e=>{
+    const checkbox=e.target.closest("[data-paper-complete]");
+    if(!checkbox) return;
+    const id=checkbox.dataset.paperComplete;
+    checkbox.checked?state.completed.add(id):state.completed.delete(id);
+    saveProgress(); render();
+    requestAnimationFrame(()=>document.querySelector(`[data-paper-complete="${CSS.escape(id)}"]`)?.focus());
+  });
   const summary=$("resultsSummary");
   const backToResults=$("backToResults");
   new IntersectionObserver(([entry])=>{
@@ -101,7 +136,7 @@ function fill(id,values,label) {
 }
 function resetFilters() {
   state.areas.clear(); state.search=state.year=state.decade=state.era=state.lineage=state.venue=state.type=state.tag=state.researcher="";
-  state.grouping="year"; $("search").value=""; $("grouping").value="year";
+  state.grouping="year"; state.trackSorting="name"; $("search").value=""; $("grouping").value="year"; $("trackSorting").value="name";
   for(const id of ["year","decade","era","lineage","venue","type","tag"]) $(id).value="";
   document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
 }
@@ -137,11 +172,21 @@ function matchPaper(p) {
 }
 function render() {
   if(!state.data) return;
+  configureControls();
   $("groupingNav").hidden=true;
   $("groupingNav").innerHTML="";
   ({papers:renderPapers,researchers:renderResearchers,venues:renderVenues,lineages:renderLineages}[state.view])();
   active();
   requestAnimationFrame(updateBackToResults);
+}
+function configureControls() {
+  const tracks=state.view==="lineages";
+  document.querySelectorAll(".paper-only-filter").forEach(el=>el.hidden=tracks);
+  $("trackSortingLabel").hidden=!tracks;
+  $("toggleAllTracks").hidden=!tracks;
+  $("clearProgress").hidden=!tracks;
+  $("clearProgress").disabled=!state.completed.size;
+  $("search").placeholder=tracks?"Search tracks or papers...":"Search title, author, tag, venue...";
 }
 function updateBackToResults() {
   const pageIsLong=document.documentElement.scrollHeight>window.innerHeight+200;
@@ -208,17 +253,112 @@ function renderVenues() {
 function renderLineages() {
   let es=Object.entries(state.data.lineages);
   if(state.lineage) es=es.filter(([n])=>n===state.lineage);
-  if(state.search) es=es.filter(([n,ids])=>norm([n,...ids.map(id=>state.data.papers.find(p=>p.id===id)?.title||"")].join(" ")).includes(norm(state.search)));
+  if(state.areas.size) es=es.filter(([,ids])=>{
+    const areas=new Set(ids.flatMap(id=>paperById(id)?.areas||[]));
+    return [...state.areas].every(area=>areas.has(area));
+  });
+  if(state.search) es=es.filter(([n,ids])=>norm([n,...ids.flatMap(id=>{
+    const p=paperById(id); return p?[p.title,p.venue,...(p.authors||[]),...(p.tags||[])]:[];
+  })].join(" ")).includes(norm(state.search)));
+  es.sort(trackSort);
+  state.visibleTracks=es.map(([name])=>name);
+  const allExpanded=es.length&&es.every(([name])=>state.expandedTracks.has(name));
+  $("toggleAllTracks").textContent=allExpanded?"Collapse all":"Expand all";
+  $("toggleAllTracks").disabled=!es.length;
   $("resultCount").textContent=`${es.length} tracks`;
-  $("results").innerHTML=es.length?es.sort((a,b)=>a[0].localeCompare(b[0])).map(([n,ids])=>{
-    const ps=ids.map(id=>state.data.papers.find(p=>p.id===id)).filter(Boolean);
-    return `<article class="card"><h2>${esc(human(n))}</h2><div class="lineage-flow">${ps.map((p,i)=>`${i?'<span class="arrow">→</span>':''}<span class="lineage-step">${p.year} · ${esc(p.title)}</span>`).join("")}</div></article>`;
-  }).join(""):empty();
+  const nav=$("groupingNav");
+  if(es.length) {
+    nav.hidden=false;
+    nav.setAttribute("aria-label","Jump to track");
+    nav.innerHTML=`<span class="grouping-nav-label">Tracks:</span><div class="grouping-nav-links">${es.map(([name])=>`<a href="#${trackAnchor(name)}">${esc(human(name))}</a>`).join('<span class="grouping-nav-separator" aria-hidden="true">·</span>')}</div>`;
+  }
+  $("results").innerHTML=es.length?es.map(trackCard).join(""):empty();
+}
+function trackAnchor(name){return `track-${String(name).replace(/[^a-zA-Z0-9_-]/g,"-")}`;}
+function paperById(id){return state.data.paperMap.get(id);}
+function trackPapers(ids){return ids.map(paperById).filter(Boolean);}
+function trackStats(ids) {
+  const ps=trackPapers(ids), years=ps.map(p=>p.year), total=ps.reduce((n,p)=>n+(p.reading_time_minutes||0),0);
+  const difficulties=ps.reduce((m,p)=>{if(p.difficulty)m[p.difficulty]=(m[p.difficulty]||0)+1;return m;},{});
+  const areas=[...new Set(ps.flatMap(p=>p.areas||[]))].sort();
+  const complete=ps.filter(p=>state.completed.has(p.id)).length;
+  return {ps,total,difficulties,areas,complete,minYear:Math.min(...years),maxYear:Math.max(...years)};
+}
+function trackSort(a,b) {
+  const as=trackStats(a[1]), bs=trackStats(b[1]);
+  if(state.trackSorting==="shortest") return as.total-bs.total||a[0].localeCompare(b[0]);
+  if(state.trackSorting==="longest") return bs.total-as.total||a[0].localeCompare(b[0]);
+  if(state.trackSorting==="progress") {
+    const rank=s=>s.complete===s.ps.length?2:s.complete?0:1;
+    return rank(as)-rank(bs)||(bs.complete/bs.ps.length)-(as.complete/as.ps.length)||a[0].localeCompare(b[0]);
+  }
+  return a[0].localeCompare(b[0]);
+}
+function formatDuration(minutes) {
+  const hours=Math.floor(minutes/60), mins=minutes%60;
+  return hours?`${hours}h${mins?` ${mins}m`:""}`:`${mins}m`;
+}
+function trackCard([name,ids]) {
+  const s=trackStats(ids), expanded=state.expandedTracks.has(name);
+  const years=s.minYear===s.maxYear?String(s.minYear):`${s.minYear}–${s.maxYear}`;
+  const difficulty=["introductory","intermediate","advanced"].filter(key=>s.difficulties[key]).map(key=>`${s.difficulties[key]} ${key}`).join(" · ");
+  const progressLabel=`${s.complete} of ${s.ps.length} papers completed`;
+  const areas=s.areas.slice(0,4).map(badge).join("")+(s.areas.length>4?badge(`+${s.areas.length-4}`):"");
+  return `<article id="${trackAnchor(name)}" class="card track-card${s.complete===s.ps.length?" track-complete":""}">
+    <div class="track-card-header">
+      <div>
+        <h2>${esc(human(name))}</h2>
+        <div class="track-facts">${s.ps.length} papers <span aria-hidden="true">·</span> ${esc(years)} <span aria-hidden="true">·</span> ${esc(formatDuration(s.total))}</div>
+        <div class="badges track-areas" aria-label="Areas">${areas}</div>
+      </div>
+      <button class="track-toggle" type="button" data-track-toggle="${esc(name)}" aria-expanded="${expanded}">${expanded?"Close journey":"View journey"}</button>
+    </div>
+    <div class="track-progress-row">
+      <progress max="${s.ps.length}" value="${s.complete}" aria-label="${esc(progressLabel)}"></progress>
+      <span>${esc(progressLabel)}</span>
+    </div>
+    <div class="track-difficulty"><strong>Difficulty:</strong> ${esc(difficulty)}</div>
+    ${expanded?trackJourney(name,s.ps):""}
+  </article>`;
+}
+function trackJourney(name,ps) {
+  return `<div class="track-journey">
+    <div class="track-journey-heading">
+      <h3>Reading journey</h3>
+      <button type="button" class="link-like track-paper-view" data-track-papers="${esc(name)}">View these papers</button>
+    </div>
+    <ol class="track-steps">${ps.map((p,i)=>trackStep(p,i)).join("")}</ol>
+  </div>`;
+}
+function trackStep(p,index) {
+  const done=state.completed.has(p.id), link=p.links?.paper?`<a href="${esc(p.links.paper)}" target="_blank" rel="noopener">Read paper ↗</a>`:"";
+  return `<li class="track-step${done?" is-complete":""}">
+    <span class="track-step-number" aria-hidden="true">${index+1}</span>
+    <div class="track-step-content">
+      <h4>${esc(p.title)}</h4>
+      <div class="meta">${p.year} · ${esc(p.venue)} · ${esc(human(p.difficulty))} · ${esc(formatDuration(p.reading_time_minutes||0))}</div>
+      <p>${esc(p.why_read||"")}</p>
+      ${link}
+    </div>
+    <label class="completion-control"><input type="checkbox" data-paper-complete="${esc(p.id)}"${done?" checked":""}> <span>${done?"Completed":"Mark complete"}</span></label>
+  </li>`;
+}
+function loadProgress() {
+  try {
+    const value=JSON.parse(localStorage.getItem(PROGRESS_KEY)||"[]");
+    if(!Array.isArray(value)) return;
+    const valid=new Set(state.data.papers.map(p=>p.id));
+    state.completed=new Set(value.filter(id=>typeof id==="string"&&valid.has(id)));
+  } catch(_) { state.completed=new Set(); }
+}
+function saveProgress() {
+  try { localStorage.setItem(PROGRESS_KEY,JSON.stringify([...state.completed])); } catch(_) {}
 }
 function active() {
   const ps=[];
   if(state.areas.size) ps.push([...state.areas].join(" + "));
-  for(const k of ["year","decade","era","lineage","venue","type","tag"]) {
+  const keys=state.view==="lineages"?["lineage"]:["year","decade","era","lineage","venue","type","tag"];
+  for(const k of keys) {
     if(!state[k]) continue;
     if(k==="era") ps.push(state.config.eras[state[k]].label);
     else if(k==="lineage"||k==="type") ps.push(human(state[k]));
