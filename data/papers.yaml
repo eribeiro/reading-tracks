@@ -162,8 +162,13 @@ lineages:
     - surf-2018
     - order-preserving-key-compression-2020
     - memory-efficient-search-trees-2021
-    - trie-memtables-cassandra-2022
     - memento-filter-2024
+    - dili-2023
+    - disk-learned-indexes-2024
+    - string-key-learned-indexes-2024
+    - systematic-index-dynamization-2024
+    - doblix-2025
+    - fb-tree-2025
   memory-efficient-search-structures:
     - modern-btree-techniques-2011
     - art-2013
@@ -172,6 +177,21 @@ lineages:
     - order-preserving-key-compression-2020
     - memory-efficient-search-trees-2021
     - memento-filter-2024
+    - dili-2023
+    - string-key-learned-indexes-2024
+    - systematic-index-dynamization-2024
+    - fb-tree-2025
+  learned-indexes:
+    - learned-index-2018
+    - learned-index-evaluation-2023
+    - dili-2023
+    - learned-index-complexity-attacks-2023
+    - disk-learned-indexes-2024
+    - string-key-learned-indexes-2024
+    - systematic-index-dynamization-2024
+    - why-learned-indexes-2025
+    - doblix-2025
+    - fb-tree-2025
   query-execution:
     - System-r-access-path-1979
     - volcano-parallelism-1990
@@ -322,6 +342,13 @@ lineages:
     - youmu-2025
   ai-database-Systems:
     - learned-index-2018
+    - learned-index-evaluation-2023
+    - dili-2023
+    - learned-index-complexity-attacks-2023
+    - disk-learned-indexes-2024
+    - string-key-learned-indexes-2024
+    - why-learned-indexes-2025
+    - doblix-2025
     - bao-2021
     - llm-relational-analytics-2025
     - tag-2025
@@ -2183,6 +2210,7 @@ papers:
       - semantic operators
     lineages:
       - ai-database-Systems
+      - learned-indexes
       - query-execution
     type: current
     why_read: A direct bridge between traditional query optimization and analytical workloads that incorporate LLM calls.
@@ -2868,6 +2896,13 @@ papers:
     predecessors: []
     successors:
       - tag-2025
+      - learned-index-evaluation-2023
+      - dili-2023
+      - learned-index-complexity-attacks-2023
+      - disk-learned-indexes-2024
+      - string-key-learned-indexes-2024
+      - why-learned-indexes-2025
+      - doblix-2025
   - id: duckdb-2019
     title: 'DuckDB: An Embeddable Analytical Database'
     year: 2019
@@ -7828,4 +7863,308 @@ papers:
       - cassandra-2010
       - lsm-1996
       - art-2013
+    successors: []
+  - id: learned-index-evaluation-2023
+    title: 'Learned Index: A Comprehensive Experimental Evaluation'
+    year: 2023
+    authors:
+      - Zhaoyan Sun
+      - Xuanhe Zhou
+      - Guoliang Li
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Data management
+    tags:
+      - learned indexes
+      - benchmarking
+      - mutable indexes
+      - concurrency
+      - bulk loading
+    type: essential
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+    why_read: Tests learned and traditional indexes under one framework, exposing where model-based designs help and where updates, strings, concurrency, and range scans erase their advantage.
+    difficulty: intermediate
+    reading_time_minutes: 75
+    links:
+      paper: https://www.vldb.org/pvldb/vol16/p1992-li.pdf
+    predecessors:
+      - learned-index-2018
+      - art-2013
+    successors:
+      - disk-learned-indexes-2024
+      - why-learned-indexes-2025
+  - id: dili-2023
+    title: 'DILI: A Distribution-Driven Learned Index'
+    year: 2023
+    authors:
+      - Pengfei Li
+      - Hua Lu
+      - Rong Zhu
+      - Bolin Ding
+      - Long Yang
+      - Gang Pan
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Data management
+    tags:
+      - learned indexes
+      - data distribution
+      - mutable index
+      - linear regression
+      - in-memory indexing
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+      - memory-efficient-search-structures
+    why_read: Builds an update-capable learned tree whose fanout and leaf models follow local key distributions, balancing model accuracy against traversal depth.
+    difficulty: advanced
+    reading_time_minutes: 80
+    links:
+      paper: https://www.vldb.org/pvldb/vol16/p2212-li.pdf
+    predecessors:
+      - learned-index-2018
+    successors:
+      - why-learned-indexes-2025
+  - id: learned-index-complexity-attacks-2023
+    title: Algorithmic Complexity Attacks on Dynamic Learned Indexes
+    year: 2023
+    authors:
+      - Rui Yang
+      - Evgenios M. Kornaropoulos
+      - Yue Cheng
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    tags:
+      - learned indexes
+      - adversarial workloads
+      - algorithmic complexity attacks
+      - ALEX
+      - denial of service
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+    why_read: Shows how carefully chosen inserts can drive a dynamic learned index into extreme memory use or thousand-fold slowdowns, making worst-case robustness part of index design.
+    difficulty: advanced
+    reading_time_minutes: 80
+    links:
+      paper: https://www.vldb.org/pvldb/vol17/p780-yang.pdf
+    predecessors:
+      - learned-index-2018
+    successors: []
+  - id: disk-learned-indexes-2024
+    title: Making In-Memory Learned Indexes Efficient on Disk
+    year: 2024
+    authors:
+      - Jiaoyi Zhang
+      - Kai Su
+      - Huanchen Zhang
+    venue: PACMMOD
+    areas:
+      - Databases
+      - AI
+      - Data management
+    tags:
+      - learned indexes
+      - disk-based indexing
+      - B-tree
+      - storage engine
+      - I/O optimization
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+      - storage-engines
+    why_read: Derives six storage-aware transformations that turn memory-first learned indexes into disk layouts that improve both throughput and space over B+ trees.
+    difficulty: advanced
+    reading_time_minutes: 100
+    links:
+      paper: https://doi.org/10.1145/3654954
+    predecessors:
+      - learned-index-2018
+      - learned-index-evaluation-2023
+      - modern-btree-techniques-2011
+    successors:
+      - doblix-2025
+  - id: string-key-learned-indexes-2024
+    title: Accelerating String-key Learned Index Structures via Memoization-based Incremental Training
+    year: 2024
+    authors:
+      - Minsu Kim
+      - Jinwoo Hwang
+      - Guseul Heo
+      - Seiyeon Cho
+      - Divya Mahajan
+      - Jongse Park
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    tags:
+      - learned indexes
+      - string keys
+      - incremental training
+      - memoization
+      - FPGA
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+      - memory-efficient-search-structures
+    why_read: Reuses prior model-training work for updated string keys and offloads retraining to an FPGA, attacking the cost that makes mutable string learned indexes impractical.
+    difficulty: advanced
+    reading_time_minutes: 85
+    links:
+      paper: https://www.vldb.org/pvldb/vol17/p1802-park.pdf
+    predecessors:
+      - learned-index-2018
+      - hot-2018
+      - order-preserving-key-compression-2020
+    successors: []
+  - id: systematic-index-dynamization-2024
+    title: Towards Systematic Index Dynamization
+    year: 2024
+    authors:
+      - Douglas B. Rumbaugh
+      - Dong Xie
+      - Zhuoyue Zhao
+    venue: PVLDB
+    areas:
+      - Databases
+      - Data management
+    tags:
+      - index dynamization
+      - static indexes
+      - mutable indexes
+      - metaprogramming
+      - specialized indexes
+    type: current
+    lineages:
+      - learned-indexes
+      - storage-engines
+      - memory-efficient-search-structures
+    why_read: Turns specialized static indexes into update-capable structures through a configurable dynamization framework, narrowing the gap from research prototype to deployable index.
+    difficulty: advanced
+    reading_time_minutes: 80
+    links:
+      paper: https://www.vldb.org/pvldb/vol17/p2867-rumbaugh.pdf
+    predecessors:
+      - surf-2018
+      - memory-efficient-search-trees-2021
+    successors: []
+  - id: why-learned-indexes-2025
+    title: Why Are Learned Indexes So Effective but Sometimes Ineffective?
+    year: 2025
+    authors:
+      - Qiyu Liu
+      - Siyuan Han
+      - Yanlin Qi
+      - Jingshu Peng
+      - Jin Li
+      - Longlong Lin
+      - Lei Chen
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Data management
+    tags:
+      - learned indexes
+      - PGM-index
+      - cost model
+      - memory bottleneck
+      - last-mile search
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+    why_read: Reconciles the PGM-index's strong asymptotic bounds with memory-bound execution in practice, then uses that diagnosis to build the faster PGM++.
+    difficulty: advanced
+    reading_time_minutes: 80
+    links:
+      paper: https://www.vldb.org/pvldb/vol18/p2886-liu.pdf
+    predecessors:
+      - learned-index-2018
+      - learned-index-evaluation-2023
+      - dili-2023
+    successors: []
+  - id: doblix-2025
+    title: 'DobLIX: A Dual-Objective Learned Index for Log-Structured Merge Trees'
+    year: 2025
+    authors:
+      - Alireza Heidari
+      - Amirhossein Ahmadi
+      - Wei Zhang
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Data management
+    tags:
+      - learned indexes
+      - LSM-tree
+      - RocksDB
+      - reinforcement learning
+      - I/O optimization
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+      - storage-engines
+    why_read: Co-optimizes learned-model accuracy and physical block access inside RocksDB, adapting its LSM index and data layout as workloads change.
+    difficulty: advanced
+    reading_time_minutes: 90
+    links:
+      paper: https://www.vldb.org/pvldb/vol18/p3965-heidari.pdf
+    predecessors:
+      - learned-index-2018
+      - disk-learned-indexes-2024
+      - lsm-1996
+      - rocksdb-experience-2021
+    successors: []
+  - id: fb-tree-2025
+    title: 'FB+-tree: A Memory-Optimized B+-tree with Latch-Free Update'
+    year: 2025
+    authors:
+      - Yuan Chen
+      - Ao Li
+      - Wenhai Li
+      - Lingfeng Deng
+    venue: PVLDB
+    areas:
+      - Databases
+      - Data management
+      - Infrastructure
+    tags:
+      - B-tree
+      - trie
+      - latch-free updates
+      - main-memory indexing
+      - multicore scalability
+    type: current
+    lineages:
+      - learned-indexes
+      - storage-engines
+      - memory-efficient-search-structures
+    why_read: Blends trie-like byte-wise branching with a balanced B+ tree and latch-free updates to improve cache behavior and multicore scalability under contention.
+    difficulty: advanced
+    reading_time_minutes: 85
+    links:
+      paper: https://www.vldb.org/pvldb/vol18/p1579-li.pdf
+    predecessors:
+      - modern-btree-techniques-2011
+      - bwtree-2013
+      - art-2013
+      - hot-2018
     successors: []

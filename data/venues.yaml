@@ -13,6 +13,20 @@ venues:
   - Databases
   - Data management
   tier: flagship
+- id: pacmmod
+  name: Proceedings of the ACM on Management of Data
+  organization: ACM
+  areas:
+  - Databases
+  - Data management
+  tier: flagship
+- id: pvldb
+  name: Proceedings of the VLDB Endowment
+  organization: VLDB Endowment
+  areas:
+  - Databases
+  - Data management
+  tier: flagship
 - id: socc
   name: ACM Symposium on Cloud Computing
   organization: ACM

@@ -979,3 +979,433 @@ researchers:
       - compilers
       - Distributed training
     paper_ids: []
+  - id: zhaoyan-sun
+    name: Zhaoyan Sun
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - database benchmarking
+      - data systems
+    paper_ids:
+      - learned-index-evaluation-2023
+  - id: xuanhe-zhou
+    name: Xuanhe Zhou
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - database benchmarking
+      - data systems
+    paper_ids:
+      - learned-index-evaluation-2023
+  - id: guoliang-li
+    name: Guoliang Li
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - database benchmarking
+      - data systems
+    paper_ids:
+      - learned-index-evaluation-2023
+  - id: pengfei-li
+    name: Pengfei Li
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - data distributions
+      - in-memory indexing
+    paper_ids:
+      - dili-2023
+  - id: hua-lu
+    name: Hua Lu
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - data distributions
+      - in-memory indexing
+    paper_ids:
+      - dili-2023
+  - id: rong-zhu
+    name: Rong Zhu
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - data distributions
+      - in-memory indexing
+    paper_ids:
+      - dili-2023
+  - id: bolin-ding
+    name: Bolin Ding
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - data distributions
+      - in-memory indexing
+    paper_ids:
+      - dili-2023
+  - id: long-yang
+    name: Long Yang
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - data distributions
+      - in-memory indexing
+    paper_ids:
+      - dili-2023
+  - id: gang-pan
+    name: Gang Pan
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - data distributions
+      - in-memory indexing
+    paper_ids:
+      - dili-2023
+  - id: rui-yang
+    name: Rui Yang
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    topics:
+      - learned indexes
+      - algorithmic complexity
+      - adversarial workloads
+    paper_ids:
+      - learned-index-complexity-attacks-2023
+  - id: evgenios-kornaropoulos
+    name: Evgenios M. Kornaropoulos
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    topics:
+      - learned indexes
+      - algorithmic complexity
+      - adversarial workloads
+    paper_ids:
+      - learned-index-complexity-attacks-2023
+  - id: yue-cheng
+    name: Yue Cheng
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    topics:
+      - learned indexes
+      - algorithmic complexity
+      - adversarial workloads
+    paper_ids:
+      - learned-index-complexity-attacks-2023
+  - id: jiaoyi-zhang
+    name: Jiaoyi Zhang
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - learned indexes
+      - disk-based indexing
+      - storage engines
+    paper_ids:
+      - disk-learned-indexes-2024
+  - id: kai-su
+    name: Kai Su
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - learned indexes
+      - disk-based indexing
+      - storage engines
+    paper_ids:
+      - disk-learned-indexes-2024
+  - id: huanchen-zhang
+    name: Huanchen Zhang
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - learned indexes
+      - disk-based indexing
+      - storage engines
+    paper_ids:
+      - disk-learned-indexes-2024
+  - id: minsu-kim
+    name: Minsu Kim
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    topics:
+      - learned indexes
+      - string keys
+      - hardware acceleration
+    paper_ids:
+      - string-key-learned-indexes-2024
+  - id: jinwoo-hwang
+    name: Jinwoo Hwang
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    topics:
+      - learned indexes
+      - string keys
+      - hardware acceleration
+    paper_ids:
+      - string-key-learned-indexes-2024
+  - id: guseul-heo
+    name: Guseul Heo
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    topics:
+      - learned indexes
+      - string keys
+      - hardware acceleration
+    paper_ids:
+      - string-key-learned-indexes-2024
+  - id: seiyeon-cho
+    name: Seiyeon Cho
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    topics:
+      - learned indexes
+      - string keys
+      - hardware acceleration
+    paper_ids:
+      - string-key-learned-indexes-2024
+  - id: divya-mahajan
+    name: Divya Mahajan
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    topics:
+      - learned indexes
+      - string keys
+      - hardware acceleration
+    paper_ids:
+      - string-key-learned-indexes-2024
+  - id: jongse-park
+    name: Jongse Park
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    topics:
+      - learned indexes
+      - string keys
+      - hardware acceleration
+    paper_ids:
+      - string-key-learned-indexes-2024
+  - id: douglas-rumbaugh
+    name: Douglas B. Rumbaugh
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - index dynamization
+      - specialized indexes
+      - data structures
+    paper_ids:
+      - systematic-index-dynamization-2024
+  - id: dong-xie
+    name: Dong Xie
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - index dynamization
+      - specialized indexes
+      - data structures
+    paper_ids:
+      - systematic-index-dynamization-2024
+  - id: zhuoyue-zhao
+    name: Zhuoyue Zhao
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - index dynamization
+      - specialized indexes
+      - data structures
+    paper_ids:
+      - systematic-index-dynamization-2024
+  - id: qiyu-liu
+    name: Qiyu Liu
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - PGM-index
+      - performance modeling
+    paper_ids:
+      - why-learned-indexes-2025
+  - id: siyuan-han
+    name: Siyuan Han
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - PGM-index
+      - performance modeling
+    paper_ids:
+      - why-learned-indexes-2025
+  - id: yanlin-qi
+    name: Yanlin Qi
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - PGM-index
+      - performance modeling
+    paper_ids:
+      - why-learned-indexes-2025
+  - id: jingshu-peng
+    name: Jingshu Peng
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - PGM-index
+      - performance modeling
+    paper_ids:
+      - why-learned-indexes-2025
+  - id: jin-li
+    name: Jin Li
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - PGM-index
+      - performance modeling
+    paper_ids:
+      - why-learned-indexes-2025
+  - id: longlong-lin
+    name: Longlong Lin
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - PGM-index
+      - performance modeling
+    paper_ids:
+      - why-learned-indexes-2025
+  - id: lei-chen
+    name: Lei Chen
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - PGM-index
+      - performance modeling
+    paper_ids:
+      - why-learned-indexes-2025
+  - id: alireza-heidari
+    name: Alireza Heidari
+    areas:
+      - Databases
+      - AI
+      - Data management
+    topics:
+      - learned indexes
+      - LSM trees
+      - RocksDB
+    paper_ids:
+      - doblix-2025
+  - id: amirhossein-ahmadi
+    name: Amirhossein Ahmadi
+    areas:
+      - Databases
+      - AI
+      - Data management
+    topics:
+      - learned indexes
+      - LSM trees
+      - RocksDB
+    paper_ids:
+      - doblix-2025
+  - id: wei-zhang
+    name: Wei Zhang
+    areas:
+      - Databases
+      - AI
+      - Data management
+    topics:
+      - learned indexes
+      - LSM trees
+      - RocksDB
+    paper_ids:
+      - doblix-2025
+  - id: yuan-chen
+    name: Yuan Chen
+    areas:
+      - Databases
+      - Infrastructure
+    topics:
+      - B-trees
+      - trie indexes
+      - concurrent data structures
+    paper_ids:
+      - fb-tree-2025
+  - id: ao-li
+    name: Ao Li
+    areas:
+      - Databases
+      - Infrastructure
+    topics:
+      - B-trees
+      - trie indexes
+      - concurrent data structures
+    paper_ids:
+      - fb-tree-2025
+  - id: wenhai-li
+    name: Wenhai Li
+    areas:
+      - Databases
+      - Infrastructure
+    topics:
+      - B-trees
+      - trie indexes
+      - concurrent data structures
+    paper_ids:
+      - fb-tree-2025
+  - id: lingfeng-deng
+    name: Lingfeng Deng
+    areas:
+      - Databases
+      - Infrastructure
+    topics:
+      - B-trees
+      - trie indexes
+      - concurrent data structures
+    paper_ids:
+      - fb-tree-2025
