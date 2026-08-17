@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Fixed paper bookmarks jumping the page back to the beginning.
 - Added count pills and completion checks to the Tracks jump navigation.
 - Added explicit “Expand remaining” and “Collapse open” actions for partially expanded Tracks.
 - Redesigned Tracks as guided reading journeys with summaries, responsive timelines, local progress, jump links, and expand/collapse controls.

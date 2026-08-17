@@ -88,8 +88,18 @@ function wire() {
     if(bookmark) {
       const id=bookmark.dataset.paperBookmark;
       state.bookmarks.has(id)?state.bookmarks.delete(id):state.bookmarks.add(id);
-      saveBookmarks(); render();
-      requestAnimationFrame(()=>document.querySelector(`[data-paper-bookmark="${CSS.escape(id)}"]`)?.focus()||$("resultsSummary").focus());
+      saveBookmarks();
+      if(state.view==="bookmarks") {
+        render();
+        requestAnimationFrame(()=>document.querySelector(`[data-paper-bookmark="${CSS.escape(id)}"]`)?.focus({preventScroll:true}));
+      } else {
+        const bookmarked=state.bookmarks.has(id);
+        const paper=state.data.paperMap.get(id);
+        bookmark.setAttribute("aria-pressed",String(bookmarked));
+        bookmark.setAttribute("aria-label",bookmarked?`Remove bookmark from ${paper.title}`:`Bookmark ${paper.title}`);
+        bookmark.innerHTML=bookmarkIcon(bookmarked);
+        bookmark.closest(".paper-card")?.classList.toggle("is-bookmarked",bookmarked);
+      }
       return;
     }
     const toggle=e.target.closest("[data-track-toggle]");
