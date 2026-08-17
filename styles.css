@@ -206,6 +206,18 @@ input,select,button{ font:inherit; }
 }
 .card a:hover{ border-bottom-color:var(--primary); }
 
+/* paper bookmarks */
+.paper-card{ position:relative; }
+.paper-card h2{ padding-right:42px; }
+.bookmark-button{
+  position:absolute; top:12px; right:13px; display:flex; align-items:center; justify-content:center;
+  width:38px; height:38px; padding:0; cursor:pointer; color:var(--text-muted);
+  background:transparent; border:1px solid transparent; border-radius:999px;
+}
+.bookmark-button:hover{ color:var(--primary); background:var(--chip-bg); }
+.bookmark-button[aria-pressed="true"]{ color:var(--primary); background:var(--chip-bg); }
+.paper-card.is-bookmarked{ border-left-color:var(--primary); }
+
 /* guided reading tracks */
 .track-card{ padding:20px; scroll-margin-top:var(--scroll-offset); }
 .track-card.track-complete{ border-left-color:var(--primary); }
