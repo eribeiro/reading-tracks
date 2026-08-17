@@ -1,0 +1,170 @@
+venues:
+- id: sigcomm
+  name: ACM SIGCOMM
+  organization: ACM
+  areas:
+  - Distributed Systems
+  - Infrastructure
+  tier: flagship-networking
+- id: sigmod
+  name: ACM SIGMOD International Conference on Management of Data
+  organization: ACM
+  areas:
+  - Databases
+  - Data management
+  tier: flagship
+- id: socc
+  name: ACM Symposium on Cloud Computing
+  organization: ACM
+  areas:
+  - Distributed Systems
+  - Infrastructure
+  - AI
+  tier: flagship-cloud
+- id: sosp
+  name: ACM Symposium on Operating Systems Principles
+  organization: ACM
+  areas:
+  - Distributed Systems
+  - Infrastructure
+  tier: flagship
+- id: pods
+  name: ACM Symposium on Principles of Database Systems
+  organization: ACM
+  areas:
+  - Databases
+  - Distributed Systems
+  tier: flagship-theory
+- id: podc
+  name: ACM Symposium on Principles of Distributed Computing
+  organization: ACM
+  areas:
+  - Distributed Systems
+  tier: flagship-theory
+- id: cidr
+  name: Conference on Innovative Data Systems Research
+  organization: CIDR
+  areas:
+  - Databases
+  - Data management
+  tier: major
+- id: mlsys
+  name: Conference on Machine Learning and Systems
+  organization: MLSys
+  areas:
+  - AI
+  - Infrastructure
+  - Distributed Systems
+  tier: flagship-ml-Systems
+- id: neurips
+  name: Conference on Neural Information Processing Systems
+  organization: NeurIPS Foundation
+  areas:
+  - AI
+  tier: flagship-ml
+- id: eurosys
+  name: European Conference on Computer Systems
+  organization: ACM
+  areas:
+  - Distributed Systems
+  - Infrastructure
+  tier: flagship
+- id: icde
+  name: IEEE International Conference on Data Engineering
+  organization: IEEE
+  areas:
+  - Databases
+  - Data management
+  tier: flagship
+- id: hpca
+  name: IEEE International Symposium on High-Performance Computer Architecture
+  organization: IEEE
+  areas:
+  - Infrastructure
+  - AI
+  tier: flagship-architecture
+- id: dsn
+  name: IEEE/IFIP International Conference on Dependable Systems and Networks
+  organization: IEEE/IFIP
+  areas:
+  - Distributed Systems
+  - Infrastructure
+  tier: flagship-dependability
+- id: sc
+  name: International Conference for High Performance Computing, Networking, Storage and Analysis
+  organization: ACM/IEEE
+  areas:
+  - Infrastructure
+  - AI
+  - Distributed Systems
+  tier: flagship-hpc
+- id: asplos
+  name: International Conference on Architectural Support for Programming Languages and Operating Systems
+  organization: ACM
+  areas:
+  - Infrastructure
+  - AI
+  tier: flagship-architecture-Systems
+- id: icml
+  name: International Conference on Machine Learning
+  organization: PMLR/IMLS
+  areas:
+  - AI
+  tier: flagship-ml
+- id: vldb
+  name: International Conference on Very Large Data Bases / PVLDB
+  organization: VLDB Endowment
+  areas:
+  - Databases
+  - Data management
+  tier: flagship
+- id: isca
+  name: International Symposium on Computer Architecture
+  organization: ACM/IEEE
+  areas:
+  - Infrastructure
+  - AI
+  tier: flagship-architecture
+- id: disc
+  name: International Symposium on Distributed Computing
+  organization: Springer/Community
+  areas:
+  - Distributed Systems
+  tier: flagship-theory
+- id: usenix-atc
+  name: USENIX Annual Technical Conference
+  organization: USENIX
+  areas:
+  - Distributed Systems
+  - Infrastructure
+  tier: major
+- id: atc
+  name: USENIX Annual Technical Conference
+  organization: USENIX
+  areas:
+  - Distributed Systems
+  - Infrastructure
+  tier: major
+- id: fast
+  name: USENIX Conference on File and Storage Technologies
+  organization: USENIX
+  areas:
+  - Databases
+  - Data management
+  - Infrastructure
+  tier: flagship-storage
+- id: nsdi
+  name: USENIX Symposium on Networked Systems Design and Implementation
+  organization: USENIX
+  areas:
+  - Distributed Systems
+  - Infrastructure
+  tier: flagship
+- id: osdi
+  name: USENIX Symposium on Operating Systems Design and Implementation
+  organization: USENIX
+  areas:
+  - Distributed Systems
+  - Infrastructure
+  - AI
+  tier: flagship

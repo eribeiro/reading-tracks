@@ -1,0 +1,9 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.swp
+*.idea/
+*.vscode/
+*.egg-info/
+.env
+assets/alternatives/

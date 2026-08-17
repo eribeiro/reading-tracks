@@ -1,0 +1,25 @@
+name: Sync website copy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify eribeiro.github.io
+        env:
+          GH_TOKEN: ${{ secrets.SITE_SYNC_TOKEN }}
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo "SITE_SYNC_TOKEN is not configured." >&2
+            exit 1
+          fi
+
+          jq -n --arg sha "$SOURCE_SHA" \
+            '{event_type: "reading-tracks-updated", client_payload: {sha: $sha}}' |
+            gh api --method POST \
+              repos/eribeiro/eribeiro.github.io/dispatches \
+              --input -

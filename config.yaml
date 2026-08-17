@@ -1,0 +1,40 @@
+schema_version: 5
+
+site:
+  title: ReadingTracks
+  tagline: Papers, researchers, venues, and reading tracks for a Systems & AI reading club.
+  author_name: Edward Ribeiro
+  author_url: https://github.com/eribeiro
+  footer: Data kept in YAML and statically loaded in the browser.
+
+# Area chips shown at the top of the filter bar. Every paper's `areas` list
+# should only use values from here.
+areas:
+  - Distributed Systems
+  - AI
+  - Databases
+  - Data management
+  - Infrastructure
+
+# Eras group papers into readable historical buckets, derived from `year` at
+# render time (see app.js). Ranges are inclusive; omit `start`/`end` to leave
+# that side open-ended. Order here is the order used everywhere in the UI.
+eras:
+  foundations:
+    label: Foundations
+    end: 1989
+  database-internals-and-consensus:
+    label: Database Internals & Consensus
+    start: 1990
+    end: 1999
+  web-scale-systems:
+    label: Web-Scale Systems
+    start: 2000
+    end: 2009
+  cloud-data-and-ml-systems:
+    label: Cloud Data & ML Systems
+    start: 2010
+    end: 2019
+  modern-cloud-and-ai-infrastructure:
+    label: Modern Cloud & AI Infrastructure
+    start: 2020

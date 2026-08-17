@@ -1,0 +1,968 @@
+researchers:
+  - id: alan-fekete
+    name: Alan Fekete
+    areas:
+      - Databases
+    topics:
+      - snapshot isolation
+      - serializability
+      - coordination avoidance
+      - isolation levels
+    paper_ids:
+      - snapshot-isolation-serializable-2005
+      - hat-2014
+      - coordination-avoidance-2015
+      - feral-concurrency-control-2015
+      - serializable-isolation-snapshot-databases-2008
+      - allocating-isolation-levels-2005
+  - id: alexey-tumanov
+    name: Alexey Tumanov
+    areas:
+      - AI
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - AI runtimes
+      - scheduling
+      - Ray
+      - TetriSched
+    paper_ids:
+      - ray-2018
+      - tetrisched-2016
+  - id: ali-ghodsi
+    name: Ali Ghodsi
+    areas:
+      - Data management
+      - Infrastructure
+    topics:
+      - Mesos
+      - lakehouse
+      - cloud Data
+    paper_ids:
+      - mesos-2011
+      - delta-lake-2020
+      - lakehouse-2021
+  - id: alysson-bessani
+    name: Alysson Bessani
+    areas:
+      - Distributed Systems
+    topics:
+      - BFT
+      - state machine replication
+      - dependability
+    paper_ids: []
+  - id: ana-klimovic
+    name: Ana Klimovic
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - ML Systems
+      - cloud Systems
+      - resource management
+    paper_ids: []
+  - id: andy-pavlo
+    name: Andy Pavlo
+    areas:
+      - Databases
+    topics:
+      - DBMS architecture
+      - OLTP
+      - Database history
+      - H-Store
+      - self-driving Databases
+    paper_ids:
+      - what-goes-around-2024
+      - h-store-2008
+      - self-driving-dbms-2017
+      - ottertune-2017
+      - staring-into-the-abyss-2014
+      - mainlining-databases-2020
+      - empirical-columnar-formats-2023
+      - f3-file-format-2025
+      - surf-2018
+      - order-preserving-key-compression-2020
+  - id: barbara-liskov
+    name: Barbara Liskov
+    areas:
+      - Distributed Systems
+      - Databases
+    topics:
+      - replication
+      - isolation
+      - programming Systems
+    paper_ids:
+      - viewstamped-1988
+      - adya-2000
+      - silo-2013
+  - id: c-mohan
+    name: C. Mohan
+    areas:
+      - Databases
+    topics:
+      - recovery
+      - transactions
+      - ARIES
+    paper_ids:
+      - aries-1992
+  - id: christopher-de-sa
+    name: Christopher De Sa
+    areas:
+      - AI
+      - Distributed Systems
+    topics:
+      - Distributed ML
+      - ML Systems
+    paper_ids: []
+  - id: christopher-ré
+    name: Christopher Ré
+    areas:
+      - AI
+      - Data management
+    topics:
+      - Data-centric AI
+      - ML Systems
+      - foundation models
+    paper_ids: []
+  - id: christos-kozyrakis
+    name: Christos Kozyrakis
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - computer architecture
+      - cloud Systems
+      - ML Systems
+    paper_ids: []
+  - id: dahlia-malkhi
+    name: Dahlia Malkhi
+    areas:
+      - Distributed Systems
+    topics:
+      - BFT
+      - consensus
+      - Byzantine quorum Systems
+      - flexible quorums
+    paper_ids:
+      - flexible-paxos-2016
+  - id: daniel-abadi
+    name: Daniel Abadi
+    areas:
+      - Databases
+      - Distributed Systems
+    topics:
+      - PACELC
+      - Calvin
+      - column stores
+      - Distributed transactions
+      - column stores
+      - consistency
+      - deterministic databases
+    paper_ids:
+      - pacelc-2012
+      - calvin-2012
+      - cstore-2005
+      - end-architectural-era-2007
+      - h-store-2008
+      - bohm-2015
+      - deterministic-databases-overview-2018
+      - slog-2019
+      - detock-2023
+      - oltp-looking-glass-2008
+  - id: dawn-song
+    name: Dawn Song
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - security
+      - Systems for ML
+    paper_ids: []
+  - id: diego-ongaro
+    name: Diego Ongaro
+    areas:
+      - Distributed Systems
+    topics:
+      - Raft
+      - consensus
+    paper_ids:
+      - raft-2014
+  - id: doug-terry
+    name: Doug Terry
+    areas:
+      - Databases
+      - Distributed Systems
+    topics:
+      - consistency
+      - replication
+      - DynamoDB
+    paper_ids:
+      - dynamodb-2022
+  - id: eduardo-alchieri
+    name: Eduardo Alchieri
+    areas:
+      - Distributed Systems
+    topics:
+      - BFT
+      - state machine replication
+      - dependability
+    paper_ids: []
+  - id: eric-p-xing
+    name: Eric P. Xing
+    areas:
+      - AI
+      - Distributed Systems
+    topics:
+      - Distributed ML
+      - ML Systems
+    paper_ids:
+      - alpa-2022
+  - id: eric-xing
+    name: Eric P. Xing
+    areas:
+      - AI
+      - Distributed Systems
+    topics:
+      - Distributed ML
+      - Petuum
+      - Pollux
+    paper_ids:
+      - parameter-server-2014
+      - pollux-2021
+  - id: fernando-pedone
+    name: Fernando Pedone
+    areas:
+      - Distributed Systems
+      - Databases
+    topics:
+      - state machine replication
+      - transactions
+      - replication
+    paper_ids: []
+  - id: fred-b-schneider
+    name: Fred B. Schneider
+    areas:
+      - Distributed Systems
+    topics:
+      - fault tolerance
+      - replication
+      - security
+    paper_ids:
+      - chain-replication-2004
+  - id: fred-schneider
+    name: Fred B. Schneider
+    areas:
+      - Distributed Systems
+    topics:
+      - state machine replication
+      - fault tolerance
+    paper_ids:
+      - chain-replication-2004
+  - id: gauri-joshi
+    name: Gauri Joshi
+    areas:
+      - AI
+      - Distributed Systems
+    topics:
+      - Distributed ML
+      - stragglers
+      - coded computing
+    paper_ids: []
+  - id: gennady-pekhimenko
+    name: Gennady Pekhimenko
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - efficient ML
+      - memory Systems
+    paper_ids: []
+  - id: goetz-graefe
+    name: Goetz Graefe
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - query execution
+      - B-trees
+      - query optimization
+    paper_ids:
+      - volcano-parallelism-1990
+      - query-evaluation-techniques-1993
+      - volcano-1994
+      - cascades-1995
+      - five-minute-rule-1997
+      - modern-btree-techniques-2011
+      - in-memory-performance-big-data-2014
+      - f1-query-2018
+      - f1-lightning-2020
+      - napa-2021
+      - napa-progressive-partitioning-2023
+  - id: heidi-howard
+    name: Heidi Howard
+    areas:
+      - Distributed Systems
+    topics:
+      - consensus
+      - Paxos variants
+      - Raft
+    paper_ids:
+      - flexible-paxos-2016
+      - raft-refloated-2015
+      - paxos-vs-raft-2020
+      - distributed-consensus-revised-2019
+  - id: indranil-gupta
+    name: Indranil Gupta
+    areas:
+      - Distributed Systems
+      - Data management
+    topics:
+      - membership
+      - gossip
+      - cloud reliability
+      - streaming
+    paper_ids:
+      - swim-2002
+      - kelips-2003
+  - id: ion-stoica
+    name: Ion Stoica
+    areas:
+      - Distributed Systems
+      - AI
+      - Infrastructure
+    topics:
+      - cluster computing
+      - Ray
+      - scheduling
+    paper_ids:
+      - rdd-2012
+      - mesos-2011
+      - clipper-2017
+      - ray-2018
+      - alpa-2022
+      - vllm-2023
+  - id: jeff-dean
+    name: Jeff Dean
+    areas:
+      - Distributed Systems
+      - AI
+      - Infrastructure
+    topics:
+      - MapReduce
+      - Bigtable
+      - TensorFlow
+      - Spanner
+    paper_ids:
+      - mapreduce-2004
+      - bigtable-2006
+      - tail-at-scale-2013
+      - tensorflow-2016
+  - id: jeffrey-dean
+    name: Jeffrey Dean
+    areas:
+      - Distributed Systems
+      - AI
+      - Infrastructure
+    topics:
+      - Google Systems
+      - Distributed ML
+      - large-scale computing
+    paper_ids:
+      - mapreduce-2004
+      - bigtable-2006
+      - spanner-2012
+      - tensorflow-2016
+  - id: jim-gray
+    name: Jim Gray
+    areas:
+      - Databases
+    topics:
+      - transactions
+      - concurrency
+      - recovery
+    paper_ids:
+      - transaction-concept-1981
+      - ansi-isolation-1995
+  - id: joe-hellerstein
+    name: Joseph M. Hellerstein
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - Database architecture
+      - Dataflow
+    paper_ids:
+      - architecture-db-2007
+  - id: john-ousterhout
+    name: John Ousterhout
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - Raft
+      - storage
+      - operating Systems
+    paper_ids:
+      - raft-2014
+  - id: john-wilkes
+    name: John Wilkes
+    areas:
+      - Infrastructure
+      - Distributed Systems
+    topics:
+      - cluster scheduling
+      - resource management
+    paper_ids:
+      - omega-2013
+      - borg-2015
+  - id: joseph-e-gonzalez
+    name: Joseph E. Gonzalez
+    areas:
+      - AI
+      - Distributed Systems
+    topics:
+      - Distributed ML
+      - Ray
+      - LLM Systems
+    paper_ids:
+      - clipper-2017
+      - alpa-2022
+      - vllm-2023
+  - id: joseph-gonzalez
+    name: Joseph E. Gonzalez
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - model serving
+      - GraphLab
+      - Systems for ML
+    paper_ids:
+      - clipper-2017
+  - id: joseph-m-hellerstein
+    name: Joseph M. Hellerstein
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - Database architecture
+      - query processing
+      - Distributed Data
+    paper_ids:
+      - architecture-db-2007
+  - id: ken-birman
+    name: Ken Birman
+    areas:
+      - Distributed Systems
+    topics:
+      - gossip
+      - reliable multicast
+      - membership
+    paper_ids:
+      - kelips-2003
+  - id: kunle-olukotun
+    name: Kunle Olukotun
+    areas:
+      - Infrastructure
+      - AI
+    topics:
+      - parallel architectures
+      - ML accelerators
+    paper_ids: []
+  - id: leslie-lamport
+    name: Leslie Lamport
+    areas:
+      - Distributed Systems
+    topics:
+      - logical clocks
+      - consensus
+      - Paxos
+    paper_ids:
+      - lamport-time-clocks-1978
+      - byzantine-generals-1982
+      - paxos-1998
+  - id: luiz-barroso
+    name: Luiz André Barroso
+    areas:
+      - Infrastructure
+    topics:
+      - Datacenter as a computer
+      - warehouse-scale
+      - tail latency
+    paper_ids:
+      - tail-at-scale-2013
+  - id: malte-schwarzkopf
+    name: Malte Schwarzkopf
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - cluster scheduling
+      - Omega
+      - Firmament
+      - Dataflow Systems
+      - learned Systems
+    paper_ids:
+      - omega-2013
+      - firmament-2016
+      - ciel-2011
+      - musketeer-2015
+      - decima-2019
+      - noria-2018
+  - id: marcos-k-aguilera
+    name: Marcos K. Aguilera
+    areas:
+      - Distributed Systems
+    topics:
+      - consensus
+      - replication
+      - fault tolerance
+    paper_ids: []
+  - id: martin-kleppmann
+    name: Martin Kleppmann
+    areas:
+      - Distributed Systems
+      - Data management
+    topics:
+      - Distributed Data
+      - consistency
+      - stream processing
+    paper_ids: []
+  - id: matei-zaharia
+    name: Matei Zaharia
+    areas:
+      - Data management
+      - AI
+      - Infrastructure
+    topics:
+      - Spark
+      - ML Systems
+      - lakehouse
+    paper_ids:
+      - rdd-2012
+      - mesos-2011
+      - delta-lake-2020
+      - lakehouse-2021
+  - id: maurice-herlihy
+    name: Maurice Herlihy
+    areas:
+      - Distributed Systems
+    topics:
+      - concurrency
+      - wait-free algorithms
+      - consensus
+    paper_ids: []
+  - id: michael-carbin
+    name: Michael Carbin
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - programming Systems
+      - ML Systems
+      - lottery ticket
+    paper_ids: []
+  - id: michael-stonebraker
+    name: Michael Stonebraker
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - Database architecture
+      - column stores
+      - OLTP
+      - H-Store
+      - specialized engines
+    paper_ids:
+      - cstore-2005
+      - end-architectural-era-2007
+      - architecture-db-2007
+      - what-goes-around-2024
+      - h-store-2008
+      - one-size-fits-all-2005
+      - mapreduce-parallel-dbms-2010
+      - staring-into-the-abyss-2014
+      - oltp-looking-glass-2008
+      - oltp-looking-glass-16-years-later-2025
+  - id: miguel-castro
+    name: Miguel Castro
+    areas:
+      - Distributed Systems
+    topics:
+      - BFT
+      - RDMA
+      - PBFT
+      - FaRM
+    paper_ids:
+      - pbft-1999
+      - farm-2015
+  - id: mike-burrows
+    name: Mike Burrows
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - Chubby
+      - coordination
+      - Google Systems
+    paper_ids:
+      - chubby-2006
+      - bigtable-2006
+  - id: nancy-a-lynch
+    name: Nancy A. Lynch
+    areas:
+      - Distributed Systems
+    topics:
+      - consensus
+      - impossibility
+      - Distributed algorithms
+    paper_ids:
+      - flp-1985
+  - id: nancy-lynch
+    name: Nancy Lynch
+    areas:
+      - Distributed Systems
+    topics:
+      - Distributed computing theory
+      - FLP
+      - impossibility results
+    paper_ids:
+      - flp-1985
+  - id: natassa-ailamaki
+    name: Natassa Ailamaki
+    areas:
+      - Databases
+    topics:
+      - Database performance
+      - hardware-conscious DBMS
+    paper_ids:
+      - dbmss-modern-processor-1999
+  - id: neoklis-polyzotis
+    name: Neoklis Polyzotis
+    areas:
+      - AI
+      - Data management
+    topics:
+      - Data validation
+      - Data Infrastructure for ML
+    paper_ids:
+      - Data-validation-2019
+      - learned-index-2018
+  - id: pat-helland
+    name: Pat Helland
+    areas:
+      - Databases
+      - Distributed Systems
+    topics:
+      - Distributed transactions
+      - eventual consistency
+      - System design
+    paper_ids:
+      - end-architectural-era-2007
+  - id: patricia-selinger
+    name: Patricia Selinger
+    areas:
+      - Databases
+    topics:
+      - query optimization
+      - System R
+      - cost-based optimization
+    paper_ids:
+      - System-r-access-path-1979
+  - id: peter-bailis
+    name: Peter Bailis
+    areas:
+      - Databases
+      - Distributed Systems
+    topics:
+      - consistency
+      - transactions
+      - Data-intensive Systems
+      - coordination avoidance
+    paper_ids:
+      - hat-2014
+      - coordination-avoidance-2015
+      - feral-concurrency-control-2015
+  - id: peter-boncz
+    name: Peter Boncz
+    areas:
+      - Databases
+    topics:
+      - vectorized execution
+      - MonetDB
+      - DuckDB
+    paper_ids:
+      - memory-access-bottleneck-1999
+      - x100-2005
+      - morsel-driven-parallelism-2014
+      - how-good-query-optimizers-2015
+      - compiled-vs-vectorized-2018
+      - duckdb-2019
+      - data-blocks-2016
+      - fastlanes-file-format-2025
+  - id: philip-bernstein
+    name: Philip A. Bernstein
+    areas:
+      - Databases
+      - Distributed Systems
+    topics:
+      - concurrency control
+      - transactions
+    paper_ids:
+      - granularity-locks-1976
+  - id: robbert-van-renesse
+    name: Robbert van Renesse
+    areas:
+      - Distributed Systems
+    topics:
+      - replication
+      - membership
+      - fault tolerance
+    paper_ids:
+      - chain-replication-2004
+      - kelips-2003
+  - id: sanjay-ghemawat
+    name: Sanjay Ghemawat
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - storage
+      - large-scale Systems
+    paper_ids:
+      - gfs-2003
+      - mapreduce-2004
+      - bigtable-2006
+      - spanner-2012
+      - tensorflow-2016
+  - id: scott-shenker
+    name: Scott Shenker
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - networking
+      - cluster computing
+    paper_ids:
+      - mesos-2011
+  - id: shivaram-venkataraman
+    name: Shivaram Venkataraman
+    areas:
+      - AI
+      - Data management
+    topics:
+      - Distributed ML
+      - Spark
+      - Systems
+    paper_ids: []
+  - id: song-han
+    name: Song Han
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - efficient deep learning
+      - hardware acceleration
+      - compression
+    paper_ids: []
+  - id: steven-whang
+    name: Steven Euijong Whang
+    areas:
+      - AI
+      - Data management
+    topics:
+      - Data quality
+      - ML Data management
+    paper_ids:
+      - Data-validation-2019
+  - id: swaminathan-sivasubramanian
+    name: Swaminathan Sivasubramanian
+    areas:
+      - Databases
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - Dynamo
+      - DynamoDB
+      - AWS
+      - cloud Databases
+    paper_ids:
+      - dynamo-2007
+      - dynamodb-2022
+  - id: thomas-neumann
+    name: Thomas Neumann
+    areas:
+      - Databases
+    topics:
+      - query compilation
+      - execution
+      - HyPer
+    paper_ids:
+      - hyper-2011
+      - neumann-2011
+      - morsel-driven-parallelism-2014
+      - how-good-query-optimizers-2015
+      - compiled-vs-vectorized-2018
+      - umbra-2020
+      - art-2013
+  - id: tianqi-chen
+    name: Tianqi Chen
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - ML compilers
+      - XGBoost
+      - TVM
+    paper_ids:
+      - tvm-2018
+  - id: tim-kraska
+    name: Tim Kraska
+    areas:
+      - Databases
+      - AI
+    topics:
+      - learned indexes
+      - ML for Systems
+      - Data Systems
+    paper_ids: []
+  - id: tri-dao
+    name: Tri Dao
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - efficient ML
+      - GPU kernels
+      - attention
+    paper_ids: []
+  - id: walfredo-cirne
+    name: Walfredo Cirne
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - grid computing
+      - scheduling
+      - Distributed computing
+    paper_ids: []
+  - id: andrey-gubichev
+    name: Andrey Gubichev
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - query optimization
+      - cardinality estimation
+      - distributed SQL
+      - F1 Query
+    paper_ids:
+      - how-good-query-optimizers-2015
+      - f1-query-2018
+  - id: martin-kersten
+    name: Martin Kersten
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - MonetDB
+      - column stores
+      - adaptive indexing
+      - database architecture
+    paper_ids:
+      - memory-access-bottleneck-1999
+      - database-cracking-2007
+      - monetdb-two-decades-2012
+  - id: murat-demirbas
+    name: Murat Demirbas
+    areas:
+      - Distributed Systems
+      - Databases
+    topics:
+      - distributed consensus
+      - replication
+      - distributed transactions
+      - fault tolerance
+      - distributed coordination
+    paper_ids:
+      - logical-physical-clocks-2014
+      - panopticon-2015
+      - wankeeper-2017
+      - live-data-migration-2018
+      - dissecting-replication-protocols-2019
+      - linearizable-quorum-reads-paxos-2019
+      - wpaxos-2020
+      - pigpaxos-2021
+      - bunchbft-2022
+      - mongodb-distributed-transactions-verification-2025
+      - leaseguard-2026
+      - evaluating-distributed-coordination-2026
+  - id: stavros-harizopoulos
+    name: Stavros Harizopoulos
+    areas:
+      - Databases
+    topics:
+      - OLTP architecture
+      - column stores
+      - database performance
+    paper_ids:
+      - end-architectural-era-2007
+      - oltp-looking-glass-2008
+  - id: stefan-manegold
+    name: Stefan Manegold
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - MonetDB
+      - hardware-conscious databases
+      - adaptive indexing
+      - query processing
+    paper_ids:
+      - memory-access-bottleneck-1999
+      - database-cracking-2007
+      - monetdb-two-decades-2012
+  - id: stratos-idreos
+    name: Stratos Idreos
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - adaptive indexing
+      - database cracking
+      - column stores
+      - data systems design
+    paper_ids:
+      - database-cracking-2007
+      - monetdb-two-decades-2012
+      - monkey-2017
+      - dostoevsky-2018
+  - id: viktor-leis
+    name: Viktor Leis
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - query optimization
+      - query execution
+      - main-memory databases
+      - storage engines
+    paper_ids:
+      - morsel-driven-parallelism-2014
+      - how-good-query-optimizers-2015
+      - compiled-vs-vectorized-2018
+      - oltp-looking-glass-16-years-later-2025
+      - btrblocks-2023
+      - art-2013
+      - hot-2018
+      - surf-2018
+  - id: zhihao-jia
+    name: Zhihao Jia
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - ML Systems
+      - compilers
+      - Distributed training
+    paper_ids: []
