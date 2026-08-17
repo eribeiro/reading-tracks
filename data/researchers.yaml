@@ -95,6 +95,19 @@ researchers:
       - viewstamped-1988
       - adya-2000
       - silo-2013
+  - id: branimir-lambov
+    name: Branimir Lambov
+    areas:
+      - Databases
+      - Data management
+      - Infrastructure
+    topics:
+      - Apache Cassandra
+      - storage engines
+      - trie indexes
+      - memory management
+    paper_ids:
+      - trie-memtables-cassandra-2022
   - id: c-mohan
     name: C. Mohan
     areas:

@@ -60,6 +60,7 @@ lineages:
   dynamo-family:
     - dynamo-2007
     - cassandra-2010
+    - trie-memtables-cassandra-2022
     - dynamodb-2022
     - dynamodb-transactions-2023
   membership-gossip:
@@ -155,11 +156,13 @@ lineages:
     - x-engine-2019
     - lsm-storage-survey-2020
     - rocksdb-experience-2021
+    - trie-memtables-cassandra-2022
     - art-2013
     - hot-2018
     - surf-2018
     - order-preserving-key-compression-2020
     - memory-efficient-search-trees-2021
+    - trie-memtables-cassandra-2022
     - memento-filter-2024
   memory-efficient-search-structures:
     - modern-btree-techniques-2011
@@ -585,7 +588,8 @@ papers:
     links:
       paper: https://doi.org/10.1007/s002360050048
     predecessors: []
-    successors: []
+    successors:
+      - trie-memtables-cassandra-2022
   - id: paxos-1998
     title: The Part-Time Parliament
     year: 1998
@@ -1046,7 +1050,8 @@ papers:
     links:
       paper: https://doi.org/10.1145/1773912.1773922
     predecessors: []
-    successors: []
+    successors:
+      - trie-memtables-cassandra-2022
   - id: zookeeper-2010
     title: 'ZooKeeper: Wait-free Coordination for Internet-scale Systems'
     year: 2010
@@ -7603,6 +7608,7 @@ papers:
       - modern-btree-techniques-2011
     successors:
       - hot-2018
+      - trie-memtables-cassandra-2022
   - id: hot-2018
     title: 'HOT: A Height Optimized Trie Index for Main-Memory Database Systems'
     year: 2018
@@ -7791,3 +7797,35 @@ papers:
       - modern-btree-techniques-2011
     successors:
       - memento-filter-2024
+  - id: trie-memtables-cassandra-2022
+    title: Trie Memtables in Cassandra
+    year: 2022
+    authors:
+      - Branimir Lambov
+    venue: PVLDB
+    areas:
+      - Databases
+      - Data management
+      - Infrastructure
+    tags:
+      - Apache Cassandra
+      - memtable
+      - trie
+      - LSM-tree
+      - off-heap memory
+      - garbage collection
+    type: current
+    lineages:
+      - dynamo-family
+      - storage-engines
+      - memory-efficient-search-structures
+    why_read: Replaces Cassandra's skip-list partition map with sharded byte-comparable tries, shrinking heap pressure while accelerating reads and writes.
+    difficulty: advanced
+    reading_time_minutes: 70
+    links:
+      paper: https://dl.acm.org/doi/10.14778/3554821.3554828
+    predecessors:
+      - cassandra-2010
+      - lsm-1996
+      - art-2013
+    successors: []
