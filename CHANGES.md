@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added explicit “Expand remaining” and “Collapse open” actions for partially expanded Tracks.
 - Redesigned Tracks as guided reading journeys with summaries, responsive timelines, local progress, jump links, and expand/collapse controls.
 - Added local paper bookmarks and a dedicated Bookmarks view.
 - Replaced the reading-progress browser prompt with an accessible HTML dialog.
