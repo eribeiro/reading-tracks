@@ -1,5 +1,11 @@
 # Changes
 
+## Unreleased
+
+- Added an accessible “Back to results” link for long listings.
+- Aligned year, decade, and results-summary jumps with the rendered filter height.
+- Corrected generated `Mlops` labels to `MLOps`.
+
 Paper additions contained in the squashed catalog commit. Dates use
 `YYYY-DD-MM`, followed by the abbreviated commit hash.
 

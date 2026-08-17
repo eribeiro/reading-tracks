@@ -7,6 +7,7 @@ const state = {
 };
 const $ = id => document.getElementById(id);
 const norm = v => (v ?? "").toString().normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase();
+let resultsSummaryVisible=true;
 
 async function loadYaml(path) {
   const r = await fetch(path);
@@ -63,6 +64,21 @@ function wire() {
     state.view=b.dataset.view; document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b)); render();
   }));
   $("clearFilters").addEventListener("click", clearFilters);
+  const summary=$("resultsSummary");
+  const backToResults=$("backToResults");
+  new IntersectionObserver(([entry])=>{
+    resultsSummaryVisible=entry.isIntersecting;
+    updateBackToResults();
+  }).observe(summary);
+  new ResizeObserver(updateScrollOffset).observe(document.querySelector(".controls"));
+  window.addEventListener("resize",()=>{
+    updateScrollOffset();
+    updateBackToResults();
+  });
+  backToResults.addEventListener("click",()=>{
+    requestAnimationFrame(()=>summary.focus({preventScroll:true}));
+  });
+  updateScrollOffset();
 }
 function populate() {
   const areas=state.config.areas;
@@ -125,6 +141,16 @@ function render() {
   $("groupingNav").innerHTML="";
   ({papers:renderPapers,researchers:renderResearchers,venues:renderVenues,lineages:renderLineages}[state.view])();
   active();
+  requestAnimationFrame(updateBackToResults);
+}
+function updateBackToResults() {
+  const pageIsLong=document.documentElement.scrollHeight>window.innerHeight+200;
+  $("backToResults").hidden=resultsSummaryVisible||!pageIsLong;
+}
+function updateScrollOffset() {
+  const controls=document.querySelector(".controls");
+  const offset=getComputedStyle(controls).position==="sticky"?controls.offsetHeight+12:24;
+  document.documentElement.style.setProperty("--scroll-offset",`${offset}px`);
 }
 function renderPapers() {
   const items=state.data.papers.filter(matchPaper).sort((a,b)=>b.year-a.year||a.title.localeCompare(b.title));
@@ -205,7 +231,7 @@ function active() {
   if(state.search) ps.push(`“${state.search}”`);
   $("activeSummary").textContent=ps.length?`· ${ps.join(" · ")}`:"";
 }
-function human(s){return String(s).replaceAll("-"," ").replace(/\b\w/g,c=>c.toUpperCase()).replace(/\b(Ai|Ml|Oltp|Olap|Llm)\b/g,s=>({Ai:"AI",Ml:"ML",Oltp:"OLTP",Olap:"OLAP",Llm:"LLM"})[s]);}
+function human(s){return String(s).replaceAll("-"," ").replace(/\b\w/g,c=>c.toUpperCase()).replace(/\b(Ai|Ml|Mlops|Oltp|Olap|Llm)\b/g,s=>({Ai:"AI",Ml:"ML",Mlops:"MLOps",Oltp:"OLTP",Olap:"OLAP",Llm:"LLM"})[s]);}
 function badge(s){return `<span class="badge">${esc(s)}</span>`;}
 function empty(){return `<div class="empty">No results for the current filters.</div>`;}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
