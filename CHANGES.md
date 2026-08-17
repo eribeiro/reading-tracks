@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Redesigned Tracks as guided reading journeys with summaries, responsive timelines, local progress, jump links, and expand/collapse controls.
+- Added local paper bookmarks and a dedicated Bookmarks view.
+- Replaced the reading-progress browser prompt with an accessible HTML dialog.
 - Added an accessible “Back to results” link for long listings.
 - Aligned year, decade, and results-summary jumps with the rendered filter height.
 - Corrected generated `Mlops` labels to `MLOps`.
