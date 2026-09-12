@@ -15,6 +15,11 @@ researchers:
       - feral-concurrency-control-2015
       - serializable-isolation-snapshot-databases-2008
       - allocating-isolation-levels-2005
+      - hat-not-cap-2013
+      - potential-dangers-causal-consistency-2012
+      - ramp-transactions-2014
+      - read-only-transaction-anomaly-2004
+      - eventually-serializable-data-services-1996
   - id: alexey-tumanov
     name: Alexey Tumanov
     areas:
@@ -695,6 +700,12 @@ researchers:
     paper_ids:
       - hat-2014
       - coordination-avoidance-2015
+      - hat-not-cap-2013
+      - potential-dangers-causal-consistency-2012
+      - bolt-on-causal-consistency-2013
+      - pbs-2012
+      - ramp-transactions-2014
+      - macrobase-2017
       - feral-concurrency-control-2015
   - id: peter-boncz
     name: Peter Boncz
