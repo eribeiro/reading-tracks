@@ -1409,3 +1409,119 @@ researchers:
       - concurrent data structures
     paper_ids:
       - fb-tree-2025
+  - id: nathan-bronson
+    name: Nathan Bronson
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - metastability
+      - production reliability
+    paper_ids:
+      - metastable-failures-2021
+  - id: aleksey-charapko
+    name: Aleksey Charapko
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - metastability
+      - distributed systems reliability
+    paper_ids:
+      - metastable-failures-2021
+      - metastable-failures-wild-2022
+  - id: lexiang-huang
+    name: Lexiang Huang
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - metastability
+      - incident analysis
+    paper_ids:
+      - metastable-failures-wild-2022
+  - id: rebecca-isaacs
+    name: Rebecca Isaacs
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - metastability
+      - formal methods
+      - production reliability
+    paper_ids:
+      - metastable-failures-wild-2022
+      - analyzing-metastable-failures-2025
+      - formal-analysis-metastable-failures-2025
+  - id: peter-alvaro
+    name: Peter Alvaro
+    areas:
+      - Distributed Systems
+    topics:
+      - metastability
+      - fault injection
+      - formal methods
+    paper_ids:
+      - analyzing-metastable-failures-2025
+      - formal-analysis-metastable-failures-2025
+  - id: faisal-nawab
+    name: Faisal Nawab
+    areas:
+      - Distributed Systems
+      - Databases
+    topics:
+      - metastability
+      - queuing theory
+      - replicated storage
+    paper_ids:
+      - msf-model-2024
+  - id: ali-farahbakhsh
+    name: Ali Farahbakhsh
+    areas:
+      - Distributed Systems
+    topics:
+      - metastability
+      - fault characterization
+    paper_ids:
+      - characterizing-metastable-faults-2026
+  - id: lorenzo-alvisi
+    name: Lorenzo Alvisi
+    areas:
+      - Distributed Systems
+    topics:
+      - fault tolerance
+      - metastability
+      - BFT
+    paper_ids:
+      - characterizing-metastable-faults-2026
+  - id: yaohui-wang
+    name: Yaohui Wang
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - outage triage
+      - root cause analysis
+    paper_ids:
+      - fast-outage-analysis-2021
+  - id: mehmet-berk-cetin
+    name: Mehmet Berk Cetin
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - cloud reliability
+      - measurement studies
+    paper_ids:
+      - characterizing-cloud-failures-2021
+  - id: alexandru-iosup
+    name: Alexandru Iosup
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - cloud computing
+      - datacenter measurement
+      - performance benchmarking
+    paper_ids:
+      - characterizing-cloud-failures-2021

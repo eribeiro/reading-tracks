@@ -182,3 +182,23 @@ venues:
   - Infrastructure
   - AI
   tier: flagship
+- id: hotos
+  name: ACM SIGOPS Workshop on Hot Topics in Operating Systems
+  organization: ACM
+  areas:
+  - Distributed Systems
+  - Infrastructure
+  tier: workshop
+- id: icse
+  name: IEEE/ACM International Conference on Software Engineering
+  organization: IEEE/ACM
+  areas:
+  - Distributed Systems
+  - Infrastructure
+  tier: flagship
+- id: srds
+  name: IEEE International Symposium on Reliable Distributed Systems
+  organization: IEEE
+  areas:
+  - Distributed Systems
+  tier: major

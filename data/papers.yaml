@@ -374,6 +374,16 @@ lineages:
     - milvus-2021
     - vbase-2023
     - vector-database-survey-2024
+  metastable-failures:
+    - metastable-failures-2021
+    - metastable-failures-wild-2022
+    - msf-model-2024
+    - analyzing-metastable-failures-2025
+    - formal-analysis-metastable-failures-2025
+    - characterizing-metastable-faults-2026
+  observability-and-telemetry:
+    - fast-outage-analysis-2021
+    - characterizing-cloud-failures-2021
 papers:
   - id: lamport-time-clocks-1978
     title: Time, Clocks, and the Ordering of Events in a Distributed System
@@ -8167,4 +8177,246 @@ papers:
       - bwtree-2013
       - art-2013
       - hot-2018
+    successors: []
+  - id: metastable-failures-2021
+    title: Metastable Failures in Distributed Systems
+    year: 2021
+    authors:
+      - Nathan Bronson
+      - Abutalib Aghayev
+      - Aleksey Charapko
+      - Timothy Zhu
+    venue: HotOS
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - metastability
+      - resilience
+      - capacity
+      - outages
+    type: foundational
+    lineages:
+      - metastable-failures
+    why_read: Names and frames a failure pattern — a self-sustaining collapse that persists even after the trigger that caused it is gone — that had been recurring in production outages for years without a shared vocabulary.
+    difficulty: intermediate
+    reading_time_minutes: 30
+    links:
+      paper: https://dl.acm.org/doi/10.1145/3458336.3465286
+    predecessors: []
+    successors:
+      - metastable-failures-wild-2022
+  - id: metastable-failures-wild-2022
+    title: Metastable Failures in the Wild
+    year: 2022
+    authors:
+      - Lexiang Huang
+      - Matthew Magnusson
+      - Abishek Bangalore Muralikrishna
+      - Salman Estyak
+      - Rebecca Isaacs
+      - Abutalib Aghayev
+      - Timothy Zhu
+      - Aleksey Charapko
+    venue: OSDI
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - metastability
+      - incident analysis
+      - outages
+      - case studies
+    type: essential
+    lineages:
+      - metastable-failures
+    why_read: A study of 22 real metastable incidents across 11 organizations, showing the pattern behind some of the most severe cloud outages of the last decade and the ad-hoc fixes operators reached for.
+    difficulty: intermediate
+    reading_time_minutes: 45
+    links:
+      paper: https://www.usenix.org/conference/osdi22/presentation/huang-lexiang
+    predecessors:
+      - metastable-failures-2021
+    successors:
+      - msf-model-2024
+  - id: msf-model-2024
+    title: 'MSF-Model: Queuing-Based Analysis and Prediction of Metastable Failures in Replicated Storage Systems'
+    year: 2024
+    authors:
+      - Farzad Habibi
+      - Tania Lorido-Botran
+      - Ahmad Showail
+      - Daniel C. Sturman
+      - Faisal Nawab
+    venue: SRDS
+    areas:
+      - Distributed Systems
+    tags:
+      - metastability
+      - queuing theory
+      - capacity planning
+      - replicated storage
+    type: current
+    lineages:
+      - metastable-failures
+    why_read: Turns metastability from a post-mortem narrative into a queuing model that predicts, before deployment, whether a given load and retry policy will trap a replicated store in a bad state.
+    difficulty: advanced
+    reading_time_minutes: 40
+    links:
+      paper: https://ieeexplore.ieee.org/document/10806504/
+    predecessors:
+      - metastable-failures-wild-2022
+    successors: []
+  - id: analyzing-metastable-failures-2025
+    title: Analyzing Metastable Failures
+    year: 2025
+    authors:
+      - Rebecca Isaacs
+      - Peter Alvaro
+      - Rupak Majumdar
+      - Kiran-Kumar Muniswamy-Reddy
+      - Mahmoud Salamati
+      - Sadegh Soudjani
+    venue: HotOS
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - metastability
+      - formal methods
+      - testing
+    type: current
+    lineages:
+      - metastable-failures
+    why_read: Argues that finding metastable-failure susceptibility by testing alone is hopeless given the size of the parameter space, and sketches what a principled, model-based search would need instead.
+    difficulty: advanced
+    reading_time_minutes: 25
+    links:
+      paper: https://dl.acm.org/doi/10.1145/3713082.3730380
+    predecessors:
+      - metastable-failures-wild-2022
+    successors:
+      - formal-analysis-metastable-failures-2025
+  - id: formal-analysis-metastable-failures-2025
+    title: Formal Analysis of Metastable Failures in Software Systems
+    year: 2025
+    authors:
+      - Peter Alvaro
+      - Rebecca Isaacs
+      - Rupak Majumdar
+      - Kiran-Kumar Muniswamy-Reddy
+      - Mahmoud Salamati
+      - Sadegh Soudjani
+    venue: arXiv
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - metastability
+      - formal methods
+      - Markov chains
+      - prediction
+    type: current
+    lineages:
+      - metastable-failures
+    why_read: Delivers the formal treatment the HotOS position paper called for — modeling request-response systems as continuous-time Markov chains and predicting recovery behavior from escape probabilities in milliseconds.
+    difficulty: advanced
+    reading_time_minutes: 50
+    links:
+      paper: https://arxiv.org/abs/2510.03551
+    predecessors:
+      - analyzing-metastable-failures-2025
+    successors: []
+  - id: characterizing-metastable-faults-2026
+    title: Characterizing Metastable Faults and Failures
+    year: 2026
+    authors:
+      - Ali Farahbakhsh
+      - Qingjie Lu
+      - Lorenzo Alvisi
+      - Andreas Haeberlen
+      - Robbert Van Renesse
+    venue: arXiv
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - metastability
+      - causal analysis
+      - fault tolerance
+    type: current
+    lineages:
+      - metastable-failures
+    why_read: Reframes metastability around a causal mechanism — destabilizing cycles between individually well-behaved components — rather than the symptom-level framing the field started with, and tests it on three real case studies.
+    difficulty: advanced
+    reading_time_minutes: 45
+    links:
+      paper: https://arxiv.org/abs/2606.00942
+    predecessors:
+      - metastable-failures-wild-2022
+    successors: []
+  - id: fast-outage-analysis-2021
+    title: Fast Outage Analysis of Large-scale Production Clouds with Service Correlation Mining
+    year: 2021
+    authors:
+      - Yaohui Wang
+      - Guozheng Li
+      - Zijian Wang
+      - Yu Kang
+      - Yangfan Zhou
+      - Hongyu Zhang
+      - Feng Gao
+      - Jeffrey Sun
+      - Li Yang
+      - Pochian Lee
+      - Zhangwei Xu
+      - Pu Zhao
+      - Bo Qiao
+      - Liqun Li
+      - Xu Zhang
+      - Qingwei Lin
+    venue: ICSE
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - outage triage
+      - root cause analysis
+      - service correlation
+      - Azure
+    type: current
+    lineages:
+      - observability-and-telemetry
+    why_read: Mines correlations across a year of Azure production outages to automatically triage which service is the likely root cause, cutting the manual effort that normally bottlenecks incident response.
+    difficulty: intermediate
+    reading_time_minutes: 35
+    links:
+      paper: https://doi.org/10.1109/ICSE43902.2021.00085
+    predecessors: []
+    successors: []
+  - id: characterizing-cloud-failures-2021
+    title: Characterizing User and Provider Reported Cloud Failures
+    year: 2021
+    authors:
+      - Mehmet Berk Cetin
+      - Sacheendra Talluri
+      - Alexandru Iosup
+    venue: arXiv
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - cloud outages
+      - incident reports
+      - user-reported failures
+      - measurement study
+    type: current
+    lineages:
+      - observability-and-telemetry
+    why_read: Compares three years of user-reported outages (via Down Detector) against providers' own incident reports, exposing how much cloud failure never makes it into an official post-mortem.
+    difficulty: intermediate
+    reading_time_minutes: 30
+    links:
+      paper: https://arxiv.org/abs/2110.12237
+    predecessors: []
     successors: []
