@@ -60,6 +60,7 @@ lineages:
   dynamo-family:
     - dynamo-2007
     - cassandra-2010
+    - trie-memtables-cassandra-2022
     - dynamodb-2022
     - dynamodb-transactions-2023
   membership-gossip:
@@ -155,12 +156,19 @@ lineages:
     - x-engine-2019
     - lsm-storage-survey-2020
     - rocksdb-experience-2021
+    - trie-memtables-cassandra-2022
     - art-2013
     - hot-2018
     - surf-2018
     - order-preserving-key-compression-2020
     - memory-efficient-search-trees-2021
     - memento-filter-2024
+    - dili-2023
+    - disk-learned-indexes-2024
+    - string-key-learned-indexes-2024
+    - systematic-index-dynamization-2024
+    - doblix-2025
+    - fb-tree-2025
   memory-efficient-search-structures:
     - modern-btree-techniques-2011
     - art-2013
@@ -169,6 +177,21 @@ lineages:
     - order-preserving-key-compression-2020
     - memory-efficient-search-trees-2021
     - memento-filter-2024
+    - dili-2023
+    - string-key-learned-indexes-2024
+    - systematic-index-dynamization-2024
+    - fb-tree-2025
+  learned-indexes:
+    - learned-index-2018
+    - learned-index-evaluation-2023
+    - dili-2023
+    - learned-index-complexity-attacks-2023
+    - disk-learned-indexes-2024
+    - string-key-learned-indexes-2024
+    - systematic-index-dynamization-2024
+    - why-learned-indexes-2025
+    - doblix-2025
+    - fb-tree-2025
   query-execution:
     - System-r-access-path-1979
     - volcano-parallelism-1990
@@ -312,6 +335,18 @@ lineages:
     - ecoserve-2026
     - prism-2026
     - superinfer-2026
+    - cachegen-2024
+    - mooncake-2025
+  kv-cache-management:
+    - mqa-2019
+    - gqa-2023
+    - h2o-2023
+    - streamingllm-2024
+    - kivi-2024
+    - snapkv-2024
+    - pyramidkv-2024
+    - cachegen-2024
+    - mooncake-2025
   ml-data-pipelines:
     - tfx-2017
     - Data-validation-2019
@@ -319,6 +354,13 @@ lineages:
     - youmu-2025
   ai-database-Systems:
     - learned-index-2018
+    - learned-index-evaluation-2023
+    - dili-2023
+    - learned-index-complexity-attacks-2023
+    - disk-learned-indexes-2024
+    - string-key-learned-indexes-2024
+    - why-learned-indexes-2025
+    - doblix-2025
     - bao-2021
     - llm-relational-analytics-2025
     - tag-2025
@@ -344,6 +386,16 @@ lineages:
     - milvus-2021
     - vbase-2023
     - vector-database-survey-2024
+  metastable-failures:
+    - metastable-failures-2021
+    - metastable-failures-wild-2022
+    - msf-model-2024
+    - analyzing-metastable-failures-2025
+    - formal-analysis-metastable-failures-2025
+    - characterizing-metastable-faults-2026
+  observability-and-telemetry:
+    - fast-outage-analysis-2021
+    - characterizing-cloud-failures-2021
 papers:
   - id: lamport-time-clocks-1978
     title: Time, Clocks, and the Ordering of Events in a Distributed System
@@ -585,7 +637,8 @@ papers:
     links:
       paper: https://doi.org/10.1007/s002360050048
     predecessors: []
-    successors: []
+    successors:
+      - trie-memtables-cassandra-2022
   - id: paxos-1998
     title: The Part-Time Parliament
     year: 1998
@@ -1046,7 +1099,8 @@ papers:
     links:
       paper: https://doi.org/10.1145/1773912.1773922
     predecessors: []
-    successors: []
+    successors:
+      - trie-memtables-cassandra-2022
   - id: zookeeper-2010
     title: 'ZooKeeper: Wait-free Coordination for Internet-scale Systems'
     year: 2010
@@ -2178,6 +2232,7 @@ papers:
       - semantic operators
     lineages:
       - ai-database-Systems
+      - learned-indexes
       - query-execution
     type: current
     why_read: A direct bridge between traditional query optimization and analytical workloads that incorporate LLM calls.
@@ -2863,6 +2918,13 @@ papers:
     predecessors: []
     successors:
       - tag-2025
+      - learned-index-evaluation-2023
+      - dili-2023
+      - learned-index-complexity-attacks-2023
+      - disk-learned-indexes-2024
+      - string-key-learned-indexes-2024
+      - why-learned-indexes-2025
+      - doblix-2025
   - id: duckdb-2019
     title: 'DuckDB: An Embeddable Analytical Database'
     year: 2019
@@ -7326,6 +7388,7 @@ papers:
       - vllm-2023
     successors:
       - ecoserve-2026
+      - cachegen-2024
   - id: sglang-2024
     title: 'SGLang: Efficient Execution of Structured Language Model Programs'
     year: 2024
@@ -7361,7 +7424,8 @@ papers:
       paper: https://arxiv.org/abs/2312.07104
     predecessors:
       - vllm-2023
-    successors: []
+    successors:
+      - cachegen-2024
   - id: data-blocks-2016
     title: 'Data Blocks: Hybrid OLTP and OLAP on Compressed Storage using both Vectorization and Compilation'
     year: 2016
@@ -7603,6 +7667,7 @@ papers:
       - modern-btree-techniques-2011
     successors:
       - hot-2018
+      - trie-memtables-cassandra-2022
   - id: hot-2018
     title: 'HOT: A Height Optimized Trie Index for Main-Memory Database Systems'
     year: 2018
@@ -7791,3 +7856,869 @@ papers:
       - modern-btree-techniques-2011
     successors:
       - memento-filter-2024
+  - id: trie-memtables-cassandra-2022
+    title: Trie Memtables in Cassandra
+    year: 2022
+    authors:
+      - Branimir Lambov
+    venue: PVLDB
+    areas:
+      - Databases
+      - Data management
+      - Infrastructure
+    tags:
+      - Apache Cassandra
+      - memtable
+      - trie
+      - LSM-tree
+      - off-heap memory
+      - garbage collection
+    type: current
+    lineages:
+      - dynamo-family
+      - storage-engines
+      - memory-efficient-search-structures
+    why_read: Replaces Cassandra's skip-list partition map with sharded byte-comparable tries, shrinking heap pressure while accelerating reads and writes.
+    difficulty: advanced
+    reading_time_minutes: 70
+    links:
+      paper: https://dl.acm.org/doi/10.14778/3554821.3554828
+    predecessors:
+      - cassandra-2010
+      - lsm-1996
+      - art-2013
+    successors: []
+  - id: learned-index-evaluation-2023
+    title: 'Learned Index: A Comprehensive Experimental Evaluation'
+    year: 2023
+    authors:
+      - Zhaoyan Sun
+      - Xuanhe Zhou
+      - Guoliang Li
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Data management
+    tags:
+      - learned indexes
+      - benchmarking
+      - mutable indexes
+      - concurrency
+      - bulk loading
+    type: essential
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+    why_read: Tests learned and traditional indexes under one framework, exposing where model-based designs help and where updates, strings, concurrency, and range scans erase their advantage.
+    difficulty: intermediate
+    reading_time_minutes: 75
+    links:
+      paper: https://www.vldb.org/pvldb/vol16/p1992-li.pdf
+    predecessors:
+      - learned-index-2018
+      - art-2013
+    successors:
+      - disk-learned-indexes-2024
+      - why-learned-indexes-2025
+  - id: dili-2023
+    title: 'DILI: A Distribution-Driven Learned Index'
+    year: 2023
+    authors:
+      - Pengfei Li
+      - Hua Lu
+      - Rong Zhu
+      - Bolin Ding
+      - Long Yang
+      - Gang Pan
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Data management
+    tags:
+      - learned indexes
+      - data distribution
+      - mutable index
+      - linear regression
+      - in-memory indexing
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+      - memory-efficient-search-structures
+    why_read: Builds an update-capable learned tree whose fanout and leaf models follow local key distributions, balancing model accuracy against traversal depth.
+    difficulty: advanced
+    reading_time_minutes: 80
+    links:
+      paper: https://www.vldb.org/pvldb/vol16/p2212-li.pdf
+    predecessors:
+      - learned-index-2018
+    successors:
+      - why-learned-indexes-2025
+  - id: learned-index-complexity-attacks-2023
+    title: Algorithmic Complexity Attacks on Dynamic Learned Indexes
+    year: 2023
+    authors:
+      - Rui Yang
+      - Evgenios M. Kornaropoulos
+      - Yue Cheng
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    tags:
+      - learned indexes
+      - adversarial workloads
+      - algorithmic complexity attacks
+      - ALEX
+      - denial of service
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+    why_read: Shows how carefully chosen inserts can drive a dynamic learned index into extreme memory use or thousand-fold slowdowns, making worst-case robustness part of index design.
+    difficulty: advanced
+    reading_time_minutes: 80
+    links:
+      paper: https://www.vldb.org/pvldb/vol17/p780-yang.pdf
+    predecessors:
+      - learned-index-2018
+    successors: []
+  - id: disk-learned-indexes-2024
+    title: Making In-Memory Learned Indexes Efficient on Disk
+    year: 2024
+    authors:
+      - Jiaoyi Zhang
+      - Kai Su
+      - Huanchen Zhang
+    venue: PACMMOD
+    areas:
+      - Databases
+      - AI
+      - Data management
+    tags:
+      - learned indexes
+      - disk-based indexing
+      - B-tree
+      - storage engine
+      - I/O optimization
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+      - storage-engines
+    why_read: Derives six storage-aware transformations that turn memory-first learned indexes into disk layouts that improve both throughput and space over B+ trees.
+    difficulty: advanced
+    reading_time_minutes: 100
+    links:
+      paper: https://doi.org/10.1145/3654954
+    predecessors:
+      - learned-index-2018
+      - learned-index-evaluation-2023
+      - modern-btree-techniques-2011
+    successors:
+      - doblix-2025
+  - id: string-key-learned-indexes-2024
+    title: Accelerating String-key Learned Index Structures via Memoization-based Incremental Training
+    year: 2024
+    authors:
+      - Minsu Kim
+      - Jinwoo Hwang
+      - Guseul Heo
+      - Seiyeon Cho
+      - Divya Mahajan
+      - Jongse Park
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Infrastructure
+    tags:
+      - learned indexes
+      - string keys
+      - incremental training
+      - memoization
+      - FPGA
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+      - memory-efficient-search-structures
+    why_read: Reuses prior model-training work for updated string keys and offloads retraining to an FPGA, attacking the cost that makes mutable string learned indexes impractical.
+    difficulty: advanced
+    reading_time_minutes: 85
+    links:
+      paper: https://www.vldb.org/pvldb/vol17/p1802-park.pdf
+    predecessors:
+      - learned-index-2018
+      - hot-2018
+      - order-preserving-key-compression-2020
+    successors: []
+  - id: systematic-index-dynamization-2024
+    title: Towards Systematic Index Dynamization
+    year: 2024
+    authors:
+      - Douglas B. Rumbaugh
+      - Dong Xie
+      - Zhuoyue Zhao
+    venue: PVLDB
+    areas:
+      - Databases
+      - Data management
+    tags:
+      - index dynamization
+      - static indexes
+      - mutable indexes
+      - metaprogramming
+      - specialized indexes
+    type: current
+    lineages:
+      - learned-indexes
+      - storage-engines
+      - memory-efficient-search-structures
+    why_read: Turns specialized static indexes into update-capable structures through a configurable dynamization framework, narrowing the gap from research prototype to deployable index.
+    difficulty: advanced
+    reading_time_minutes: 80
+    links:
+      paper: https://www.vldb.org/pvldb/vol17/p2867-rumbaugh.pdf
+    predecessors:
+      - surf-2018
+      - memory-efficient-search-trees-2021
+    successors: []
+  - id: why-learned-indexes-2025
+    title: Why Are Learned Indexes So Effective but Sometimes Ineffective?
+    year: 2025
+    authors:
+      - Qiyu Liu
+      - Siyuan Han
+      - Yanlin Qi
+      - Jingshu Peng
+      - Jin Li
+      - Longlong Lin
+      - Lei Chen
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Data management
+    tags:
+      - learned indexes
+      - PGM-index
+      - cost model
+      - memory bottleneck
+      - last-mile search
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+    why_read: Reconciles the PGM-index's strong asymptotic bounds with memory-bound execution in practice, then uses that diagnosis to build the faster PGM++.
+    difficulty: advanced
+    reading_time_minutes: 80
+    links:
+      paper: https://www.vldb.org/pvldb/vol18/p2886-liu.pdf
+    predecessors:
+      - learned-index-2018
+      - learned-index-evaluation-2023
+      - dili-2023
+    successors: []
+  - id: doblix-2025
+    title: 'DobLIX: A Dual-Objective Learned Index for Log-Structured Merge Trees'
+    year: 2025
+    authors:
+      - Alireza Heidari
+      - Amirhossein Ahmadi
+      - Wei Zhang
+    venue: PVLDB
+    areas:
+      - Databases
+      - AI
+      - Data management
+    tags:
+      - learned indexes
+      - LSM-tree
+      - RocksDB
+      - reinforcement learning
+      - I/O optimization
+    type: current
+    lineages:
+      - learned-indexes
+      - ai-database-Systems
+      - storage-engines
+    why_read: Co-optimizes learned-model accuracy and physical block access inside RocksDB, adapting its LSM index and data layout as workloads change.
+    difficulty: advanced
+    reading_time_minutes: 90
+    links:
+      paper: https://www.vldb.org/pvldb/vol18/p3965-heidari.pdf
+    predecessors:
+      - learned-index-2018
+      - disk-learned-indexes-2024
+      - lsm-1996
+      - rocksdb-experience-2021
+    successors: []
+  - id: fb-tree-2025
+    title: 'FB+-tree: A Memory-Optimized B+-tree with Latch-Free Update'
+    year: 2025
+    authors:
+      - Yuan Chen
+      - Ao Li
+      - Wenhai Li
+      - Lingfeng Deng
+    venue: PVLDB
+    areas:
+      - Databases
+      - Data management
+      - Infrastructure
+    tags:
+      - B-tree
+      - trie
+      - latch-free updates
+      - main-memory indexing
+      - multicore scalability
+    type: current
+    lineages:
+      - learned-indexes
+      - storage-engines
+      - memory-efficient-search-structures
+    why_read: Blends trie-like byte-wise branching with a balanced B+ tree and latch-free updates to improve cache behavior and multicore scalability under contention.
+    difficulty: advanced
+    reading_time_minutes: 85
+    links:
+      paper: https://www.vldb.org/pvldb/vol18/p1579-li.pdf
+    predecessors:
+      - modern-btree-techniques-2011
+      - bwtree-2013
+      - art-2013
+      - hot-2018
+    successors: []
+  - id: metastable-failures-2021
+    title: Metastable Failures in Distributed Systems
+    year: 2021
+    authors:
+      - Nathan Bronson
+      - Abutalib Aghayev
+      - Aleksey Charapko
+      - Timothy Zhu
+    venue: HotOS
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - metastability
+      - resilience
+      - capacity
+      - outages
+    type: foundational
+    lineages:
+      - metastable-failures
+    why_read: Names and frames a failure pattern — a self-sustaining collapse that persists even after the trigger that caused it is gone — that had been recurring in production outages for years without a shared vocabulary.
+    difficulty: intermediate
+    reading_time_minutes: 30
+    links:
+      paper: https://dl.acm.org/doi/10.1145/3458336.3465286
+    predecessors: []
+    successors:
+      - metastable-failures-wild-2022
+  - id: metastable-failures-wild-2022
+    title: Metastable Failures in the Wild
+    year: 2022
+    authors:
+      - Lexiang Huang
+      - Matthew Magnusson
+      - Abishek Bangalore Muralikrishna
+      - Salman Estyak
+      - Rebecca Isaacs
+      - Abutalib Aghayev
+      - Timothy Zhu
+      - Aleksey Charapko
+    venue: OSDI
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - metastability
+      - incident analysis
+      - outages
+      - case studies
+    type: essential
+    lineages:
+      - metastable-failures
+    why_read: A study of 22 real metastable incidents across 11 organizations, showing the pattern behind some of the most severe cloud outages of the last decade and the ad-hoc fixes operators reached for.
+    difficulty: intermediate
+    reading_time_minutes: 45
+    links:
+      paper: https://www.usenix.org/conference/osdi22/presentation/huang-lexiang
+    predecessors:
+      - metastable-failures-2021
+    successors:
+      - msf-model-2024
+  - id: msf-model-2024
+    title: 'MSF-Model: Queuing-Based Analysis and Prediction of Metastable Failures in Replicated Storage Systems'
+    year: 2024
+    authors:
+      - Farzad Habibi
+      - Tania Lorido-Botran
+      - Ahmad Showail
+      - Daniel C. Sturman
+      - Faisal Nawab
+    venue: SRDS
+    areas:
+      - Distributed Systems
+    tags:
+      - metastability
+      - queuing theory
+      - capacity planning
+      - replicated storage
+    type: current
+    lineages:
+      - metastable-failures
+    why_read: Turns metastability from a post-mortem narrative into a queuing model that predicts, before deployment, whether a given load and retry policy will trap a replicated store in a bad state.
+    difficulty: advanced
+    reading_time_minutes: 40
+    links:
+      paper: https://ieeexplore.ieee.org/document/10806504/
+    predecessors:
+      - metastable-failures-wild-2022
+    successors: []
+  - id: analyzing-metastable-failures-2025
+    title: Analyzing Metastable Failures
+    year: 2025
+    authors:
+      - Rebecca Isaacs
+      - Peter Alvaro
+      - Rupak Majumdar
+      - Kiran-Kumar Muniswamy-Reddy
+      - Mahmoud Salamati
+      - Sadegh Soudjani
+    venue: HotOS
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - metastability
+      - formal methods
+      - testing
+    type: current
+    lineages:
+      - metastable-failures
+    why_read: Argues that finding metastable-failure susceptibility by testing alone is hopeless given the size of the parameter space, and sketches what a principled, model-based search would need instead.
+    difficulty: advanced
+    reading_time_minutes: 25
+    links:
+      paper: https://dl.acm.org/doi/10.1145/3713082.3730380
+    predecessors:
+      - metastable-failures-wild-2022
+    successors:
+      - formal-analysis-metastable-failures-2025
+  - id: formal-analysis-metastable-failures-2025
+    title: Formal Analysis of Metastable Failures in Software Systems
+    year: 2025
+    authors:
+      - Peter Alvaro
+      - Rebecca Isaacs
+      - Rupak Majumdar
+      - Kiran-Kumar Muniswamy-Reddy
+      - Mahmoud Salamati
+      - Sadegh Soudjani
+    venue: arXiv
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - metastability
+      - formal methods
+      - Markov chains
+      - prediction
+    type: current
+    lineages:
+      - metastable-failures
+    why_read: Delivers the formal treatment the HotOS position paper called for — modeling request-response systems as continuous-time Markov chains and predicting recovery behavior from escape probabilities in milliseconds.
+    difficulty: advanced
+    reading_time_minutes: 50
+    links:
+      paper: https://arxiv.org/abs/2510.03551
+    predecessors:
+      - analyzing-metastable-failures-2025
+    successors: []
+  - id: characterizing-metastable-faults-2026
+    title: Characterizing Metastable Faults and Failures
+    year: 2026
+    authors:
+      - Ali Farahbakhsh
+      - Qingjie Lu
+      - Lorenzo Alvisi
+      - Andreas Haeberlen
+      - Robbert Van Renesse
+    venue: arXiv
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - metastability
+      - causal analysis
+      - fault tolerance
+    type: current
+    lineages:
+      - metastable-failures
+    why_read: Reframes metastability around a causal mechanism — destabilizing cycles between individually well-behaved components — rather than the symptom-level framing the field started with, and tests it on three real case studies.
+    difficulty: advanced
+    reading_time_minutes: 45
+    links:
+      paper: https://arxiv.org/abs/2606.00942
+    predecessors:
+      - metastable-failures-wild-2022
+    successors: []
+  - id: fast-outage-analysis-2021
+    title: Fast Outage Analysis of Large-scale Production Clouds with Service Correlation Mining
+    year: 2021
+    authors:
+      - Yaohui Wang
+      - Guozheng Li
+      - Zijian Wang
+      - Yu Kang
+      - Yangfan Zhou
+      - Hongyu Zhang
+      - Feng Gao
+      - Jeffrey Sun
+      - Li Yang
+      - Pochian Lee
+      - Zhangwei Xu
+      - Pu Zhao
+      - Bo Qiao
+      - Liqun Li
+      - Xu Zhang
+      - Qingwei Lin
+    venue: ICSE
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - outage triage
+      - root cause analysis
+      - service correlation
+      - Azure
+    type: current
+    lineages:
+      - observability-and-telemetry
+    why_read: Mines correlations across a year of Azure production outages to automatically triage which service is the likely root cause, cutting the manual effort that normally bottlenecks incident response.
+    difficulty: intermediate
+    reading_time_minutes: 35
+    links:
+      paper: https://doi.org/10.1109/ICSE43902.2021.00085
+    predecessors: []
+    successors: []
+  - id: characterizing-cloud-failures-2021
+    title: Characterizing User and Provider Reported Cloud Failures
+    year: 2021
+    authors:
+      - Mehmet Berk Cetin
+      - Sacheendra Talluri
+      - Alexandru Iosup
+    venue: arXiv
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - cloud outages
+      - incident reports
+      - user-reported failures
+      - measurement study
+    type: current
+    lineages:
+      - observability-and-telemetry
+    why_read: Compares three years of user-reported outages (via Down Detector) against providers' own incident reports, exposing how much cloud failure never makes it into an official post-mortem.
+    difficulty: intermediate
+    reading_time_minutes: 30
+    links:
+      paper: https://arxiv.org/abs/2110.12237
+    predecessors: []
+    successors: []
+  - id: mqa-2019
+    title: 'Fast Transformer Decoding: One Write-Head is All You Need'
+    year: 2019
+    authors:
+      - Noam Shazeer
+    venue: arXiv
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - multi-query attention
+      - KV cache
+      - memory bandwidth
+      - decoding
+    type: foundational
+    lineages:
+      - kv-cache-management
+    why_read: Introduces multi-query attention, sharing a single key/value head across all query heads to cut the memory-bandwidth cost of loading KV state during autoregressive decoding.
+    difficulty: intermediate
+    reading_time_minutes: 15
+    links:
+      paper: https://arxiv.org/abs/1911.02150
+    predecessors: []
+    successors:
+      - gqa-2023
+  - id: gqa-2023
+    title: 'GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints'
+    year: 2023
+    authors:
+      - Joshua Ainslie
+      - James Lee-Thorp
+      - Michiel de Jong
+      - Yury Zemlyanskiy
+      - Federico Lebrón
+      - Sumit Sanghai
+    venue: EMNLP
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - grouped-query attention
+      - KV cache
+      - attention heads
+      - uptraining
+    type: essential
+    lineages:
+      - kv-cache-management
+    why_read: Interpolates between multi-head and multi-query attention, letting existing checkpoints be uptrained into a grouped-query form that shrinks the KV cache with little quality loss.
+    difficulty: intermediate
+    reading_time_minutes: 25
+    links:
+      paper: https://aclanthology.org/2023.emnlp-main.298/
+    predecessors:
+      - mqa-2019
+    successors: []
+  - id: h2o-2023
+    title: 'H₂O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models'
+    year: 2023
+    authors:
+      - Zhenyu Zhang
+      - Ying Sheng
+      - Tianyi Zhou
+      - Tianlong Chen
+      - Lianmin Zheng
+      - Ruisi Cai
+      - Zhao Song
+      - Yuandong Tian
+      - Christopher Ré
+      - Clark Barrett
+      - Zhangyang Wang
+      - Beidi Chen
+    venue: NeurIPS
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache eviction
+      - heavy hitters
+      - generative inference
+      - memory footprint
+    type: essential
+    lineages:
+      - kv-cache-management
+    why_read: Shows that a small, dynamically identified subset of tokens dominates attention scores, letting most of the KV cache be evicted without hurting generation quality.
+    difficulty: advanced
+    reading_time_minutes: 40
+    links:
+      paper: https://proceedings.neurips.cc/paper_files/paper/2023/hash/6ceefa7b15572587b78ecfcebb2827f8-Abstract-Conference.html
+    predecessors: []
+    successors: []
+  - id: streamingllm-2024
+    title: 'Efficient Streaming Language Models with Attention Sinks'
+    year: 2024
+    authors:
+      - Guangxuan Xiao
+      - Yuandong Tian
+      - Beidi Chen
+      - Song Han
+      - Mike Lewis
+    venue: ICLR
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - attention sinks
+      - streaming inference
+      - KV cache
+      - windowed attention
+    type: essential
+    lineages:
+      - kv-cache-management
+    why_read: Explains why naively evicting old KV entries breaks windowed attention and shows that keeping a handful of initial "sink" tokens lets bounded caches support effectively unbounded streams.
+    difficulty: intermediate
+    reading_time_minutes: 35
+    links:
+      paper: https://proceedings.iclr.cc/paper_files/paper/2024/hash/5e5fd18f863cbe6d8ae392a93fd271c9-Abstract-Conference.html
+    predecessors: []
+    successors: []
+  - id: kivi-2024
+    title: 'KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache'
+    year: 2024
+    authors:
+      - Zirui Liu
+      - Jiayi Yuan
+      - Hongye Jin
+      - Shaochen Zhong
+      - Zhaozhuo Xu
+      - Vladimir Braverman
+      - Beidi Chen
+      - Xia Hu
+    venue: ICML
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache quantization
+      - 2-bit
+      - memory efficiency
+      - tuning-free
+    type: essential
+    lineages:
+      - kv-cache-management
+    why_read: Shows that keys and values have different outlier distributions and quantizes each asymmetrically to 2 bits without fine-tuning, cutting peak memory while preserving quality.
+    difficulty: advanced
+    reading_time_minutes: 35
+    links:
+      paper: https://proceedings.mlr.press/v235/liu24bz.html
+    predecessors: []
+    successors: []
+  - id: snapkv-2024
+    title: 'SnapKV: LLM Knows What You Are Looking for Before Generation'
+    year: 2024
+    authors:
+      - Yuhong Li
+      - Yingbing Huang
+      - Bowen Yang
+      - Bharat Venkitesh
+      - Acyr Locatelli
+      - Hanchen Ye
+      - Tianle Cai
+      - Patrick Lewis
+      - Deming Chen
+    venue: NeurIPS
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache compression
+      - prompt attention
+      - token selection
+    type: essential
+    lineages:
+      - kv-cache-management
+    why_read: Observes that attention heads consistently focus on the same prompt positions and uses that pattern to compress the KV cache before generation even starts.
+    difficulty: advanced
+    reading_time_minutes: 35
+    links:
+      paper: https://proceedings.neurips.cc/paper_files/paper/2024/hash/28ab418242603e0f7323e54185d19bde-Abstract-Conference.html
+    predecessors: []
+    successors: []
+  - id: pyramidkv-2024
+    title: 'PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling'
+    year: 2024
+    authors:
+      - Zefan Cai
+      - Yichi Zhang
+      - Bofei Gao
+      - Yuliang Liu
+      - Yucheng Li
+      - Tianyu Liu
+      - Keming Lu
+      - Wayne Xiong
+      - Yue Dong
+      - Junjie Hu
+      - Wen Xiao
+    venue: arXiv
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache compression
+      - layer-wise allocation
+      - long context
+    type: current
+    lineages:
+      - kv-cache-management
+    why_read: Observes that attention narrows from broad to focused across layers and allocates a shrinking KV cache budget per layer instead of a uniform one, retaining full-cache accuracy at a fraction of the memory.
+    difficulty: advanced
+    reading_time_minutes: 35
+    links:
+      paper: https://arxiv.org/abs/2406.02069
+    predecessors: []
+    successors: []
+  - id: cachegen-2024
+    title: 'CacheGen: KV Cache Compression and Streaming for Fast Large Language Model Serving'
+    year: 2024
+    authors:
+      - Yuhan Liu
+      - Hanchen Li
+      - Yihua Cheng
+      - Siddhant Ray
+      - Yuyang Huang
+      - Qizheng Zhang
+      - Kuntai Du
+      - Jiayi Yao
+      - Shan Lu
+      - Ganesh Ananthanarayanan
+      - Michael Maire
+      - Henry Hoffmann
+      - Ari Holtzman
+      - Junchen Jiang
+    venue: SIGCOMM
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache transport
+      - compression
+      - networked context
+      - streaming
+    type: essential
+    lineages:
+      - kv-cache-management
+      - llm-serving
+    why_read: Treats cached context as networked state, encoding KV tensors so precomputed prefixes can be streamed across machines and storage tiers far faster than recomputing them.
+    difficulty: advanced
+    reading_time_minutes: 40
+    links:
+      paper: https://doi.org/10.1145/3651890.3672274
+    predecessors:
+      - sglang-2024
+      - distserve-2024
+    successors:
+      - mooncake-2025
+  - id: mooncake-2025
+    title: 'Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot'
+    year: 2025
+    authors:
+      - Ruoyu Qin
+      - Zheming Li
+      - Weiran He
+      - Jialei Cui
+      - Feng Ren
+      - Mingxing Zhang
+      - Yongwei Wu
+      - Weimin Zheng
+      - Xinran Xu
+    venue: FAST
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache
+      - disaggregated architecture
+      - distributed storage
+      - prefill-decode disaggregation
+    type: essential
+    lineages:
+      - kv-cache-management
+      - llm-serving
+    why_read: Builds a distributed KV cache spanning GPU memory, CPU DRAM, SSD and the network across separate prefill/decode clusters, treating cache placement as a first-class distributed-storage problem.
+    difficulty: advanced
+    reading_time_minutes: 45
+    links:
+      paper: https://www.usenix.org/conference/fast25/presentation/qin
+    predecessors:
+      - cachegen-2024
+    successors: []

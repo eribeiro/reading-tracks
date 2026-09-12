@@ -102,3 +102,23 @@ When the user asks to publish ReadingTracks:
 4. Stop if validation or synchronization fails.
 5. Report the commit hashes from both repositories.
 6. Never force-push unless the user explicitly requests it.
+
+## Additions and verifications when new papers are added;
+
+  Additions:
+
+  - Add paper to data/papers.yaml;
+  - Create a new track if necessary;
+  - Cross-listing under existing tracks, if suitable;
+  - Succinct descriptions and conceptual reading relationships;
+  - Add authors to data/researchers.yaml, if not already present;
+  - Add venues to data/venues.yaml, if not already present;
+
+  Verification:
+
+  - Run validation checks;
+  - YAML parsing check;
+  - Confirm unique paper, researcher, and venue IDs
+  - No duplicate track entries
+  - All authors reference their papers
+  - All new paper links use HTTPS
