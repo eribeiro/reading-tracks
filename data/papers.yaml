@@ -47,6 +47,7 @@ lineages:
     - dynamodb-2022
     - writeguards-2026
     - pnuts-2008
+    - eventually-serializable-data-services-1996
     - espresso-2013
     - live-data-migration-2018
   batch-to-Dataflow:
@@ -96,6 +97,11 @@ lineages:
     - dynamodb-transactions-2023
     - hat-2014
     - coordination-avoidance-2015
+    - hat-not-cap-2013
+    - potential-dangers-causal-consistency-2012
+    - bolt-on-causal-consistency-2013
+    - pbs-2012
+    - ramp-transactions-2014
     - deterministic-databases-overview-2018
     - slog-2019
     - detock-2023
@@ -130,6 +136,7 @@ lineages:
   isolation-concurrency:
     - granularity-locks-1976
     - ansi-isolation-1995
+    - read-only-transaction-anomaly-2004
     - adya-2000
     - silo-2013
     - snapshot-isolation-serializable-2005
@@ -268,6 +275,7 @@ lineages:
     - Dataflow-2015
     - differential-dataflow-2015
     - flink-2015
+    - macrobase-2017
     - noria-2018
   cluster-scheduling:
     - dominant-resource-fairness-2011
@@ -3707,6 +3715,7 @@ papers:
       paper: https://dsf.berkeley.edu/cs286/papers/ssi-tods2005.pdf
     predecessors:
       - ansi-isolation-1995
+      - read-only-transaction-anomaly-2004
     successors: []
   - id: hat-2014
     title: 'Highly Available Transactions: Virtues and Limitations'
@@ -3737,6 +3746,7 @@ papers:
       paper: https://www.vldb.org/pvldb/vol7/p181-bailis.pdf
     predecessors:
       - pacelc-2012
+      - hat-not-cap-2013
     successors:
       - coordination-avoidance-2015
   - id: coordination-avoidance-2015
@@ -8721,4 +8731,227 @@ papers:
       paper: https://www.usenix.org/conference/fast25/presentation/qin
     predecessors:
       - cachegen-2024
+    successors: []
+  - id: hat-not-cap-2013
+    title: 'HAT, not CAP: Towards Highly Available Transactions'
+    year: 2013
+    authors:
+      - Peter Bailis
+      - Aaron Davidson
+      - Alan Fekete
+      - Ali Ghodsi
+      - Joseph M. Hellerstein
+      - Ion Stoica
+    venue: HotOS
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - HAT
+      - availability
+      - CAP
+      - position paper
+    type: essential
+    lineages:
+      - distributed-transactions
+    why_read: The HotOS position paper that first argues for classifying transactional guarantees by whether they require coordination under partition, setting up the taxonomy the VLDB '14 paper formalizes.
+    difficulty: intermediate
+    reading_time_minutes: 30
+    links:
+      paper: https://www.usenix.org/conference/hotos13/session/bailis
+    predecessors:
+      - pacelc-2012
+    successors:
+      - hat-2014
+  - id: potential-dangers-causal-consistency-2012
+    title: 'The Potential Dangers of Causal Consistency and an Explicit Solution'
+    year: 2012
+    authors:
+      - Peter Bailis
+      - Alan Fekete
+      - Ali Ghodsi
+      - Joseph M. Hellerstein
+      - Ion Stoica
+    venue: SoCC
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - causal consistency
+      - explicit causality
+      - scalability
+    type: essential
+    lineages:
+      - distributed-transactions
+    why_read: Shows that classic causal consistency's dependency tracking scales poorly, and proposes narrowing to application-defined "explicit causality" instead of full potential causality.
+    difficulty: advanced
+    reading_time_minutes: 35
+    links:
+      paper: https://doi.org/10.1145/2391229.2391251
+    predecessors: []
+    successors:
+      - bolt-on-causal-consistency-2013
+  - id: bolt-on-causal-consistency-2013
+    title: 'Bolt-on Causal Consistency'
+    year: 2013
+    authors:
+      - Peter Bailis
+      - Ali Ghodsi
+      - Joseph M. Hellerstein
+      - Ion Stoica
+    venue: SIGMOD
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - causal consistency
+      - shim layer
+      - eventual consistency
+    type: essential
+    lineages:
+      - distributed-transactions
+    why_read: Turns explicit causality into a practical "bolt-on" shim that upgrades any eventually consistent store to convergent causal consistency without modifying the store itself.
+    difficulty: advanced
+    reading_time_minutes: 40
+    links:
+      paper: https://doi.org/10.1145/2463676.2465279
+    predecessors:
+      - potential-dangers-causal-consistency-2012
+    successors: []
+  - id: pbs-2012
+    title: 'Probabilistically Bounded Staleness for Practical Partial Quorums'
+    year: 2012
+    authors:
+      - Peter Bailis
+      - Shivaram Venkataraman
+      - Michael J. Franklin
+      - Joseph M. Hellerstein
+      - Ion Stoica
+    venue: VLDB
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - quorum systems
+      - staleness
+      - eventual consistency
+      - latency
+    type: essential
+    lineages:
+      - distributed-transactions
+    why_read: Quantifies, in closed form, how stale a partial-quorum read is likely to be — explaining why Dynamo-style quorums are usually "good enough" in practice despite no worst-case guarantee.
+    difficulty: advanced
+    reading_time_minutes: 45
+    links:
+      paper: https://doi.org/10.14778/2212351.2212359
+    predecessors: []
+    successors: []
+  - id: ramp-transactions-2014
+    title: 'Scalable Atomic Visibility with RAMP Transactions'
+    year: 2014
+    authors:
+      - Peter Bailis
+      - Alan Fekete
+      - Joseph M. Hellerstein
+      - Ali Ghodsi
+      - Ion Stoica
+    venue: SIGMOD
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - atomic visibility
+      - RAMP
+      - multi-partition transactions
+      - scalability
+    type: essential
+    lineages:
+      - distributed-transactions
+    why_read: Provides atomic visibility across partitions using only limited multi-versioning and client-side repair, avoiding coordination entirely and scaling linearly where classic 2PC does not.
+    difficulty: advanced
+    reading_time_minutes: 60
+    links:
+      paper: https://doi.org/10.1145/2588555.2588562
+    predecessors: []
+    successors: []
+  - id: macrobase-2017
+    title: 'MacroBase: Prioritizing Attention in Fast Data'
+    year: 2017
+    authors:
+      - Peter Bailis
+      - Edward Gan
+      - Samuel Madden
+      - Deepak Narayanan
+      - Kexin Rong
+      - Sahaana Suri
+    venue: SIGMOD
+    areas:
+      - Databases
+      - AI
+    tags:
+      - outlier explanation
+      - streaming analytics
+      - fast data
+    type: essential
+    lineages:
+      - streaming-dataflow
+    why_read: Builds a streaming analytics engine that searches for and explains anomalies directly, rather than requiring an analyst to already know which query would have found them.
+    difficulty: intermediate
+    reading_time_minutes: 45
+    links:
+      paper: https://doi.org/10.1145/3035918.3035928
+    predecessors: []
+    successors: []
+  - id: read-only-transaction-anomaly-2004
+    title: 'A Read-Only Transaction Anomaly Under Snapshot Isolation'
+    year: 2004
+    authors:
+      - Alan Fekete
+      - Elizabeth O'Neil
+      - Patrick O'Neil
+    venue: SIGMOD Record
+    areas:
+      - Databases
+    tags:
+      - snapshot isolation
+      - serializability
+      - anomaly
+    type: foundational
+    lineages:
+      - isolation-concurrency
+    why_read: The short note identifying that even a read-only transaction can trigger a serialization anomaly under Snapshot Isolation, motivating the theory behind "Making Snapshot Isolation Serializable."
+    difficulty: intermediate
+    reading_time_minutes: 15
+    links:
+      paper: https://doi.org/10.1145/1031570.1031573
+    predecessors:
+      - ansi-isolation-1995
+    successors:
+      - snapshot-isolation-serializable-2005
+  - id: eventually-serializable-data-services-1996
+    title: 'Eventually-Serializable Data Services'
+    year: 1996
+    authors:
+      - Alan Fekete
+      - David Gupta
+      - Victor Luchangco
+      - Nancy Lynch
+      - Alexander Shvartsman
+    venue: PODC
+    areas:
+      - Distributed Systems
+      - Databases
+    tags:
+      - eventual consistency
+      - replication
+      - data services
+    type: foundational
+    lineages:
+      - distributed-storage
+    why_read: An early formal model for replicated services that guarantee only eventual serializability, letting clients get fast local responses while a background process reconciles operation order.
+    difficulty: advanced
+    reading_time_minutes: 35
+    links:
+      paper: https://doi.org/10.1145/248052.248113
+    predecessors: []
     successors: []
