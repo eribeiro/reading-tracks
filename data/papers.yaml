@@ -335,6 +335,18 @@ lineages:
     - ecoserve-2026
     - prism-2026
     - superinfer-2026
+    - cachegen-2024
+    - mooncake-2025
+  kv-cache-management:
+    - mqa-2019
+    - gqa-2023
+    - h2o-2023
+    - streamingllm-2024
+    - kivi-2024
+    - snapkv-2024
+    - pyramidkv-2024
+    - cachegen-2024
+    - mooncake-2025
   ml-data-pipelines:
     - tfx-2017
     - Data-validation-2019
@@ -7376,6 +7388,7 @@ papers:
       - vllm-2023
     successors:
       - ecoserve-2026
+      - cachegen-2024
   - id: sglang-2024
     title: 'SGLang: Efficient Execution of Structured Language Model Programs'
     year: 2024
@@ -7411,7 +7424,8 @@ papers:
       paper: https://arxiv.org/abs/2312.07104
     predecessors:
       - vllm-2023
-    successors: []
+    successors:
+      - cachegen-2024
   - id: data-blocks-2016
     title: 'Data Blocks: Hybrid OLTP and OLAP on Compressed Storage using both Vectorization and Compilation'
     year: 2016
@@ -8419,4 +8433,292 @@ papers:
     links:
       paper: https://arxiv.org/abs/2110.12237
     predecessors: []
+    successors: []
+  - id: mqa-2019
+    title: 'Fast Transformer Decoding: One Write-Head is All You Need'
+    year: 2019
+    authors:
+      - Noam Shazeer
+    venue: arXiv
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - multi-query attention
+      - KV cache
+      - memory bandwidth
+      - decoding
+    type: foundational
+    lineages:
+      - kv-cache-management
+    why_read: Introduces multi-query attention, sharing a single key/value head across all query heads to cut the memory-bandwidth cost of loading KV state during autoregressive decoding.
+    difficulty: intermediate
+    reading_time_minutes: 15
+    links:
+      paper: https://arxiv.org/abs/1911.02150
+    predecessors: []
+    successors:
+      - gqa-2023
+  - id: gqa-2023
+    title: 'GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints'
+    year: 2023
+    authors:
+      - Joshua Ainslie
+      - James Lee-Thorp
+      - Michiel de Jong
+      - Yury Zemlyanskiy
+      - Federico Lebrón
+      - Sumit Sanghai
+    venue: EMNLP
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - grouped-query attention
+      - KV cache
+      - attention heads
+      - uptraining
+    type: essential
+    lineages:
+      - kv-cache-management
+    why_read: Interpolates between multi-head and multi-query attention, letting existing checkpoints be uptrained into a grouped-query form that shrinks the KV cache with little quality loss.
+    difficulty: intermediate
+    reading_time_minutes: 25
+    links:
+      paper: https://aclanthology.org/2023.emnlp-main.298/
+    predecessors:
+      - mqa-2019
+    successors: []
+  - id: h2o-2023
+    title: 'H₂O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models'
+    year: 2023
+    authors:
+      - Zhenyu Zhang
+      - Ying Sheng
+      - Tianyi Zhou
+      - Tianlong Chen
+      - Lianmin Zheng
+      - Ruisi Cai
+      - Zhao Song
+      - Yuandong Tian
+      - Christopher Ré
+      - Clark Barrett
+      - Zhangyang Wang
+      - Beidi Chen
+    venue: NeurIPS
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache eviction
+      - heavy hitters
+      - generative inference
+      - memory footprint
+    type: essential
+    lineages:
+      - kv-cache-management
+    why_read: Shows that a small, dynamically identified subset of tokens dominates attention scores, letting most of the KV cache be evicted without hurting generation quality.
+    difficulty: advanced
+    reading_time_minutes: 40
+    links:
+      paper: https://proceedings.neurips.cc/paper_files/paper/2023/hash/6ceefa7b15572587b78ecfcebb2827f8-Abstract-Conference.html
+    predecessors: []
+    successors: []
+  - id: streamingllm-2024
+    title: 'Efficient Streaming Language Models with Attention Sinks'
+    year: 2024
+    authors:
+      - Guangxuan Xiao
+      - Yuandong Tian
+      - Beidi Chen
+      - Song Han
+      - Mike Lewis
+    venue: ICLR
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - attention sinks
+      - streaming inference
+      - KV cache
+      - windowed attention
+    type: essential
+    lineages:
+      - kv-cache-management
+    why_read: Explains why naively evicting old KV entries breaks windowed attention and shows that keeping a handful of initial "sink" tokens lets bounded caches support effectively unbounded streams.
+    difficulty: intermediate
+    reading_time_minutes: 35
+    links:
+      paper: https://proceedings.iclr.cc/paper_files/paper/2024/hash/5e5fd18f863cbe6d8ae392a93fd271c9-Abstract-Conference.html
+    predecessors: []
+    successors: []
+  - id: kivi-2024
+    title: 'KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache'
+    year: 2024
+    authors:
+      - Zirui Liu
+      - Jiayi Yuan
+      - Hongye Jin
+      - Shaochen Zhong
+      - Zhaozhuo Xu
+      - Vladimir Braverman
+      - Beidi Chen
+      - Xia Hu
+    venue: ICML
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache quantization
+      - 2-bit
+      - memory efficiency
+      - tuning-free
+    type: essential
+    lineages:
+      - kv-cache-management
+    why_read: Shows that keys and values have different outlier distributions and quantizes each asymmetrically to 2 bits without fine-tuning, cutting peak memory while preserving quality.
+    difficulty: advanced
+    reading_time_minutes: 35
+    links:
+      paper: https://proceedings.mlr.press/v235/liu24bz.html
+    predecessors: []
+    successors: []
+  - id: snapkv-2024
+    title: 'SnapKV: LLM Knows What You Are Looking for Before Generation'
+    year: 2024
+    authors:
+      - Yuhong Li
+      - Yingbing Huang
+      - Bowen Yang
+      - Bharat Venkitesh
+      - Acyr Locatelli
+      - Hanchen Ye
+      - Tianle Cai
+      - Patrick Lewis
+      - Deming Chen
+    venue: NeurIPS
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache compression
+      - prompt attention
+      - token selection
+    type: essential
+    lineages:
+      - kv-cache-management
+    why_read: Observes that attention heads consistently focus on the same prompt positions and uses that pattern to compress the KV cache before generation even starts.
+    difficulty: advanced
+    reading_time_minutes: 35
+    links:
+      paper: https://proceedings.neurips.cc/paper_files/paper/2024/hash/28ab418242603e0f7323e54185d19bde-Abstract-Conference.html
+    predecessors: []
+    successors: []
+  - id: pyramidkv-2024
+    title: 'PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling'
+    year: 2024
+    authors:
+      - Zefan Cai
+      - Yichi Zhang
+      - Bofei Gao
+      - Yuliang Liu
+      - Yucheng Li
+      - Tianyu Liu
+      - Keming Lu
+      - Wayne Xiong
+      - Yue Dong
+      - Junjie Hu
+      - Wen Xiao
+    venue: arXiv
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache compression
+      - layer-wise allocation
+      - long context
+    type: current
+    lineages:
+      - kv-cache-management
+    why_read: Observes that attention narrows from broad to focused across layers and allocates a shrinking KV cache budget per layer instead of a uniform one, retaining full-cache accuracy at a fraction of the memory.
+    difficulty: advanced
+    reading_time_minutes: 35
+    links:
+      paper: https://arxiv.org/abs/2406.02069
+    predecessors: []
+    successors: []
+  - id: cachegen-2024
+    title: 'CacheGen: KV Cache Compression and Streaming for Fast Large Language Model Serving'
+    year: 2024
+    authors:
+      - Yuhan Liu
+      - Hanchen Li
+      - Yihua Cheng
+      - Siddhant Ray
+      - Yuyang Huang
+      - Qizheng Zhang
+      - Kuntai Du
+      - Jiayi Yao
+      - Shan Lu
+      - Ganesh Ananthanarayanan
+      - Michael Maire
+      - Henry Hoffmann
+      - Ari Holtzman
+      - Junchen Jiang
+    venue: SIGCOMM
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache transport
+      - compression
+      - networked context
+      - streaming
+    type: essential
+    lineages:
+      - kv-cache-management
+      - llm-serving
+    why_read: Treats cached context as networked state, encoding KV tensors so precomputed prefixes can be streamed across machines and storage tiers far faster than recomputing them.
+    difficulty: advanced
+    reading_time_minutes: 40
+    links:
+      paper: https://doi.org/10.1145/3651890.3672274
+    predecessors:
+      - sglang-2024
+      - distserve-2024
+    successors:
+      - mooncake-2025
+  - id: mooncake-2025
+    title: 'Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot'
+    year: 2025
+    authors:
+      - Ruoyu Qin
+      - Zheming Li
+      - Weiran He
+      - Jialei Cui
+      - Feng Ren
+      - Mingxing Zhang
+      - Yongwei Wu
+      - Weimin Zheng
+      - Xinran Xu
+    venue: FAST
+    areas:
+      - AI
+      - Infrastructure
+    tags:
+      - KV cache
+      - disaggregated architecture
+      - distributed storage
+      - prefill-decode disaggregation
+    type: essential
+    lineages:
+      - kv-cache-management
+      - llm-serving
+    why_read: Builds a distributed KV cache spanning GPU memory, CPU DRAM, SSD and the network across separate prefill/decode clusters, treating cache placement as a first-class distributed-storage problem.
+    difficulty: advanced
+    reading_time_minutes: 45
+    links:
+      paper: https://www.usenix.org/conference/fast25/presentation/qin
+    predecessors:
+      - cachegen-2024
     successors: []

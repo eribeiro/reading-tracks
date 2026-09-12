@@ -1525,3 +1525,106 @@ researchers:
       - performance benchmarking
     paper_ids:
       - characterizing-cloud-failures-2021
+  - id: noam-shazeer
+    name: Noam Shazeer
+    areas:
+      - AI
+    topics:
+      - multi-query attention
+      - transformer architecture
+      - efficient inference
+    paper_ids:
+      - mqa-2019
+  - id: joshua-ainslie
+    name: Joshua Ainslie
+    areas:
+      - AI
+    topics:
+      - grouped-query attention
+      - transformer architecture
+    paper_ids:
+      - gqa-2023
+  - id: zhenyu-zhang
+    name: Zhenyu Zhang
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - KV cache eviction
+      - efficient inference
+    paper_ids:
+      - h2o-2023
+  - id: beidi-chen
+    name: Beidi Chen
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - KV cache
+      - efficient inference
+      - sparse attention
+      - quantization
+    paper_ids:
+      - h2o-2023
+      - streamingllm-2024
+      - kivi-2024
+  - id: guangxuan-xiao
+    name: Guangxuan Xiao
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - attention sinks
+      - streaming inference
+    paper_ids:
+      - streamingllm-2024
+  - id: zirui-liu
+    name: Zirui Liu
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - KV cache quantization
+      - model compression
+    paper_ids:
+      - kivi-2024
+  - id: yuhong-li
+    name: Yuhong Li
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - KV cache compression
+      - efficient inference
+    paper_ids:
+      - snapkv-2024
+  - id: zefan-cai
+    name: Zefan Cai
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - KV cache compression
+      - long-context inference
+    paper_ids:
+      - pyramidkv-2024
+  - id: yuhan-liu
+    name: Yuhan Liu
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - KV cache transport
+      - LLM serving
+    paper_ids:
+      - cachegen-2024
+  - id: ruoyu-qin
+    name: Ruoyu Qin
+    areas:
+      - AI
+      - Infrastructure
+    topics:
+      - distributed KV cache
+      - LLM serving infrastructure
+    paper_ids:
+      - mooncake-2025

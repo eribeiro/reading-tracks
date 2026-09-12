@@ -202,3 +202,15 @@ venues:
   areas:
   - Distributed Systems
   tier: major
+- id: iclr
+  name: International Conference on Learning Representations
+  organization: ICLR
+  areas:
+  - AI
+  tier: flagship-ml
+- id: emnlp
+  name: Conference on Empirical Methods in Natural Language Processing
+  organization: ACL
+  areas:
+  - AI
+  tier: flagship-nlp
