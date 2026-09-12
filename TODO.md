@@ -7,4 +7,5 @@
 [ ] Allow saving Notes for each paper;
 [ ] Add a "printer" that exports the result set to PDF;
 [ ] Add distributed auth/authz papers to the curated list;
-[ ] Python tooling to create "Merge-o-lathe" tool (exports bibtex entries directly into data/ YAMLs)
+[ ] Python tooling to create "Merge-o-lathe" tool (exports bibtex entries directly into data/ YAMLs);
+[ ] Add the possibility of "caching" papers, that is, saving on cloud storage. AAdd the possibility of "caching" papers, that is, saving on cloud storage. If a paper is cached provide another URL to access it;
