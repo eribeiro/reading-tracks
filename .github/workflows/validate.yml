@@ -6,12 +6,14 @@ on:
       - "data/**"
       - "config.yaml"
       - "scripts/validate.py"
+      - "scripts/export.py"
   push:
     branches: [main]
     paths:
       - "data/**"
       - "config.yaml"
       - "scripts/validate.py"
+      - "scripts/export.py"
 
 jobs:
   validate:
@@ -23,3 +25,4 @@ jobs:
           python-version: "3.x"
       - run: pip install pyyaml
       - run: python3 scripts/validate.py
+      - run: python3 scripts/export.py --check
