@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added `data/relations.yaml` for curated edge types (`builds_on`, `simplifies`, `supersedes`, `refines`, `contradicts`) and notes, with validation and export to `data/edges.json` (format v2) and `llms.txt`.
 - Added generated `data/edges.json` (papers, reading-order edges, tracks) and `llms.txt` exports via `scripts/export.py`.
 - Fixed paper bookmarks jumping the page back to the beginning.
 - Added count pills and completion checks to the Tracks jump navigation.

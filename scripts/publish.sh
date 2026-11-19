@@ -5,7 +5,7 @@ python3 scripts/export.py
 python3 scripts/validate.py
 git diff --check
 
-git add CHANGES.md data/papers.yaml data/researchers.yaml data/edges.json llms.txt index.html
+git add CHANGES.md data/papers.yaml data/researchers.yaml data/relations.yaml data/edges.json llms.txt index.html
 git commit -m "${1:-Update ReadingTracks}"
 git push origin main
 

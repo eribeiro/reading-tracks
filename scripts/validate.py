@@ -19,6 +19,8 @@ except ImportError:
     sys.exit(2)
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+from scripts.catalog_io import RELATION_NOTE_MAX, RELATION_TYPES  # noqa: E402
 REQUIRED_PAPER_FIELDS = ["id", "title", "year", "venue", "why_read"]
 URL_RE = re.compile(r"^https?://\S+$")
 
@@ -44,6 +46,7 @@ def main():
     papers_doc = load_yaml("data/papers.yaml")
     researchers_doc = load_yaml("data/researchers.yaml")
     venues_doc = load_yaml("data/venues.yaml")
+    relations_doc = load_yaml("data/relations.yaml") if (ROOT / "data/relations.yaml").exists() else {}
 
     if errors:
         report()
@@ -76,6 +79,7 @@ def main():
     check_lineages(lineages, papers, paper_ids)
     check_predecessors_successors(papers, paper_ids)
     check_researcher_paper_ids(researchers, paper_ids)
+    check_relations((relations_doc or {}).get("relations") or [], papers, paper_ids)
 
     report()
 
@@ -168,6 +172,79 @@ def check_predecessors_successors(papers, paper_ids):
             for ref in p.get(field) or []:
                 if ref not in paper_ids:
                     errors.append(f"paper {pid!r}: {field} references unknown paper id {ref!r}")
+
+
+def check_relations(relations, papers, paper_ids):
+    declared = set()
+    for p in papers:
+        for ref in p.get("predecessors") or []:
+            declared.add((ref, p.get("id")))
+        for ref in p.get("successors") or []:
+            declared.add((p.get("id"), ref))
+
+    order_edges = set(declared)
+    seen = set()
+    for i, r in enumerate(relations):
+        where = f"data/relations.yaml entry {i + 1}"
+        if not isinstance(r, dict):
+            errors.append(f"{where}: expected a mapping, got {r!r}")
+            continue
+        a, b, rtype = r.get("from"), r.get("to"), r.get("type")
+        where = f"data/relations.yaml {a!r} -> {b!r}"
+        for field, ref in (("from", a), ("to", b)):
+            if ref not in paper_ids:
+                errors.append(f"{where}: {field} references unknown paper id {ref!r}")
+        if a == b:
+            errors.append(f"{where}: from and to are the same paper")
+        if rtype not in RELATION_TYPES:
+            errors.append(f"{where}: type {rtype!r} is not one of {', '.join(RELATION_TYPES)}")
+        note = r.get("note")
+        if note is not None and not isinstance(note, str):
+            errors.append(f"{where}: note must be a string")
+        elif note and len(" ".join(note.split())) > RELATION_NOTE_MAX:
+            errors.append(f"{where}: note is longer than {RELATION_NOTE_MAX} characters")
+        order = r.get("order", True)
+        if not isinstance(order, bool):
+            errors.append(f"{where}: order must be true or false")
+        elif not order and (a, b) in declared:
+            errors.append(f"{where}: order: false, but papers.yaml already declares {a!r} as read-before {b!r}")
+        unknown = set(r) - {"from", "to", "type", "note", "order"}
+        if unknown:
+            errors.append(f"{where}: unknown field(s) {', '.join(sorted(unknown))}")
+        if (a, b) in seen:
+            errors.append(f"{where}: duplicate relation")
+        seen.add((a, b))
+        if order is True:
+            order_edges.add((a, b))
+    check_order_cycles(order_edges)
+
+
+def check_order_cycles(edges):
+    adj = {}
+    for a, b in edges:
+        adj.setdefault(a, []).append(b)
+    state = {}
+    for start in sorted(adj):
+        if state.get(start):
+            continue
+        stack = [(start, iter(sorted(adj.get(start, []))))]
+        path = [start]
+        state[start] = 1
+        while stack:
+            node, it = stack[-1]
+            nxt = next(it, None)
+            if nxt is None:
+                stack.pop()
+                path.pop()
+                state[node] = 2
+            elif state.get(nxt) == 1:
+                cycle = path[path.index(nxt):] + [nxt]
+                errors.append("reading-order cycle: " + " -> ".join(cycle))
+                return
+            elif not state.get(nxt):
+                state[nxt] = 1
+                path.append(nxt)
+                stack.append((nxt, iter(sorted(adj.get(nxt, [])))))
 
 
 def check_researcher_paper_ids(researchers, paper_ids):

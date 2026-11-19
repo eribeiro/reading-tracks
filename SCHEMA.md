@@ -66,14 +66,45 @@ Top-level key: `venues` (a list).
 
 `data/venues.yaml` is a curated highlights list, not required to be exhaustive — plenty of real, valid paper venues (a specific journal, a PhD thesis, a one-off workshop) legitimately have no entry here. `scripts/validate.py` warns (doesn't error) when a paper's venue has no matching id.
 
+## `data/relations.yaml`
+
+This file is optional. Its top-level key is `relations`, a list. Each entry annotates the reading-order edge `from` → `to`, which may already exist through `predecessors`/`successors`, or adds a new one. The type and note are the curator's judgment. Nothing generates them.
+
+| Field | Type | Required | Notes |
+|---|---|---|---|
+| `from` | paper id | yes | The earlier or referenced paper. |
+| `to` | paper id | yes | The paper being characterized. Read an entry as "`to` *type* `from`". |
+| `type` | string | yes | One of the types below. The list lives in `scripts/catalog_io.py`'s `RELATION_TYPES`. |
+| `note` | string | no | One line, at most 120 characters after whitespace is collapsed. |
+| `order` | bool | no | Defaults to `true`, meaning read `from` before `to`. `false` marks a tension-only link that isn't a prerequisite. It isn't allowed on an edge that `papers.yaml` already declares. |
+
+| `type` | Meaning ("`to` … `from`") |
+|---|---|
+| `builds_on` | extends `from`'s idea |
+| `simplifies` | presents the same idea, explained or built more simply |
+| `supersedes` | replaces `from` in practice |
+| `refines` | narrows or corrects `from`'s claim (e.g. PACELC refines CAP) |
+| `contradicts` | argues against `from`'s position |
+
+`scripts/validate.py` checks that:
+- both ids exist and differ,
+- `type` is one of the five, and the note is at most 120 characters,
+- `order` is a boolean, and there are no unknown fields or duplicate `from`/`to` pairs,
+- the reading-order graph has no cycles. That graph is `predecessors`/`successors` plus every `order: true` relation.
+
 ## Generated exports
 
 `scripts/export.py` writes two derived files. Don't edit them by hand.
 
-- **`data/edges.json`** has `format_version` (currently `1`), `schema_version`, `counts`, and:
+- **`data/edges.json`** has `format_version` (currently `2`), `schema_version`, `counts` (including a per-relation tally), and:
   - `nodes`: the papers, with `id`, `title`, `year`, `authors`, `venue`, `areas`, `tags`, `type`, `difficulty`, `reading_time_minutes`, `lineages`, `why_read`, and `url` (from `links.paper`). Empty fields are left out.
-  - `edges`: `{from, to, relation: "read_before", declared_in}`. This is the union of every paper's `predecessors` (x → paper) and `successors` (paper → x), deduplicated. `declared_in` lists which of the two fields declared the edge.
+  - `edges`: `{from, to, relation, order, note?, declared_in}`. This is the union of every paper's `predecessors` (x → paper) and `successors` (paper → x), deduplicated, merged with `data/relations.yaml`.
+    - `relation` is `read_before` for untyped edges, or the curated type.
+    - `order` is `false` only for tension-only relations.
+    - `declared_in` lists the sources (`predecessors`, `successors`, `relations`).
   - `tracks`: `{id, label, papers}` for each lineage. `papers` lists membership, not a reading order.
 - **`llms.txt`** follows the [llms.txt](https://llmstxt.org/) convention: a summary, links to the data files, and each track's papers by year with their `why_read`. Absolute links use `--base-url`, which defaults to `https://eribeiro.github.io/reading-tracks/`.
+
+`llms.txt` also gets a "Curated relations" section, one sentence per typed edge (for example, "Raft … simplifies Viewstamped Replication …").
 
 `python3 scripts/export.py --check` exits non-zero when either file is out of date.

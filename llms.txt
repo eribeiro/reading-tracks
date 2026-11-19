@@ -1,6 +1,6 @@
 # ReadingTracks
 
-> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 280 papers grouped into 42 reading tracks, with 282 'read A before B' edges.
+> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 280 papers grouped into 42 reading tracks, with 284 'read A before B' edges.
 
 The catalog's value is its curation: which papers belong together and what to read first. Edges are conceptual reading-order hints, not a citation graph. Prefer the structured data below over scraping the HTML page.
 
@@ -500,6 +500,14 @@ The catalog's value is its curation: which papers belong together and what to re
 - [Milvus: A Purpose-Built Vector Data Management System (2021)](https://dl.acm.org/doi/10.1145/3448016.3457550): A data management system purpose-built for large-scale approximate nearest-neighbor search over vectors — the data-infrastructure piece underneath embeddings, semantic search, and RAG in the modern AI stack.
 - [VBASE: Unifying Online Vector Similarity Search and Relational Queries via Relaxed Monotonicity (2023)](https://www.usenix.org/conference/osdi23/presentation/zhang-qianxi): Identifies relaxed monotonicity as the key to integrating approximate vector indexes with complex relational query execution efficiently.
 - [Survey of Vector Database Management Systems (2024)](https://doi.org/10.1007/s00778-024-00864-x): Organizes vector database designs across indexing, storage, query processing, optimization, and distributed execution, providing a map for reading individual systems papers.
+
+## Curated relations
+
+How papers relate, in the curator's words. `contradicts` and `refines` mark disagreements worth reading side by side.
+
+- Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service (2022) supersedes Dynamo: Amazon's Highly Available Key-value Store (2007)
+- Spanner: Google's Globally-Distributed Database (2012) contradicts Life Beyond Distributed Transactions: An Apostate's Opinion (2007)
+- In Search of an Understandable Consensus Algorithm (Raft) (2014) simplifies Viewstamped Replication: A New Primary Copy Method to Support Highly-Available Distributed Systems (1988)
 
 ## Optional
 

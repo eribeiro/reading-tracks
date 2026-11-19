@@ -1,0 +1,24 @@
+# Curated relations between papers: the "why", not just the order.
+#
+# Each entry annotates the reading-order edge from -> to (or adds one).
+#   type:  how `to` relates to `from`, read as "<to> <type> <from>"
+#          (e.g. "raft-2014 simplifies viewstamped-1988"):
+#          builds_on | simplifies | supersedes | refines | contradicts
+#   note:  optional, one line, at most 120 characters, in the curator's voice
+#   order: optional, default true ("read `from` before `to`");
+#          false marks a tension-only link that is not a prerequisite
+# See SCHEMA.md. scripts/export.py copies these into data/edges.json.
+relations:
+  - from: viewstamped-1988
+    to: raft-2014
+    type: simplifies
+    # note:
+  - from: dynamo-2007
+    to: dynamodb-2022
+    type: supersedes
+    # note:
+  - from: life-beyond-transactions-2007
+    to: spanner-2012
+    type: contradicts
+    order: false
+    # note:

@@ -15,6 +15,7 @@ build system, or application framework. The browser loads YAML data through
 - `data/papers.yaml` — papers, reading tracks, relationships, and paper links.
 - `data/researchers.yaml` — researcher records and paper references.
 - `data/venues.yaml` — venue records.
+- `data/relations.yaml` — curated relation types and notes on edges (curator-written).
 - `scripts/validate.py` — required consistency checks.
 - `scripts/export.py` — generates `data/edges.json` and `llms.txt`.
 - `SCHEMA.md` — field-level data format documentation.

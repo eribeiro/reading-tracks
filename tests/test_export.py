@@ -47,6 +47,9 @@ class ExportTests(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
+    def write_relations(self, text):
+        (self.root / "data/relations.yaml").write_text(text)
+
     def graph(self):
         out = export.build_outputs(self.root, "https://x.test/rt")
         return json.loads(out[export.EDGES_PATH]), out[export.LLMS_PATH]
@@ -54,15 +57,45 @@ class ExportTests(unittest.TestCase):
     def test_edges_union_and_provenance(self):
         g, _ = self.graph()
         self.assertEqual(g["edges"], [
-            {"from": "a-2010", "to": "b-2020", "relation": "read_before",
+            {"from": "a-2010", "to": "b-2020", "relation": "read_before", "order": True,
              "declared_in": ["predecessors", "successors"]},
-            {"from": "a-2010", "to": "c-2021", "relation": "read_before",
+            {"from": "a-2010", "to": "c-2021", "relation": "read_before", "order": True,
              "declared_in": ["predecessors"]},
         ])
-        self.assertEqual(g["counts"], {"papers": 3, "edges": 2, "tracks": 1})
+        self.assertEqual(g["counts"]["edges"], 2)
+        self.assertEqual(g["counts"]["relations"]["read_before"], 2)
         self.assertEqual(g["tracks"][0]["label"], "LLM Serving")
         self.assertEqual(g["nodes"][0]["url"], "https://example.org/a")
         self.assertNotIn("url", g["nodes"][1])
+
+    def test_relations_annotate_and_add_edges(self):
+        self.write_relations("""
+relations:
+  - from: a-2010
+    to: b-2020
+    type: simplifies
+    note: "  Same idea,
+      simpler.  "
+  - from: c-2021
+    to: b-2020
+    type: contradicts
+    order: false
+""")
+        g, txt = self.graph()
+        by_key = {(e["from"], e["to"]): e for e in g["edges"]}
+        self.assertEqual(by_key[("a-2010", "b-2020")], {
+            "from": "a-2010", "to": "b-2020", "relation": "simplifies", "order": True,
+            "note": "Same idea, simpler.", "declared_in": ["predecessors", "relations", "successors"]})
+        self.assertEqual(by_key[("c-2021", "b-2020")], {
+            "from": "c-2021", "to": "b-2020", "relation": "contradicts", "order": False,
+            "declared_in": ["relations"]})
+        self.assertEqual(g["counts"]["relations"]["simplifies"], 1)
+        self.assertIn("- B (2020) simplifies A: First (2010): Same idea, simpler.", txt)
+        self.assertIn("- B (2020) contradicts C (2021)", txt)
+
+    def test_no_relations_section_without_relations(self):
+        _, txt = self.graph()
+        self.assertNotIn("Curated relations", txt)
 
     def test_llms_txt_links_and_order(self):
         _, txt = self.graph()

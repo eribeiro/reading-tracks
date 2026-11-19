@@ -8,6 +8,11 @@ from typing import Any
 
 import yaml
 
+# Curated relation types for data/relations.yaml. Edges without one are plain
+# "read_before" ordering hints. Keep SCHEMA.md's table in sync.
+RELATION_TYPES = ("builds_on", "simplifies", "supersedes", "refines", "contradicts")
+RELATION_NOTE_MAX = 120
+
 
 def slugify(value: str, fallback: str = "item") -> str:
     """Return a lowercase, hyphenated identifier."""
