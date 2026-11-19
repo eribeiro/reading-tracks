@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added generated `data/edges.json` (papers, reading-order edges, tracks) and `llms.txt` exports via `scripts/export.py`.
 - Fixed paper bookmarks jumping the page back to the beginning.
 - Added count pills and completion checks to the Tracks jump navigation.
 - Added explicit “Expand remaining” and “Collapse open” actions for partially expanded Tracks.

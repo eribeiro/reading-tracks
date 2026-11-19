@@ -65,3 +65,15 @@ Top-level key: `venues` (a list).
 | `tier` | string | no | Free-form (e.g. `flagship`, `major`). |
 
 `data/venues.yaml` is a curated highlights list, not required to be exhaustive — plenty of real, valid paper venues (a specific journal, a PhD thesis, a one-off workshop) legitimately have no entry here. `scripts/validate.py` warns (doesn't error) when a paper's venue has no matching id.
+
+## Generated exports
+
+`scripts/export.py` writes two derived files. Don't edit them by hand.
+
+- **`data/edges.json`** has `format_version` (currently `1`), `schema_version`, `counts`, and:
+  - `nodes`: the papers, with `id`, `title`, `year`, `authors`, `venue`, `areas`, `tags`, `type`, `difficulty`, `reading_time_minutes`, `lineages`, `why_read`, and `url` (from `links.paper`). Empty fields are left out.
+  - `edges`: `{from, to, relation: "read_before", declared_in}`. This is the union of every paper's `predecessors` (x → paper) and `successors` (paper → x), deduplicated. `declared_in` lists which of the two fields declared the edge.
+  - `tracks`: `{id, label, papers}` for each lineage. `papers` lists membership, not a reading order.
+- **`llms.txt`** follows the [llms.txt](https://llmstxt.org/) convention: a summary, links to the data files, and each track's papers by year with their `why_read`. Absolute links use `--base-url`, which defaults to `https://eribeiro.github.io/reading-tracks/`.
+
+`python3 scripts/export.py --check` exits non-zero when either file is out of date.
