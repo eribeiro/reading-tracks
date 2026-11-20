@@ -20,6 +20,27 @@
 Paper additions contained in the squashed catalog commit. Dates use
 `YYYY-DD-MM`, followed by the abbreviated commit hash.
 
+## 2026-20-11 - e5f27df
+
+- `woot-2006`
+- `treedoc-2009`
+- `logoot-2009`
+- `rga-2011`
+- `crdts-2011`
+- `crdt-comprehensive-study-2011`
+- `optimized-or-set-2012`
+- `replicated-data-types-popl-2014`
+- `op-based-crdts-2014`
+- `delta-mutation-crdts-2015`
+- `collaborative-text-editing-2016`
+- `json-crdt-2017`
+- `verifying-sec-2017`
+- `pure-op-based-crdts-2017`
+- `delta-state-crdts-2018`
+- `crdt-overview-2018`
+- `local-first-software-2019`
+- `efficient-sync-crdts-2019`
+
 ## 2026-20-11 - 280b2ba
 
 - `maintaining-time-distributed-1983`
