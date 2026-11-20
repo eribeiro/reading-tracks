@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Cross-listed `percolator-2010` and `cockroachdb-2020` under Distributed Transactions, and added the ACM TODS and Communications of the ACM venues.
 - Added the Replicated Data Types track (CRDTs and collaborative editing), cross-listing `eventually-consistent-2009`.
 - Added the Physical Hybrid Time track (TrueTime, hybrid logical clocks, and clock synchronization), cross-listing `lamport-time-clocks-1978`, `spanner-2012`, `logical-physical-clocks-2014`, `spanner-truetime-cap-2017`, and `cockroachdb-2020`; also added `logical-physical-clocks-2014` to Causality Tracking.
 - Added the Causality Tracking track, cross-listing `lamport-time-clocks-1978` and `dynamo-2007`.
@@ -19,6 +20,19 @@
 
 Paper additions contained in the squashed catalog commit. Dates use
 `YYYY-DD-MM`, followed by the abbreviated commit hash.
+
+## 2026-20-11 - 4e58e99
+
+- `adya-thesis-1999`
+- `seeing-is-believing-2017`
+- `walter-psi-2011`
+- `cops-2011`
+- `session-guarantees-1994`
+- `paxos-commit-2006`
+- `sagas-1987`
+- `keeping-calm-2020`
+- `acidrain-2017`
+- `elle-2020`
 
 ## 2026-20-11 - 32928cc
 
