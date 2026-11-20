@@ -19,6 +19,16 @@
 Paper additions contained in the squashed catalog commit. Dates use
 `YYYY-DD-MM`, followed by the abbreviated commit hash.
 
+## 2026-20-11 - 280b2ba
+
+- `maintaining-time-distributed-1983`
+- `synchronized-clocks-1991`
+- `augmented-time-2013`
+- `hybrid-vector-clocks-2015`
+- `huygens-2018`
+- `mongodb-cluster-logical-clock-2019`
+- `sundial-2020`
+
 ## 2026-20-11 - ae56c4d
 
 - `mutual-inconsistency-detection-1983`
