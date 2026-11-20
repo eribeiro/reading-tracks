@@ -546,7 +546,10 @@ researchers:
       - Distributed Data
       - consistency
       - stream processing
-    paper_ids: []
+    paper_ids:
+      - json-crdt-2017
+      - verifying-sec-2017
+      - local-first-software-2019
   - id: matei-zaharia
     name: Matei Zaharia
     areas:
@@ -1656,6 +1659,15 @@ researchers:
       - dotted-version-vectors-podc-2012
       - dvv-sets-2014
       - logical-clocks-easy-2016
+      - crdts-2011
+      - crdt-comprehensive-study-2011
+      - optimized-or-set-2012
+      - op-based-crdts-2014
+      - delta-mutation-crdts-2015
+      - pure-op-based-crdts-2017
+      - delta-state-crdts-2018
+      - crdt-overview-2018
+      - efficient-sync-crdts-2019
   - id: nuno-preguica
     name: Nuno Preguiça
     areas:
@@ -1670,6 +1682,11 @@ researchers:
       - dotted-version-vectors-podc-2012
       - dvv-sets-2014
       - logical-clocks-easy-2016
+      - treedoc-2009
+      - crdts-2011
+      - crdt-comprehensive-study-2011
+      - optimized-or-set-2012
+      - crdt-overview-2018
   - id: paulo-sergio-almeida
     name: Paulo Sérgio Almeida
     areas:
@@ -1682,6 +1699,11 @@ researchers:
       - dotted-version-vectors-2010
       - dotted-version-vectors-podc-2012
       - dvv-sets-2014
+      - op-based-crdts-2014
+      - delta-mutation-crdts-2015
+      - pure-op-based-crdts-2017
+      - delta-state-crdts-2018
+      - efficient-sync-crdts-2019
   - id: victor-fonte
     name: Victor Fonte
     areas:
@@ -1811,3 +1833,192 @@ researchers:
     paper_ids:
       - huygens-2018
       - sundial-2020
+  - id: marc-shapiro
+    name: Marc Shapiro
+    areas:
+      - Distributed Systems
+    topics:
+      - CRDTs
+      - strong eventual consistency
+      - geo-replication
+    paper_ids:
+      - treedoc-2009
+      - crdts-2011
+      - crdt-comprehensive-study-2011
+      - optimized-or-set-2012
+      - crdt-overview-2018
+  - id: marek-zawirski
+    name: Marek Zawirski
+    areas:
+      - Distributed Systems
+    topics:
+      - CRDTs
+      - replicated data types
+    paper_ids:
+      - crdts-2011
+      - crdt-comprehensive-study-2011
+      - optimized-or-set-2012
+      - replicated-data-types-popl-2014
+      - collaborative-text-editing-2016
+  - id: sebastian-burckhardt
+    name: Sebastian Burckhardt
+    areas:
+      - Distributed Systems
+    topics:
+      - replicated data types
+      - eventual consistency
+      - specification
+    paper_ids:
+      - replicated-data-types-popl-2014
+      - collaborative-text-editing-2016
+  - id: alexey-gotsman
+    name: Alexey Gotsman
+    areas:
+      - Distributed Systems
+    topics:
+      - replicated data types
+      - consistency models
+      - verification
+    paper_ids:
+      - replicated-data-types-popl-2014
+      - collaborative-text-editing-2016
+  - id: hongseok-yang
+    name: Hongseok Yang
+    areas:
+      - Distributed Systems
+    topics:
+      - replicated data types
+      - verification
+    paper_ids:
+      - replicated-data-types-popl-2014
+      - collaborative-text-editing-2016
+  - id: hagit-attiya
+    name: Hagit Attiya
+    areas:
+      - Distributed Systems
+    topics:
+      - distributed computing theory
+      - lower bounds
+    paper_ids:
+      - collaborative-text-editing-2016
+  - id: alastair-beresford
+    name: Alastair R. Beresford
+    areas:
+      - Distributed Systems
+    topics:
+      - CRDTs
+      - formal verification
+    paper_ids:
+      - json-crdt-2017
+      - verifying-sec-2017
+  - id: victor-gomes
+    name: Victor B. F. Gomes
+    areas:
+      - Distributed Systems
+    topics:
+      - formal verification
+      - CRDTs
+    paper_ids:
+      - verifying-sec-2017
+  - id: peter-van-hardenberg
+    name: Peter van Hardenberg
+    areas:
+      - Distributed Systems
+    topics:
+      - local-first software
+    paper_ids:
+      - local-first-software-2019
+  - id: adam-wiggins
+    name: Adam Wiggins
+    areas:
+      - Distributed Systems
+    topics:
+      - local-first software
+    paper_ids:
+      - local-first-software-2019
+  - id: gerald-oster
+    name: Gérald Oster
+    areas:
+      - Distributed Systems
+    topics:
+      - collaborative editing
+      - sequence CRDTs
+    paper_ids:
+      - woot-2006
+  - id: pascal-molli
+    name: Pascal Molli
+    areas:
+      - Distributed Systems
+    topics:
+      - collaborative editing
+      - sequence CRDTs
+    paper_ids:
+      - woot-2006
+      - logoot-2009
+  - id: pascal-urso
+    name: Pascal Urso
+    areas:
+      - Distributed Systems
+    topics:
+      - collaborative editing
+      - sequence CRDTs
+    paper_ids:
+      - woot-2006
+      - logoot-2009
+  - id: stephane-weiss
+    name: Stéphane Weiss
+    areas:
+      - Distributed Systems
+    topics:
+      - collaborative editing
+      - sequence CRDTs
+    paper_ids:
+      - logoot-2009
+  - id: hyun-gul-roh
+    name: Hyun-Gul Roh
+    areas:
+      - Distributed Systems
+    topics:
+      - replicated abstract data types
+      - collaborative editing
+    paper_ids:
+      - rga-2011
+  - id: annette-bieniusa
+    name: Annette Bieniusa
+    areas:
+      - Distributed Systems
+    topics:
+      - CRDTs
+      - replicated sets
+    paper_ids:
+      - optimized-or-set-2012
+  - id: ali-shoker
+    name: Ali Shoker
+    areas:
+      - Distributed Systems
+    topics:
+      - delta CRDTs
+      - operation-based CRDTs
+    paper_ids:
+      - op-based-crdts-2014
+      - delta-mutation-crdts-2015
+      - pure-op-based-crdts-2017
+      - delta-state-crdts-2018
+  - id: vitor-enes
+    name: Vitor Enes
+    areas:
+      - Distributed Systems
+    topics:
+      - CRDT synchronization
+      - consensus
+    paper_ids:
+      - efficient-sync-crdts-2019
+  - id: joao-leitao
+    name: João Leitão
+    areas:
+      - Distributed Systems
+    topics:
+      - CRDT synchronization
+      - edge computing
+    paper_ids:
+      - efficient-sync-crdts-2019

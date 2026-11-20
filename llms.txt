@@ -1,6 +1,6 @@
 # ReadingTracks
 
-> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 293 papers grouped into 44 reading tracks, with 303 'read A before B' edges.
+> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 311 papers grouped into 45 reading tracks, with 322 'read A before B' edges.
 
 The catalog's value is its curation: which papers belong together and what to read first. Edges are conceptual reading-order hints, not a citation graph. Prefer the structured data below over scraping the HTML page.
 
@@ -456,6 +456,28 @@ The catalog's value is its curation: which papers belong together and what to re
 - [DuckDB: An Embeddable Analytical Database (2019)](https://doi.org/10.1145/3299869.3320212): Embedded columnar OLAP in a single process; the vectorized execution of X100/MonetDB taken to its practical extreme.
 - [SQL Has Problems. We Can Fix Them: Pipe Syntax In SQL (2024)](https://www.vldb.org/pvldb/vol17/p4051-shute.pdf): Makes a pragmatic case for composable pipe-structured data flow inside SQL, retaining backward compatibility while removing clause-order rigidity and simplifying multi-stage analytical queries and language extensions.
 - [Optimizing LLM Queries in Relational Data Analytics Workloads (2025)](https://proceedings.mlsys.org/paper_files/paper/2025): A direct bridge between traditional query optimization and analytical workloads that incorporate LLM calls.
+
+### Replicated Data Types
+
+- [Data Consistency for P2P Collaborative Editing (2006)](https://doi.org/10.1145/1180875.1180916): Introduces WOOT, a peer-to-peer text editing algorithm that converges without operational transformation by giving every character a unique identifier and never truly deleting it.
+- [Eventually Consistent (2009)](https://doi.org/10.1145/1435417.1435432): A practitioner's tour of the consistency spectrum between strong and eventual, and of the client-side guarantees that make weak consistency usable at Amazon scale.
+- [Logoot: A Scalable Optimistic Replication Algorithm for Collaborative Editing on P2P Networks (2009)](https://doi.org/10.1109/ICDCS.2009.75): Replaces WOOT's tombstones with dense, ordered position identifiers so that collaborative editing scales to large documents and many peers.
+- [A Commutative Replicated Data Type for Cooperative Editing (2009)](https://doi.org/10.1109/ICDCS.2009.20): Presents Treedoc, a shared text buffer whose concurrent inserts and deletes commute by design, an early example of what would be named a CRDT.
+- [A Comprehensive Study of Convergent and Commutative Replicated Data Types (2011)](https://inria.hal.science/inria-00555588): The catalog of CRDT designs: counters, registers, sets (including the observed-remove set), maps, graphs, and sequences, each specified in both state-based and operation-based form.
+- [Conflict-Free Replicated Data Types (2011)](https://doi.org/10.1007/978-3-642-24550-3_29): Names and formalizes CRDTs, defines strong eventual consistency, and shows that state-based and operation-based replicated types are equivalent ways to achieve it.
+- [Replicated Abstract Data Types: Building Blocks for Collaborative Applications (2011)](https://doi.org/10.1016/j.jpdc.2010.12.006): Defines replicated abstract data types, including the replicated growable array (RGA), the sequence design behind many later collaborative editors.
+- [An Optimized Conflict-Free Replicated Set (2012)](https://arxiv.org/abs/1210.3368): Removes tombstones from the observed-remove set by summarizing removed elements with a version vector, the design most production add-wins sets use.
+- [Making Operation-Based CRDTs Operation-Based (2014)](https://doi.org/10.1007/978-3-662-43352-2_11): Moves the causality bookkeeping of operation-based CRDTs into a reusable messaging layer, so the data types themselves ship only the operations.
+- [Replicated Data Types: Specification, Verification, Optimality (2014)](https://doi.org/10.1145/2535838.2535848): Gives replicated data types a formal specification framework, proves implementations correct against it, and proves lower bounds on the metadata they must keep.
+- [Efficient State-Based CRDTs by Delta-Mutation (2015)](https://doi.org/10.1007/978-3-319-26850-7_5): Introduces delta-mutators, which let state-based CRDTs ship small deltas instead of their full state while keeping state-based convergence guarantees.
+- [Specification and Complexity of Collaborative Text Editing (2016)](https://doi.org/10.1145/2933057.2933090): Specifies what a replicated list for text editing must guarantee, proves RGA meets it, and shows a metadata lower bound for any implementation.
+- [A Conflict-Free Replicated JSON Datatype (2017)](https://doi.org/10.1109/TPDS.2017.2697382): Combines maps, lists, and registers into a CRDT for arbitrarily nested JSON documents, with formal semantics for concurrent edits; this is the basis of Automerge.
+- [Pure Operation-Based Replicated Data Types (2017)](https://arxiv.org/abs/1710.04469): Defines operation-based CRDTs whose state is just a partially ordered log of operations, compacted once causal stability shows no concurrent operation can still arrive.
+- [Verifying Strong Eventual Consistency in Distributed Systems (2017)](https://doi.org/10.1145/3133933): Mechanically verifies in Isabelle/HOL that RGA, a counter, and an OR-set converge, and makes the network assumptions behind that guarantee explicit.
+- [Conflict-Free Replicated Data Types (CRDTs) (2018)](https://doi.org/10.1007/978-3-319-63962-8_185-1): A short, authoritative introduction to CRDTs: the problem, the state-based, operation-based, and delta designs, and where they are used.
+- [Delta State Replicated Data Types (2018)](https://doi.org/10.1016/j.jpdc.2017.08.003): The full treatment of delta-state CRDTs, covering anti-entropy algorithms for shipping deltas, causal delta merging, and a portfolio of delta-enabled data types.
+- [Efficient Synchronization of State-Based CRDTs (2019)](https://doi.org/10.1109/ICDE.2019.00022): Uses join decompositions to find and send only the part of a CRDT state a peer is missing, fixing redundant transmission in classic delta-based synchronization.
+- [Local-First Software: You Own Your Data, in Spite of the Cloud (2019)](https://doi.org/10.1145/3359591.3359737): Sets out seven ideals for apps that keep data on users' devices yet still collaborate, and argues that CRDTs are the technology that makes this practical.
 
 ### Self Driving Databases
 

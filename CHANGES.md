@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added the Replicated Data Types track (CRDTs and collaborative editing), cross-listing `eventually-consistent-2009`.
 - Added the Physical Hybrid Time track (TrueTime, hybrid logical clocks, and clock synchronization), cross-listing `lamport-time-clocks-1978`, `spanner-2012`, `logical-physical-clocks-2014`, `spanner-truetime-cap-2017`, and `cockroachdb-2020`; also added `logical-physical-clocks-2014` to Causality Tracking.
 - Added the Causality Tracking track, cross-listing `lamport-time-clocks-1978` and `dynamo-2007`.
 - Added `data/relations.yaml` for curated edge types (`builds_on`, `simplifies`, `supersedes`, `refines`, `contradicts`) and notes, with validation and export to `data/edges.json` (format v2) and `llms.txt`.

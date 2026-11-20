@@ -29,6 +29,26 @@ lineages:
     - mongodb-cluster-logical-clock-2019
     - sundial-2020
     - cockroachdb-2020
+  replicated-data-types:
+    - eventually-consistent-2009
+    - woot-2006
+    - treedoc-2009
+    - logoot-2009
+    - rga-2011
+    - crdts-2011
+    - crdt-comprehensive-study-2011
+    - optimized-or-set-2012
+    - replicated-data-types-popl-2014
+    - op-based-crdts-2014
+    - delta-mutation-crdts-2015
+    - collaborative-text-editing-2016
+    - json-crdt-2017
+    - verifying-sec-2017
+    - pure-op-based-crdts-2017
+    - delta-state-crdts-2018
+    - crdt-overview-2018
+    - local-first-software-2019
+    - efficient-sync-crdts-2019
   systems-design-principles:
     - hints-computer-system-design-1983
     - end-to-end-1984
@@ -9044,6 +9064,7 @@ papers:
     lineages:
       - causality-tracking
       - dynamo-family
+      - replicated-data-types
     why_read: A practitioner's tour of the consistency spectrum between strong and eventual, and of the client-side guarantees that make weak consistency usable at Amazon scale.
     difficulty: introductory
     reading_time_minutes: 25
@@ -9373,4 +9394,509 @@ papers:
       paper: https://www.usenix.org/conference/osdi20/presentation/li-yuliang
     predecessors:
       - huygens-2018
+    successors: []
+  - id: woot-2006
+    title: Data Consistency for P2P Collaborative Editing
+    year: 2006
+    authors:
+      - Gérald Oster
+      - Pascal Urso
+      - Pascal Molli
+      - Abdessamad Imine
+    venue: CSCW
+    areas:
+      - Distributed Systems
+    tags:
+      - collaborative editing
+      - WOOT
+      - sequence CRDT
+      - optimistic replication
+    type: foundational
+    lineages:
+      - replicated-data-types
+    why_read: Introduces WOOT, a peer-to-peer text editing algorithm that converges without operational transformation by giving every character a unique identifier and never truly deleting it.
+    difficulty: intermediate
+    reading_time_minutes: 45
+    links:
+      paper: https://doi.org/10.1145/1180875.1180916
+    predecessors: []
+    successors:
+      - treedoc-2009
+      - logoot-2009
+      - rga-2011
+  - id: treedoc-2009
+    title: A Commutative Replicated Data Type for Cooperative Editing
+    year: 2009
+    authors:
+      - Nuno Preguiça
+      - Joan Manuel Marques
+      - Marc Shapiro
+      - Mihai Letia
+    venue: ICDCS
+    areas:
+      - Distributed Systems
+    tags:
+      - Treedoc
+      - commutative replicated data types
+      - collaborative editing
+      - sequence CRDT
+    type: foundational
+    lineages:
+      - replicated-data-types
+    why_read: Presents Treedoc, a shared text buffer whose concurrent inserts and deletes commute by design, an early example of what would be named a CRDT.
+    difficulty: intermediate
+    reading_time_minutes: 45
+    links:
+      paper: https://doi.org/10.1109/ICDCS.2009.20
+    predecessors:
+      - woot-2006
+    successors:
+      - crdts-2011
+  - id: logoot-2009
+    title: 'Logoot: A Scalable Optimistic Replication Algorithm for Collaborative Editing on P2P Networks'
+    year: 2009
+    authors:
+      - Stéphane Weiss
+      - Pascal Urso
+      - Pascal Molli
+    venue: ICDCS
+    areas:
+      - Distributed Systems
+    tags:
+      - Logoot
+      - collaborative editing
+      - sequence CRDT
+      - dense identifiers
+    type: classic
+    lineages:
+      - replicated-data-types
+    why_read: 'Replaces WOOT''s tombstones with dense, ordered position identifiers so that collaborative editing scales to large documents and many peers.'
+    difficulty: intermediate
+    reading_time_minutes: 40
+    links:
+      paper: https://doi.org/10.1109/ICDCS.2009.75
+    predecessors:
+      - woot-2006
+    successors: []
+  - id: rga-2011
+    title: 'Replicated Abstract Data Types: Building Blocks for Collaborative Applications'
+    year: 2011
+    authors:
+      - Hyun-Gul Roh
+      - Myeongjae Jeon
+      - Jin-Soo Kim
+      - Joonwon Lee
+    venue: JPDC
+    areas:
+      - Distributed Systems
+    tags:
+      - RGA
+      - replicated growable array
+      - collaborative editing
+      - sequence CRDT
+    type: classic
+    lineages:
+      - replicated-data-types
+    why_read: Defines replicated abstract data types, including the replicated growable array (RGA), the sequence design behind many later collaborative editors.
+    difficulty: advanced
+    reading_time_minutes: 60
+    links:
+      paper: https://doi.org/10.1016/j.jpdc.2010.12.006
+    predecessors:
+      - woot-2006
+    successors:
+      - collaborative-text-editing-2016
+      - json-crdt-2017
+  - id: crdts-2011
+    title: Conflict-Free Replicated Data Types
+    year: 2011
+    authors:
+      - Marc Shapiro
+      - Nuno Preguiça
+      - Carlos Baquero
+      - Marek Zawirski
+    venue: SSS
+    areas:
+      - Distributed Systems
+      - Data management
+    tags:
+      - CRDTs
+      - strong eventual consistency
+      - state-based
+      - operation-based
+    type: foundational
+    lineages:
+      - replicated-data-types
+    why_read: Names and formalizes CRDTs, defines strong eventual consistency, and shows that state-based and operation-based replicated types are equivalent ways to achieve it.
+    difficulty: intermediate
+    reading_time_minutes: 50
+    links:
+      paper: https://doi.org/10.1007/978-3-642-24550-3_29
+    predecessors:
+      - treedoc-2009
+      - eventually-consistent-2009
+    successors:
+      - crdt-comprehensive-study-2011
+      - replicated-data-types-popl-2014
+      - verifying-sec-2017
+  - id: crdt-comprehensive-study-2011
+    title: A Comprehensive Study of Convergent and Commutative Replicated Data Types
+    year: 2011
+    authors:
+      - Marc Shapiro
+      - Nuno Preguiça
+      - Carlos Baquero
+      - Marek Zawirski
+    venue: INRIA Research Report
+    areas:
+      - Distributed Systems
+      - Data management
+    tags:
+      - CRDTs
+      - counters
+      - sets
+      - registers
+      - graphs
+    type: essential
+    lineages:
+      - replicated-data-types
+    why_read: 'The catalog of CRDT designs: counters, registers, sets (including the observed-remove set), maps, graphs, and sequences, each specified in both state-based and operation-based form.'
+    difficulty: intermediate
+    reading_time_minutes: 120
+    links:
+      paper: https://inria.hal.science/inria-00555588
+    predecessors:
+      - crdts-2011
+    successors:
+      - optimized-or-set-2012
+      - op-based-crdts-2014
+      - delta-mutation-crdts-2015
+  - id: optimized-or-set-2012
+    title: An Optimized Conflict-Free Replicated Set
+    year: 2012
+    authors:
+      - Annette Bieniusa
+      - Marek Zawirski
+      - Nuno Preguiça
+      - Marc Shapiro
+      - Carlos Baquero
+      - Valter Balegas
+      - Sérgio Duarte
+    venue: arXiv
+    areas:
+      - Distributed Systems
+    tags:
+      - OR-Set
+      - add-wins set
+      - CRDTs
+      - tombstones
+    type: classic
+    lineages:
+      - replicated-data-types
+    why_read: Removes tombstones from the observed-remove set by summarizing removed elements with a version vector, the design most production add-wins sets use.
+    difficulty: intermediate
+    reading_time_minutes: 30
+    links:
+      paper: https://arxiv.org/abs/1210.3368
+    predecessors:
+      - crdt-comprehensive-study-2011
+    successors: []
+  - id: replicated-data-types-popl-2014
+    title: 'Replicated Data Types: Specification, Verification, Optimality'
+    year: 2014
+    authors:
+      - Sebastian Burckhardt
+      - Alexey Gotsman
+      - Hongseok Yang
+      - Marek Zawirski
+    venue: POPL
+    areas:
+      - Distributed Systems
+    tags:
+      - replicated data types
+      - specification
+      - verification
+      - lower bounds
+      - CRDTs
+    type: essential
+    lineages:
+      - replicated-data-types
+    why_read: Gives replicated data types a formal specification framework, proves implementations correct against it, and proves lower bounds on the metadata they must keep.
+    difficulty: advanced
+    reading_time_minutes: 90
+    links:
+      paper: https://doi.org/10.1145/2535838.2535848
+    predecessors:
+      - crdts-2011
+    successors:
+      - collaborative-text-editing-2016
+  - id: op-based-crdts-2014
+    title: Making Operation-Based CRDTs Operation-Based
+    year: 2014
+    authors:
+      - Carlos Baquero
+      - Paulo Sérgio Almeida
+      - Ali Shoker
+    venue: DAIS
+    areas:
+      - Distributed Systems
+    tags:
+      - operation-based CRDTs
+      - causal delivery
+      - tagged reliable causal broadcast
+    type: classic
+    lineages:
+      - replicated-data-types
+    why_read: Moves the causality bookkeeping of operation-based CRDTs into a reusable messaging layer, so the data types themselves ship only the operations.
+    difficulty: intermediate
+    reading_time_minutes: 40
+    links:
+      paper: https://doi.org/10.1007/978-3-662-43352-2_11
+    predecessors:
+      - crdt-comprehensive-study-2011
+    successors:
+      - pure-op-based-crdts-2017
+  - id: delta-mutation-crdts-2015
+    title: Efficient State-Based CRDTs by Delta-Mutation
+    year: 2015
+    authors:
+      - Paulo Sérgio Almeida
+      - Ali Shoker
+      - Carlos Baquero
+    venue: NETYS
+    areas:
+      - Distributed Systems
+    tags:
+      - delta CRDTs
+      - state-based CRDTs
+      - anti-entropy
+    type: classic
+    lineages:
+      - replicated-data-types
+    why_read: Introduces delta-mutators, which let state-based CRDTs ship small deltas instead of their full state while keeping state-based convergence guarantees.
+    difficulty: intermediate
+    reading_time_minutes: 40
+    links:
+      paper: https://doi.org/10.1007/978-3-319-26850-7_5
+    predecessors:
+      - crdt-comprehensive-study-2011
+    successors:
+      - delta-state-crdts-2018
+  - id: collaborative-text-editing-2016
+    title: Specification and Complexity of Collaborative Text Editing
+    year: 2016
+    authors:
+      - Hagit Attiya
+      - Sebastian Burckhardt
+      - Alexey Gotsman
+      - Adam Morrison
+      - Hongseok Yang
+      - Marek Zawirski
+    venue: PODC
+    areas:
+      - Distributed Systems
+    tags:
+      - collaborative editing
+      - specification
+      - lower bounds
+      - RGA
+    type: classic
+    lineages:
+      - replicated-data-types
+    why_read: Specifies what a replicated list for text editing must guarantee, proves RGA meets it, and shows a metadata lower bound for any implementation.
+    difficulty: advanced
+    reading_time_minutes: 75
+    links:
+      paper: https://doi.org/10.1145/2933057.2933090
+    predecessors:
+      - rga-2011
+      - replicated-data-types-popl-2014
+    successors: []
+  - id: json-crdt-2017
+    title: A Conflict-Free Replicated JSON Datatype
+    year: 2017
+    authors:
+      - Martin Kleppmann
+      - Alastair R. Beresford
+    venue: IEEE TPDS
+    areas:
+      - Distributed Systems
+      - Data management
+    tags:
+      - JSON CRDT
+      - nested data
+      - collaborative editing
+      - Automerge
+    type: essential
+    lineages:
+      - replicated-data-types
+    why_read: Combines maps, lists, and registers into a CRDT for arbitrarily nested JSON documents, with formal semantics for concurrent edits; this is the basis of Automerge.
+    difficulty: advanced
+    reading_time_minutes: 75
+    links:
+      paper: https://doi.org/10.1109/TPDS.2017.2697382
+    predecessors:
+      - rga-2011
+    successors:
+      - local-first-software-2019
+  - id: verifying-sec-2017
+    title: Verifying Strong Eventual Consistency in Distributed Systems
+    year: 2017
+    authors:
+      - Victor B. F. Gomes
+      - Martin Kleppmann
+      - Dominic P. Mulligan
+      - Alastair R. Beresford
+    venue: OOPSLA
+    areas:
+      - Distributed Systems
+    tags:
+      - strong eventual consistency
+      - formal verification
+      - Isabelle/HOL
+      - CRDTs
+    type: classic
+    lineages:
+      - replicated-data-types
+    why_read: Mechanically verifies in Isabelle/HOL that RGA, a counter, and an OR-set converge, and makes the network assumptions behind that guarantee explicit.
+    difficulty: advanced
+    reading_time_minutes: 75
+    links:
+      paper: https://doi.org/10.1145/3133933
+    predecessors:
+      - crdts-2011
+    successors: []
+  - id: pure-op-based-crdts-2017
+    title: Pure Operation-Based Replicated Data Types
+    year: 2017
+    authors:
+      - Carlos Baquero
+      - Paulo Sérgio Almeida
+      - Ali Shoker
+    venue: arXiv
+    areas:
+      - Distributed Systems
+    tags:
+      - operation-based CRDTs
+      - partially ordered logs
+      - causal stability
+    type: current
+    lineages:
+      - replicated-data-types
+    why_read: Defines operation-based CRDTs whose state is just a partially ordered log of operations, compacted once causal stability shows no concurrent operation can still arrive.
+    difficulty: advanced
+    reading_time_minutes: 50
+    links:
+      paper: https://arxiv.org/abs/1710.04469
+    predecessors:
+      - op-based-crdts-2014
+    successors: []
+  - id: delta-state-crdts-2018
+    title: Delta State Replicated Data Types
+    year: 2018
+    authors:
+      - Paulo Sérgio Almeida
+      - Ali Shoker
+      - Carlos Baquero
+    venue: JPDC
+    areas:
+      - Distributed Systems
+    tags:
+      - delta CRDTs
+      - state-based CRDTs
+      - anti-entropy
+      - causal consistency
+    type: essential
+    lineages:
+      - replicated-data-types
+    why_read: The full treatment of delta-state CRDTs, covering anti-entropy algorithms for shipping deltas, causal delta merging, and a portfolio of delta-enabled data types.
+    difficulty: advanced
+    reading_time_minutes: 75
+    links:
+      paper: https://doi.org/10.1016/j.jpdc.2017.08.003
+    predecessors:
+      - delta-mutation-crdts-2015
+    successors:
+      - efficient-sync-crdts-2019
+  - id: crdt-overview-2018
+    title: Conflict-Free Replicated Data Types (CRDTs)
+    year: 2018
+    authors:
+      - Nuno Preguiça
+      - Carlos Baquero
+      - Marc Shapiro
+    venue: Encyclopedia of Big Data Technologies
+    areas:
+      - Distributed Systems
+      - Data management
+    tags:
+      - CRDTs
+      - survey
+      - introduction
+    type: essential
+    lineages:
+      - replicated-data-types
+    why_read: 'A short, authoritative introduction to CRDTs: the problem, the state-based, operation-based, and delta designs, and where they are used.'
+    difficulty: introductory
+    reading_time_minutes: 25
+    links:
+      paper: https://doi.org/10.1007/978-3-319-63962-8_185-1
+    predecessors: []
+    successors:
+      - crdts-2011
+  - id: local-first-software-2019
+    title: 'Local-First Software: You Own Your Data, in Spite of the Cloud'
+    year: 2019
+    authors:
+      - Martin Kleppmann
+      - Adam Wiggins
+      - Peter van Hardenberg
+      - Mark McGranaghan
+    venue: Onward!
+    areas:
+      - Distributed Systems
+      - Data management
+    tags:
+      - local-first software
+      - CRDTs
+      - offline-first
+      - collaboration
+    type: essential
+    lineages:
+      - replicated-data-types
+    why_read: 'Sets out seven ideals for apps that keep data on users'' devices yet still collaborate, and argues that CRDTs are the technology that makes this practical.'
+    difficulty: introductory
+    reading_time_minutes: 60
+    links:
+      paper: https://doi.org/10.1145/3359591.3359737
+    predecessors:
+      - json-crdt-2017
+    successors: []
+  - id: efficient-sync-crdts-2019
+    title: Efficient Synchronization of State-Based CRDTs
+    year: 2019
+    authors:
+      - Vitor Enes
+      - Paulo Sérgio Almeida
+      - Carlos Baquero
+      - João Leitão
+    venue: ICDE
+    areas:
+      - Distributed Systems
+      - Databases
+    tags:
+      - delta CRDTs
+      - join decomposition
+      - synchronization
+      - anti-entropy
+    type: current
+    lineages:
+      - replicated-data-types
+    why_read: Uses join decompositions to find and send only the part of a CRDT state a peer is missing, fixing redundant transmission in classic delta-based synchronization.
+    difficulty: advanced
+    reading_time_minutes: 60
+    links:
+      paper: https://doi.org/10.1109/ICDE.2019.00022
+    predecessors:
+      - delta-state-crdts-2018
     successors: []

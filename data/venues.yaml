@@ -238,3 +238,51 @@ venues:
   areas:
   - Distributed Systems
   tier: workshop
+- id: cscw
+  name: ACM Conference on Computer-Supported Cooperative Work and Social Computing
+  organization: ACM
+  areas:
+  - Distributed Systems
+  tier: major
+- id: icdcs
+  name: IEEE International Conference on Distributed Computing Systems
+  organization: IEEE
+  areas:
+  - Distributed Systems
+  tier: major
+- id: sss
+  name: International Symposium on Stabilization, Safety, and Security of Distributed Systems
+  organization: Springer LNCS
+  areas:
+  - Distributed Systems
+  tier: specialized
+- id: popl
+  name: ACM SIGPLAN Symposium on Principles of Programming Languages
+  organization: ACM
+  areas:
+  - Distributed Systems
+  tier: flagship
+- id: oopsla
+  name: ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications
+  organization: ACM
+  areas:
+  - Distributed Systems
+  tier: flagship
+- id: netys
+  name: International Conference on Networked Systems
+  organization: Springer LNCS
+  areas:
+  - Distributed Systems
+  tier: specialized
+- id: jpdc
+  name: Journal of Parallel and Distributed Computing
+  organization: Elsevier
+  areas:
+  - Distributed Systems
+  tier: journal
+- id: ieee-tpds
+  name: IEEE Transactions on Parallel and Distributed Systems
+  organization: IEEE
+  areas:
+  - Distributed Systems
+  tier: journal
