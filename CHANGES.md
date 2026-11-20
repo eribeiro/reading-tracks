@@ -20,6 +20,12 @@
 Paper additions contained in the squashed catalog commit. Dates use
 `YYYY-DD-MM`, followed by the abbreviated commit hash.
 
+## 2026-20-11 - 32928cc
+
+- `conflict-free-replicated-relations-2020`
+- `keep-calm-crdt-on-2022`
+- `synql-2024`
+
 ## 2026-20-11 - 7204af7
 
 - `rum-conjecture-2016`
