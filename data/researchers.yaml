@@ -469,6 +469,7 @@ researchers:
       - Distributed Data
     paper_ids:
       - architecture-db-2007
+      - keep-calm-crdt-on-2022
   - id: ken-birman
     name: Ken Birman
     areas:
@@ -2057,3 +2058,62 @@ researchers:
       - MySQL
     paper_ids:
       - rum-conjecture-2016
+  - id: claudia-lavinia-ignat
+    name: Claudia-Lavinia Ignat
+    areas:
+      - Distributed Systems
+      - Databases
+    topics:
+      - CRDTs
+      - collaborative editing
+      - replicated relational databases
+    paper_ids:
+      - conflict-free-replicated-relations-2020
+      - synql-2024
+  - id: weihai-yu
+    name: Weihai Yu
+    areas:
+      - Databases
+      - Distributed Systems
+    topics:
+      - CRDTs
+      - replicated relational databases
+    paper_ids:
+      - conflict-free-replicated-relations-2020
+  - id: victorien-elvinger
+    name: Victorien Elvinger
+    areas:
+      - Distributed Systems
+    topics:
+      - CRDTs
+      - replicated relational databases
+    paper_ids:
+      - synql-2024
+  - id: shadaj-laddad
+    name: Shadaj Laddad
+    areas:
+      - Distributed Systems
+    topics:
+      - CRDTs
+      - distributed programming
+    paper_ids:
+      - keep-calm-crdt-on-2022
+  - id: conor-power
+    name: Conor Power
+    areas:
+      - Distributed Systems
+    topics:
+      - CRDTs
+      - distributed programming
+    paper_ids:
+      - keep-calm-crdt-on-2022
+  - id: natacha-crooks
+    name: Natacha Crooks
+    areas:
+      - Distributed Systems
+      - Databases
+    topics:
+      - transactions
+      - consistency models
+    paper_ids:
+      - keep-calm-crdt-on-2022

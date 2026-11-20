@@ -49,6 +49,9 @@ lineages:
     - crdt-overview-2018
     - local-first-software-2019
     - efficient-sync-crdts-2019
+    - conflict-free-replicated-relations-2020
+    - keep-calm-crdt-on-2022
+    - synql-2024
   systems-design-principles:
     - hints-computer-system-design-1983
     - end-to-end-1984
@@ -9963,4 +9966,90 @@ papers:
       paper: https://doi.org/10.1145/2882903.2912569
     predecessors:
       - rum-conjecture-2016
+    successors: []
+  - id: conflict-free-replicated-relations-2020
+    title: Conflict-Free Replicated Relations for Multi-Synchronous Database Management at Edge
+    year: 2020
+    authors:
+      - Weihai Yu
+      - Claudia-Lavinia Ignat
+    venue: IEEE SMDS
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - CRDTs
+      - relational databases
+      - edge computing
+      - offline-first
+      - multi-synchronous access
+    type: current
+    lineages:
+      - replicated-data-types
+    why_read: Applies CRDTs to relational tables so that existing database applications can keep working offline on edge devices and still converge with the cloud copy, with very little application change.
+    difficulty: intermediate
+    reading_time_minutes: 40
+    links:
+      paper: https://doi.org/10.1109/SMDS49396.2020.00021
+    predecessors:
+      - crdt-comprehensive-study-2011
+    successors:
+      - synql-2024
+  - id: keep-calm-crdt-on-2022
+    title: Keep CALM and CRDT On
+    year: 2022
+    authors:
+      - Shadaj Laddad
+      - Conor Power
+      - Mae Milano
+      - Alvin Cheung
+      - Natacha Crooks
+      - Joseph M. Hellerstein
+    venue: PVLDB
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - CRDTs
+      - CALM theorem
+      - monotonicity
+      - coordination-free queries
+    type: current
+    lineages:
+      - replicated-data-types
+    why_read: Argues that CRDTs need a query model, not just merge functions, and uses the CALM theorem's monotonicity results to decide which reads are safe without coordination, setting out a research agenda for CRDT data stores.
+    difficulty: intermediate
+    reading_time_minutes: 30
+    links:
+      paper: https://doi.org/10.14778/3574245.3574268
+    predecessors:
+      - crdts-2011
+    successors: []
+  - id: synql-2024
+    title: 'Synql: A CRDT-Based Approach for Replicated Relational Databases with Integrity Constraints'
+    year: 2024
+    authors:
+      - Claudia-Lavinia Ignat
+      - Victorien Elvinger
+      - Habibatou Ba
+    venue: DAIS
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - CRDTs
+      - relational databases
+      - integrity constraints
+      - strong eventual consistency
+      - SQLite
+    type: current
+    lineages:
+      - replicated-data-types
+    why_read: Replicates an embedded relational database without coordination by composing CRDT primitives into a replicated state, preserving strong eventual consistency and integrity constraints where earlier approaches did not.
+    difficulty: advanced
+    reading_time_minutes: 50
+    links:
+      paper: https://doi.org/10.1007/978-3-031-62638-8_2
+    predecessors:
+      - conflict-free-replicated-relations-2020
     successors: []

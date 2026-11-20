@@ -1,6 +1,6 @@
 # ReadingTracks
 
-> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 313 papers grouped into 45 reading tracks, with 326 'read A before B' edges.
+> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 316 papers grouped into 45 reading tracks, with 329 'read A before B' edges.
 
 The catalog's value is its curation: which papers belong together and what to read first. Edges are conceptual reading-order hints, not a citation graph. Prefer the structured data below over scraping the HTML page.
 
@@ -478,6 +478,9 @@ The catalog's value is its curation: which papers belong together and what to re
 - [Delta State Replicated Data Types (2018)](https://doi.org/10.1016/j.jpdc.2017.08.003): The full treatment of delta-state CRDTs, covering anti-entropy algorithms for shipping deltas, causal delta merging, and a portfolio of delta-enabled data types.
 - [Efficient Synchronization of State-Based CRDTs (2019)](https://doi.org/10.1109/ICDE.2019.00022): Uses join decompositions to find and send only the part of a CRDT state a peer is missing, fixing redundant transmission in classic delta-based synchronization.
 - [Local-First Software: You Own Your Data, in Spite of the Cloud (2019)](https://doi.org/10.1145/3359591.3359737): Sets out seven ideals for apps that keep data on users' devices yet still collaborate, and argues that CRDTs are the technology that makes this practical.
+- [Conflict-Free Replicated Relations for Multi-Synchronous Database Management at Edge (2020)](https://doi.org/10.1109/SMDS49396.2020.00021): Applies CRDTs to relational tables so that existing database applications can keep working offline on edge devices and still converge with the cloud copy, with very little application change.
+- [Keep CALM and CRDT On (2022)](https://doi.org/10.14778/3574245.3574268): Argues that CRDTs need a query model, not just merge functions, and uses the CALM theorem's monotonicity results to decide which reads are safe without coordination, setting out a research agenda for CRDT data stores.
+- [Synql: A CRDT-Based Approach for Replicated Relational Databases with Integrity Constraints (2024)](https://doi.org/10.1007/978-3-031-62638-8_2): Replicates an embedded relational database without coordination by composing CRDT primitives into a replicated state, preserving strong eventual consistency and integrity constraints where earlier approaches did not.
 
 ### Self Driving Databases
 
