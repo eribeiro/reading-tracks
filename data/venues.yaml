@@ -226,3 +226,15 @@ venues:
   areas:
   - Distributed Systems
   tier: journal
+- id: opodis
+  name: International Conference on Principles of Distributed Systems
+  organization: LIPIcs
+  areas:
+  - Distributed Systems
+  tier: major
+- id: ladis
+  name: Workshop on Large-Scale Distributed Systems and Middleware
+  organization: ACM
+  areas:
+  - Distributed Systems
+  tier: workshop

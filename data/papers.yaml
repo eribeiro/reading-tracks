@@ -15,6 +15,20 @@ lineages:
     - dotted-version-vectors-podc-2012
     - dvv-sets-2014
     - logical-clocks-easy-2016
+    - logical-physical-clocks-2014
+  physical-hybrid-time:
+    - lamport-time-clocks-1978
+    - maintaining-time-distributed-1983
+    - synchronized-clocks-1991
+    - spanner-2012
+    - augmented-time-2013
+    - logical-physical-clocks-2014
+    - hybrid-vector-clocks-2015
+    - spanner-truetime-cap-2017
+    - huygens-2018
+    - mongodb-cluster-logical-clock-2019
+    - sundial-2020
+    - cockroachdb-2020
   systems-design-principles:
     - hints-computer-system-design-1983
     - end-to-end-1984
@@ -434,6 +448,7 @@ papers:
     lineages:
       - logical-time-consensus
       - causality-tracking
+      - physical-hybrid-time
     why_read: Shows that in a distributed system with no shared clock, you can still define a consistent 'happens-before' partial order using logical clocks — the foundation nearly every later consistency and consensus protocol builds on.
     difficulty: advanced
     reading_time_minutes: 120
@@ -1363,6 +1378,7 @@ papers:
     type: essential
     lineages:
       - distributed-transactions
+      - physical-hybrid-time
     why_read: Uses TrueTime — GPS and atomic clocks bounding clock uncertainty — to assign globally meaningful commit timestamps, giving externally consistent transactions across datacenters without a central coordinator.
     difficulty: intermediate
     reading_time_minutes: 90
@@ -4825,6 +4841,7 @@ papers:
     type: essential
     lineages:
       - cloud-databases
+      - physical-hybrid-time
     why_read: Extends the Spanner lineage directly — Raft-replicated, horizontally-scalable SQL with serializable geo-distributed transactions — but without Spanner's specialized TrueTime hardware, using hybrid-logical clocks instead.
     difficulty: advanced
     reading_time_minutes: 80
@@ -4832,6 +4849,7 @@ papers:
       paper: https://www.cockroachlabs.com/pdf/cockroachdb-the-resilient-geo-distributed-sql-database-sigmod-2020.pdf
     predecessors:
       - spanner-2012
+      - logical-physical-clocks-2014
     successors: []
   - id: tidb-2020
     title: 'TiDB: A Raft-based HTAP Database'
@@ -5526,6 +5544,7 @@ papers:
     type: recommended
     lineages:
       - distributed-transactions
+      - physical-hybrid-time
     why_read: A concise clarification of how Spanner combines strong consistency with high availability without contradicting CAP, and of TrueTime's specific role in externally consistent transactions and snapshot reads.
     difficulty: intermediate
     reading_time_minutes: 35
@@ -6519,6 +6538,8 @@ papers:
     type: essential
     lineages:
       - logical-time-consensus
+      - causality-tracking
+      - physical-hybrid-time
     why_read: Combines causal ordering with timestamps close to physical time, making logical-clock guarantees practical for snapshots and transactions in distributed databases.
     difficulty: advanced
     reading_time_minutes: 75
@@ -9151,3 +9172,205 @@ papers:
       - lamport-time-clocks-1978
     successors:
       - dotted-version-vectors-2010
+  - id: maintaining-time-distributed-1983
+    title: Maintaining the Time in a Distributed System
+    year: 1983
+    authors:
+      - Keith Marzullo
+      - Susan Owicki
+    venue: PODC
+    areas:
+      - Distributed Systems
+    tags:
+      - clock synchronization
+      - time intervals
+      - clock uncertainty
+      - Marzullo's algorithm
+    type: foundational
+    lineages:
+      - physical-hybrid-time
+    why_read: Represents each clock reading as an interval with an error bound and shows how servers combine intervals into a tighter, still-correct one, the idea TrueTime later exposes as an API.
+    difficulty: intermediate
+    reading_time_minutes: 45
+    links:
+      paper: https://doi.org/10.1145/800221.806730
+    predecessors:
+      - lamport-time-clocks-1978
+    successors:
+      - synchronized-clocks-1991
+  - id: synchronized-clocks-1991
+    title: Practical Uses of Synchronized Clocks in Distributed Systems
+    year: 1991
+    authors:
+      - Barbara Liskov
+    venue: PODC
+    areas:
+      - Distributed Systems
+    tags:
+      - synchronized clocks
+      - leases
+      - timestamps
+      - clock skew
+    type: classic
+    lineages:
+      - physical-hybrid-time
+    why_read: Shows how loosely synchronized clocks can replace message rounds in leases, at-most-once delivery, and cache consistency, as long as correctness never depends on the clocks staying in sync.
+    difficulty: introductory
+    reading_time_minutes: 30
+    links:
+      paper: https://doi.org/10.1145/112600.112601
+    predecessors:
+      - maintaining-time-distributed-1983
+    successors:
+      - spanner-2012
+  - id: augmented-time-2013
+    title: 'Beyond TrueTime: Using AugmentedTime for Improving Spanner'
+    year: 2013
+    authors:
+      - Murat Demirbas
+      - Sandeep S. Kulkarni
+    venue: LADIS
+    areas:
+      - Distributed Systems
+      - Databases
+    tags:
+      - TrueTime
+      - AugmentedTime
+      - clock uncertainty
+      - causality
+      - Spanner
+    type: classic
+    lineages:
+      - physical-hybrid-time
+    why_read: Argues that TrueTime's commit wait and snapshot limits can be eased by also tracking causality inside the uncertainty window, an idea that leads directly to hybrid logical clocks.
+    difficulty: intermediate
+    reading_time_minutes: 30
+    links:
+      paper: https://cse.buffalo.edu/~demirbas/publications/augmentedTime.pdf
+    predecessors:
+      - spanner-2012
+    successors:
+      - logical-physical-clocks-2014
+  - id: hybrid-vector-clocks-2015
+    title: Analysis of Bounds on Hybrid Vector Clocks
+    year: 2015
+    authors:
+      - Sorrachai Yingchareonthawornchai
+      - Sandeep S. Kulkarni
+      - Murat Demirbas
+    venue: OPODIS
+    areas:
+      - Distributed Systems
+    tags:
+      - hybrid vector clocks
+      - hybrid logical clocks
+      - vector clocks
+      - clock uncertainty
+    type: current
+    lineages:
+      - physical-hybrid-time
+    why_read: Shows that hybrid vector clocks, which keep entries only for nodes heard from within the clock-uncertainty window, stay far smaller than full vector clocks in realistic settings.
+    difficulty: advanced
+    reading_time_minutes: 60
+    links:
+      paper: https://doi.org/10.4230/LIPIcs.OPODIS.2015.34
+    predecessors:
+      - logical-physical-clocks-2014
+    successors: []
+  - id: huygens-2018
+    title: Exploiting a Natural Network Effect for Scalable, Fine-grained Clock Synchronization
+    year: 2018
+    authors:
+      - Yilong Geng
+      - Shiyu Liu
+      - Zi Yin
+      - Ashish Naik
+      - Balaji Prabhakar
+      - Mendel Rosenblum
+      - Amin Vahdat
+    venue: NSDI
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - clock synchronization
+      - clock uncertainty
+      - datacenter networks
+      - Huygens
+    type: current
+    lineages:
+      - physical-hybrid-time
+    why_read: Synchronizes datacenter clocks to within tens of nanoseconds in software by filtering noisy probes and using the network of clocks to correct each other's errors.
+    difficulty: intermediate
+    reading_time_minutes: 50
+    links:
+      paper: https://www.usenix.org/conference/nsdi18/presentation/geng
+    predecessors:
+      - spanner-2012
+    successors:
+      - sundial-2020
+  - id: mongodb-cluster-logical-clock-2019
+    title: Implementation of Cluster-wide Logical Clock and Causal Consistency in MongoDB
+    year: 2019
+    authors:
+      - Misha Tyulenev
+      - Andy Schwerin
+      - Asya Kamsky
+      - Randolph Tan
+      - Alyson Cabral
+      - Jack Mulrow
+    venue: SIGMOD
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - hybrid logical clocks
+      - causal consistency
+      - cluster time
+      - MongoDB
+    type: current
+    lineages:
+      - physical-hybrid-time
+    why_read: Describes how MongoDB runs a hybrid logical clock across a sharded cluster, signing cluster time so that clients cannot push it forward, to provide causally consistent sessions.
+    difficulty: intermediate
+    reading_time_minutes: 45
+    links:
+      paper: https://doi.org/10.1145/3299869.3314049
+    predecessors:
+      - logical-physical-clocks-2014
+    successors: []
+  - id: sundial-2020
+    title: 'Sundial: Fault-tolerant Clock Synchronization for Datacenters'
+    year: 2020
+    authors:
+      - Yuliang Li
+      - Gautam Kumar
+      - Hema Hariharan
+      - Hassan Wassel
+      - Peter Hochschild
+      - Dave Platt
+      - Simon Sabato
+      - Minlan Yu
+      - Nandita Dukkipati
+      - Prashant Chandra
+      - Amin Vahdat
+    venue: OSDI
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    tags:
+      - clock synchronization
+      - clock uncertainty
+      - TrueTime
+      - fault tolerance
+    type: current
+    lineages:
+      - physical-hybrid-time
+    why_read: Keeps the clock-uncertainty bound near 100 ns even under link and device failures by detecting failures quickly in hardware and switching to a precomputed backup sync graph, and shows what that buys Spanner.
+    difficulty: intermediate
+    reading_time_minutes: 60
+    links:
+      paper: https://www.usenix.org/conference/osdi20/presentation/li-yuliang
+    predecessors:
+      - huygens-2018
+    successors: []

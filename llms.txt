@@ -1,6 +1,6 @@
 # ReadingTracks
 
-> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 286 papers grouped into 43 reading tracks, with 293 'read A before B' edges.
+> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 293 papers grouped into 44 reading tracks, with 303 'read A before B' edges.
 
 The catalog's value is its curation: which papers belong together and what to read first. Edges are conceptual reading-order hints, not a citation graph. Prefer the structured data below over scraping the HTML page.
 
@@ -77,6 +77,7 @@ The catalog's value is its curation: which papers belong together and what to re
 - [Dotted Version Vectors: Logical Clocks for Optimistic Replication (2010)](https://arxiv.org/abs/1011.5808): Shows why server-id and client-id version vectors either lose causality or grow without bound, and introduces dotted version vectors as an exact clock sized by the replication degree.
 - [Brief Announcement: Efficient Causality Tracking in Distributed Storage Systems with Dotted Version Vectors (2012)](https://doi.org/10.1145/2332432.2332497): A two-page statement of the dotted version vector idea, separating a version's identifier from its causal past so that causality checks take constant time.
 - [Scalable and Accurate Causality Tracking for Eventually Consistent Stores (2014)](https://doi.org/10.1007/978-3-662-43352-2_6): Gives the full treatment of dotted version vectors and introduces DVV sets, a compact per-key clock for all siblings, together with a small kernel of operations any key-value store clock must implement.
+- [Logical Physical Clocks (2014)](https://doi.org/10.1007/978-3-319-14472-6_2): Combines causal ordering with timestamps close to physical time, making logical-clock guarantees practical for snapshots and transactions in distributed databases.
 - [Why Logical Clocks Are Easy (2016)](https://doi.org/10.1145/2890782): Derives causal histories, vector clocks, version vectors, and dotted version vectors from one idea, tracking the set of events that precede each event, so the update rules follow from it.
 
 ### Cloud Databases
@@ -422,6 +423,21 @@ The catalog's value is its curation: which papers belong together and what to re
 - [HyPer: A Hybrid OLTP&OLAP Main Memory Database System Based on Virtual Memory Snapshots (2011)](https://doi.org/10.1109/ICDE.2011.5767867): The defining HyPer system paper, showing how operating-system virtual-memory snapshots can isolate analytical scans from transactional updates while keeping both workloads on one in-memory database.
 - [Hekaton: SQL Server's Memory-Optimized OLTP Engine (2013)](https://doi.org/10.1145/2463676.2463710): In-memory OLTP inside a commercial DBMS — lock-free latches and stored-procedure compilation.
 - [OLTP Through the Looking Glass 16 Years Later: Communication is the New Bottleneck (2025)](https://vldb.org/cidrdb/papers/2025/p17-zhou.pdf): Repeats the 2008 profiling exercise sixteen years later and finds a different culprit — communication, not logging/locking, now dominates CPU time in simple OLTP workloads like YCSB. The literal update, done by Stonebraker himself, of the original paper.
+
+### Physical Hybrid Time
+
+- [Time, Clocks, and the Ordering of Events in a Distributed System (1978)](https://doi.org/10.1145/359545.359563): Shows that in a distributed system with no shared clock, you can still define a consistent 'happens-before' partial order using logical clocks — the foundation nearly every later consistency and consensus protocol builds on.
+- [Maintaining the Time in a Distributed System (1983)](https://doi.org/10.1145/800221.806730): Represents each clock reading as an interval with an error bound and shows how servers combine intervals into a tighter, still-correct one, the idea TrueTime later exposes as an API.
+- [Practical Uses of Synchronized Clocks in Distributed Systems (1991)](https://doi.org/10.1145/112600.112601): Shows how loosely synchronized clocks can replace message rounds in leases, at-most-once delivery, and cache consistency, as long as correctness never depends on the clocks staying in sync.
+- [Spanner: Google's Globally-Distributed Database (2012)](https://www.usenix.org/conference/osdi12/technical-sessions/presentation/corbett): Uses TrueTime — GPS and atomic clocks bounding clock uncertainty — to assign globally meaningful commit timestamps, giving externally consistent transactions across datacenters without a central coordinator.
+- [Beyond TrueTime: Using AugmentedTime for Improving Spanner (2013)](https://cse.buffalo.edu/~demirbas/publications/augmentedTime.pdf): Argues that TrueTime's commit wait and snapshot limits can be eased by also tracking causality inside the uncertainty window, an idea that leads directly to hybrid logical clocks.
+- [Logical Physical Clocks (2014)](https://doi.org/10.1007/978-3-319-14472-6_2): Combines causal ordering with timestamps close to physical time, making logical-clock guarantees practical for snapshots and transactions in distributed databases.
+- [Analysis of Bounds on Hybrid Vector Clocks (2015)](https://doi.org/10.4230/LIPIcs.OPODIS.2015.34): Shows that hybrid vector clocks, which keep entries only for nodes heard from within the clock-uncertainty window, stay far smaller than full vector clocks in realistic settings.
+- [Spanner, TrueTime and the CAP Theorem (2017)](https://research.google/pubs/spanner-truetime-and-the-cap-theorem/): A concise clarification of how Spanner combines strong consistency with high availability without contradicting CAP, and of TrueTime's specific role in externally consistent transactions and snapshot reads.
+- [Exploiting a Natural Network Effect for Scalable, Fine-grained Clock Synchronization (2018)](https://www.usenix.org/conference/nsdi18/presentation/geng): Synchronizes datacenter clocks to within tens of nanoseconds in software by filtering noisy probes and using the network of clocks to correct each other's errors.
+- [Implementation of Cluster-wide Logical Clock and Causal Consistency in MongoDB (2019)](https://doi.org/10.1145/3299869.3314049): Describes how MongoDB runs a hybrid logical clock across a sharded cluster, signing cluster time so that clients cannot push it forward, to provide causally consistent sessions.
+- [CockroachDB: The Resilient Geo-Distributed SQL Database (2020)](https://www.cockroachlabs.com/pdf/cockroachdb-the-resilient-geo-distributed-sql-database-sigmod-2020.pdf): Extends the Spanner lineage directly — Raft-replicated, horizontally-scalable SQL with serializable geo-distributed transactions — but without Spanner's specialized TrueTime hardware, using hybrid-logical clocks instead.
+- [Sundial: Fault-tolerant Clock Synchronization for Datacenters (2020)](https://www.usenix.org/conference/osdi20/presentation/li-yuliang): Keeps the clock-uncertainty bound near 100 ns even under link and device failures by detecting failures quickly in hardware and switching to a precomputed backup sync graph, and shows what that buys Spanner.
 
 ### Query Execution
 

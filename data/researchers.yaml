@@ -100,6 +100,7 @@ researchers:
       - viewstamped-1988
       - adya-2000
       - silo-2013
+      - synchronized-clocks-1991
   - id: branimir-lambov
     name: Branimir Lambov
     areas:
@@ -913,6 +914,8 @@ researchers:
       - panopticon-2015
       - wankeeper-2017
       - live-data-migration-2018
+      - augmented-time-2013
+      - hybrid-vector-clocks-2015
       - dissecting-replication-protocols-2019
       - linearizable-quorum-reads-paxos-2019
       - wpaxos-2020
@@ -1731,3 +1734,80 @@ researchers:
       - replication
     paper_ids:
       - mutual-inconsistency-detection-1983
+  - id: sandeep-kulkarni
+    name: Sandeep S. Kulkarni
+    areas:
+      - Distributed Systems
+    topics:
+      - hybrid logical clocks
+      - fault tolerance
+      - distributed monitoring
+    paper_ids:
+      - logical-physical-clocks-2014
+      - augmented-time-2013
+      - hybrid-vector-clocks-2015
+  - id: keith-marzullo
+    name: Keith Marzullo
+    areas:
+      - Distributed Systems
+    topics:
+      - clock synchronization
+      - fault tolerance
+    paper_ids:
+      - maintaining-time-distributed-1983
+  - id: susan-owicki
+    name: Susan Owicki
+    areas:
+      - Distributed Systems
+    topics:
+      - clock synchronization
+      - program verification
+    paper_ids:
+      - maintaining-time-distributed-1983
+  - id: sorrachai-yingchareonthawornchai
+    name: Sorrachai Yingchareonthawornchai
+    areas:
+      - Distributed Systems
+    topics:
+      - hybrid vector clocks
+    paper_ids:
+      - hybrid-vector-clocks-2015
+  - id: misha-tyulenev
+    name: Misha Tyulenev
+    areas:
+      - Databases
+      - Distributed Systems
+    topics:
+      - hybrid logical clocks
+      - causal consistency
+    paper_ids:
+      - mongodb-cluster-logical-clock-2019
+  - id: yilong-geng
+    name: Yilong Geng
+    areas:
+      - Distributed Systems
+    topics:
+      - clock synchronization
+    paper_ids:
+      - huygens-2018
+  - id: yuliang-li
+    name: Yuliang Li
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - clock synchronization
+      - datacenter networking
+    paper_ids:
+      - sundial-2020
+  - id: amin-vahdat
+    name: Amin Vahdat
+    areas:
+      - Distributed Systems
+      - Infrastructure
+    topics:
+      - datacenter networking
+      - clock synchronization
+    paper_ids:
+      - huygens-2018
+      - sundial-2020
