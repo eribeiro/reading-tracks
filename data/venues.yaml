@@ -214,3 +214,15 @@ venues:
   areas:
   - AI
   tier: flagship-nlp
+- id: dais
+  name: IFIP International Conference on Distributed Applications and Interoperable Systems
+  organization: IFIP
+  areas:
+  - Distributed Systems
+  tier: specialized
+- id: ieee-tse
+  name: IEEE Transactions on Software Engineering
+  organization: IEEE
+  areas:
+  - Distributed Systems
+  tier: journal

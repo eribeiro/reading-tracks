@@ -5,6 +5,16 @@ lineages:
     - lamport-time-clocks-1978
     - flp-1985
     - logical-physical-clocks-2014
+    - logical-clocks-easy-2016
+  causality-tracking:
+    - lamport-time-clocks-1978
+    - mutual-inconsistency-detection-1983
+    - dynamo-2007
+    - eventually-consistent-2009
+    - dotted-version-vectors-2010
+    - dotted-version-vectors-podc-2012
+    - dvv-sets-2014
+    - logical-clocks-easy-2016
   systems-design-principles:
     - hints-computer-system-design-1983
     - end-to-end-1984
@@ -64,6 +74,9 @@ lineages:
     - trie-memtables-cassandra-2022
     - dynamodb-2022
     - dynamodb-transactions-2023
+    - eventually-consistent-2009
+    - dotted-version-vectors-2010
+    - dvv-sets-2014
   membership-gossip:
     - chord-2001
     - swim-2002
@@ -420,6 +433,7 @@ papers:
     type: foundational
     lineages:
       - logical-time-consensus
+      - causality-tracking
     why_read: Shows that in a distributed system with no shared clock, you can still define a consistent 'happens-before' partial order using logical clocks — the foundation nearly every later consistency and consensus protocol builds on.
     difficulty: advanced
     reading_time_minutes: 120
@@ -1022,6 +1036,7 @@ papers:
       - dynamo-family
       - distributed-storage
       - membership-gossip
+      - causality-tracking
     why_read: The seminal paper on Dynamo's architecture — consistent hashing, sloppy quorums, vector clocks, gossip, and availability as an explicit design priority.
     difficulty: intermediate
     reading_time_minutes: 90
@@ -8955,3 +8970,184 @@ papers:
       paper: https://doi.org/10.1145/248052.248113
     predecessors: []
     successors: []
+  - id: mutual-inconsistency-detection-1983
+    title: Detection of Mutual Inconsistency in Distributed Systems
+    year: 1983
+    authors:
+      - D. Stott Parker Jr.
+      - Gerald J. Popek
+      - Gerard Rudisin
+      - Allen Stoughton
+      - Bruce J. Walker
+      - Evelyn Walton
+      - Johanna M. Chow
+      - David Edwards
+      - Stephen Kiser
+      - Charles Kline
+    venue: IEEE TSE
+    areas:
+      - Distributed Systems
+    tags:
+      - version vectors
+      - causality
+      - replication
+      - network partitions
+      - LOCUS
+    type: foundational
+    lineages:
+      - causality-tracking
+    why_read: Introduces version vectors to detect when replicated copies of a file diverged during a network partition, the mechanism later inherited by Dynamo-style stores.
+    difficulty: intermediate
+    reading_time_minutes: 45
+    links:
+      paper: https://doi.org/10.1109/TSE.1983.236733
+    predecessors:
+      - lamport-time-clocks-1978
+    successors:
+      - dynamo-2007
+  - id: eventually-consistent-2009
+    title: Eventually Consistent
+    year: 2009
+    authors:
+      - Werner Vogels
+    venue: Communications of the ACM
+    areas:
+      - Distributed Systems
+      - Databases
+    tags:
+      - eventual consistency
+      - replication
+      - consistency models
+      - Amazon
+    type: classic
+    lineages:
+      - causality-tracking
+      - dynamo-family
+    why_read: A practitioner's tour of the consistency spectrum between strong and eventual, and of the client-side guarantees that make weak consistency usable at Amazon scale.
+    difficulty: introductory
+    reading_time_minutes: 25
+    links:
+      paper: https://doi.org/10.1145/1435417.1435432
+    predecessors:
+      - dynamo-2007
+    successors: []
+  - id: dotted-version-vectors-2010
+    title: 'Dotted Version Vectors: Logical Clocks for Optimistic Replication'
+    year: 2010
+    authors:
+      - Nuno Preguiça
+      - Carlos Baquero
+      - Paulo Sérgio Almeida
+      - Victor Fonte
+      - Ricardo Gonçalves
+    venue: arXiv
+    areas:
+      - Distributed Systems
+      - Databases
+    tags:
+      - dotted version vectors
+      - version vectors
+      - causality
+      - optimistic replication
+      - eventual consistency
+    type: essential
+    lineages:
+      - causality-tracking
+      - dynamo-family
+    why_read: Shows why server-id and client-id version vectors either lose causality or grow without bound, and introduces dotted version vectors as an exact clock sized by the replication degree.
+    difficulty: advanced
+    reading_time_minutes: 60
+    links:
+      paper: https://arxiv.org/abs/1011.5808
+    predecessors:
+      - mutual-inconsistency-detection-1983
+      - dynamo-2007
+    successors:
+      - dotted-version-vectors-podc-2012
+  - id: dotted-version-vectors-podc-2012
+    title: 'Brief Announcement: Efficient Causality Tracking in Distributed Storage Systems with Dotted Version Vectors'
+    year: 2012
+    authors:
+      - Nuno Preguiça
+      - Carlos Baquero
+      - Paulo Sérgio Almeida
+      - Victor Fonte
+      - Ricardo Gonçalves
+    venue: PODC
+    areas:
+      - Distributed Systems
+    tags:
+      - dotted version vectors
+      - causality
+      - distributed storage
+    type: classic
+    lineages:
+      - causality-tracking
+    why_read: A two-page statement of the dotted version vector idea, separating a version's identifier from its causal past so that causality checks take constant time.
+    difficulty: intermediate
+    reading_time_minutes: 15
+    links:
+      paper: https://doi.org/10.1145/2332432.2332497
+    predecessors:
+      - dotted-version-vectors-2010
+    successors:
+      - dvv-sets-2014
+  - id: dvv-sets-2014
+    title: Scalable and Accurate Causality Tracking for Eventually Consistent Stores
+    year: 2014
+    authors:
+      - Paulo Sérgio Almeida
+      - Carlos Baquero
+      - Ricardo Gonçalves
+      - Nuno Preguiça
+      - Victor Fonte
+    venue: DAIS
+    areas:
+      - Distributed Systems
+      - Databases
+    tags:
+      - dotted version vectors
+      - DVV sets
+      - causality
+      - eventual consistency
+      - Riak
+    type: essential
+    lineages:
+      - causality-tracking
+      - dynamo-family
+    why_read: Gives the full treatment of dotted version vectors and introduces DVV sets, a compact per-key clock for all siblings, together with a small kernel of operations any key-value store clock must implement.
+    difficulty: advanced
+    reading_time_minutes: 60
+    links:
+      paper: https://doi.org/10.1007/978-3-662-43352-2_6
+    predecessors:
+      - dotted-version-vectors-podc-2012
+    successors: []
+  - id: logical-clocks-easy-2016
+    title: Why Logical Clocks Are Easy
+    year: 2016
+    authors:
+      - Carlos Baquero
+      - Nuno Preguiça
+    venue: Communications of the ACM
+    areas:
+      - Distributed Systems
+    tags:
+      - logical clocks
+      - causal histories
+      - vector clocks
+      - version vectors
+      - causality
+    type: essential
+    lineages:
+      - causality-tracking
+      - logical-time-consensus
+    why_read: Derives causal histories, vector clocks, version vectors, and dotted version vectors from one idea, tracking the set of events that precede each event, so the update rules follow from it.
+    difficulty: introductory
+    reading_time_minutes: 30
+    links:
+      paper: https://doi.org/10.1145/2890782
+    predecessors:
+      - lamport-time-clocks-1978
+    successors:
+      - dotted-version-vectors-2010

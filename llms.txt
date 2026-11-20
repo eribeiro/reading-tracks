@@ -1,6 +1,6 @@
 # ReadingTracks
 
-> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 280 papers grouped into 42 reading tracks, with 284 'read A before B' edges.
+> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 286 papers grouped into 43 reading tracks, with 293 'read A before B' edges.
 
 The catalog's value is its curation: which papers belong together and what to read first. Edges are conceptual reading-order hints, not a citation graph. Prefer the structured data below over scraping the HTML page.
 
@@ -67,6 +67,17 @@ The catalog's value is its curation: which papers belong together and what to re
 - [CIEL: A Universal Execution Engine for Distributed Data-Flow Computing (2011)](https://www.usenix.org/conference/nsdi11/ciel-universal-execution-engine-distributed-data-flow-computing): Generalizes earlier batch dataflow engines (MapReduce/Dryad) by letting tasks make data-dependent control-flow decisions at runtime, enabling iterative and recursive computations with transparent fault tolerance.
 - [Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing (2012)](https://www.usenix.org/conference/nsdi12/technical-sessions/presentation/zaharia): Introduces Resilient Distributed Datasets — read-only, lineage-tracked collections that recompute lost partitions instead of replicating data — enabling in-memory reuse across iterative jobs that MapReduce forced back to disk every step.
 - [The Dataflow Model: A Practical Approach to Balancing Correctness, Latency, and Cost in Massive-Scale, Unbounded, Out-of-Order Data Processing (2015)](https://doi.org/10.14778/2824032.2824076): Unified batch and streaming into a single model of windows and event time; the conceptual basis for Beam and Flink.
+
+### Causality Tracking
+
+- [Time, Clocks, and the Ordering of Events in a Distributed System (1978)](https://doi.org/10.1145/359545.359563): Shows that in a distributed system with no shared clock, you can still define a consistent 'happens-before' partial order using logical clocks — the foundation nearly every later consistency and consensus protocol builds on.
+- [Detection of Mutual Inconsistency in Distributed Systems (1983)](https://doi.org/10.1109/TSE.1983.236733): Introduces version vectors to detect when replicated copies of a file diverged during a network partition, the mechanism later inherited by Dynamo-style stores.
+- [Dynamo: Amazon's Highly Available Key-value Store (2007)](https://dl.acm.org/doi/10.1145/1323293.1294281): The seminal paper on Dynamo's architecture — consistent hashing, sloppy quorums, vector clocks, gossip, and availability as an explicit design priority.
+- [Eventually Consistent (2009)](https://doi.org/10.1145/1435417.1435432): A practitioner's tour of the consistency spectrum between strong and eventual, and of the client-side guarantees that make weak consistency usable at Amazon scale.
+- [Dotted Version Vectors: Logical Clocks for Optimistic Replication (2010)](https://arxiv.org/abs/1011.5808): Shows why server-id and client-id version vectors either lose causality or grow without bound, and introduces dotted version vectors as an exact clock sized by the replication degree.
+- [Brief Announcement: Efficient Causality Tracking in Distributed Storage Systems with Dotted Version Vectors (2012)](https://doi.org/10.1145/2332432.2332497): A two-page statement of the dotted version vector idea, separating a version's identifier from its causal past so that causality checks take constant time.
+- [Scalable and Accurate Causality Tracking for Eventually Consistent Stores (2014)](https://doi.org/10.1007/978-3-662-43352-2_6): Gives the full treatment of dotted version vectors and introduces DVV sets, a compact per-key clock for all siblings, together with a small kernel of operations any key-value store clock must implement.
+- [Why Logical Clocks Are Easy (2016)](https://doi.org/10.1145/2890782): Derives causal histories, vector clocks, version vectors, and dotted version vectors from one idea, tracking the set of events that precede each event, so the update rules follow from it.
 
 ### Cloud Databases
 
@@ -235,7 +246,10 @@ The catalog's value is its curation: which papers belong together and what to re
 ### Dynamo Family
 
 - [Dynamo: Amazon's Highly Available Key-value Store (2007)](https://dl.acm.org/doi/10.1145/1323293.1294281): The seminal paper on Dynamo's architecture — consistent hashing, sloppy quorums, vector clocks, gossip, and availability as an explicit design priority.
+- [Eventually Consistent (2009)](https://doi.org/10.1145/1435417.1435432): A practitioner's tour of the consistency spectrum between strong and eventual, and of the client-side guarantees that make weak consistency usable at Amazon scale.
 - [Cassandra: A Decentralized Structured Storage System (2010)](https://doi.org/10.1145/1773912.1773922): Combines Bigtable's data model with Dynamo's eventually-consistent, peer-to-peer replication — built at Facebook for an inbox-search workload that needed wide-column flexibility with no single point of failure.
+- [Dotted Version Vectors: Logical Clocks for Optimistic Replication (2010)](https://arxiv.org/abs/1011.5808): Shows why server-id and client-id version vectors either lose causality or grow without bound, and introduces dotted version vectors as an exact clock sized by the replication degree.
+- [Scalable and Accurate Causality Tracking for Eventually Consistent Stores (2014)](https://doi.org/10.1007/978-3-662-43352-2_6): Gives the full treatment of dotted version vectors and introduces DVV sets, a compact per-key clock for all siblings, together with a small kernel of operations any key-value store clock must implement.
 - [Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service (2022)](https://www.usenix.org/conference/atc22/presentation/elhemali): Shows how Dynamo's ideas evolved into a fully managed, multi-tenant service with strict scale and predictability goals.
 - [Trie Memtables in Cassandra (2022)](https://dl.acm.org/doi/10.14778/3554821.3554828): Replaces Cassandra's skip-list partition map with sharded byte-comparable tries, shrinking heap pressure while accelerating reads and writes.
 - [Distributed Transactions at Scale in Amazon DynamoDB (2023)](https://www.usenix.org/conference/atc23/presentation/idziorek): Complements the DynamoDB paper by explaining how the service offers distributed ACID transactions without giving up its scale and availability requirements.
@@ -325,6 +339,7 @@ The catalog's value is its curation: which papers belong together and what to re
 - [Time, Clocks, and the Ordering of Events in a Distributed System (1978)](https://doi.org/10.1145/359545.359563): Shows that in a distributed system with no shared clock, you can still define a consistent 'happens-before' partial order using logical clocks — the foundation nearly every later consistency and consensus protocol builds on.
 - [Impossibility of Distributed Consensus with One Faulty Process (1985)](https://doi.org/10.1145/3149.214121): Proves no fully asynchronous consensus protocol can guarantee both safety and termination if even one process might fail — the impossibility result every practical protocol like Paxos or Raft has to work around.
 - [Logical Physical Clocks (2014)](https://doi.org/10.1007/978-3-319-14472-6_2): Combines causal ordering with timestamps close to physical time, making logical-clock guarantees practical for snapshots and transactions in distributed databases.
+- [Why Logical Clocks Are Easy (2016)](https://doi.org/10.1145/2890782): Derives causal histories, vector clocks, version vectors, and dotted version vectors from one idea, tracking the set of events that precede each event, so the update rules follow from it.
 
 ### Membership Gossip
 

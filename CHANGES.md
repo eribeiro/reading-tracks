@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added the Causality Tracking track, cross-listing `lamport-time-clocks-1978` and `dynamo-2007`, with six new papers: `mutual-inconsistency-detection-1983`, `eventually-consistent-2009`, `dotted-version-vectors-2010`, `dotted-version-vectors-podc-2012`, `dvv-sets-2014`, and `logical-clocks-easy-2016`.
 - Added `data/relations.yaml` for curated edge types (`builds_on`, `simplifies`, `supersedes`, `refines`, `contradicts`) and notes, with validation and export to `data/edges.json` (format v2) and `llms.txt`.
 - Added generated `data/edges.json` (papers, reading-order edges, tracks) and `llms.txt` exports via `scripts/export.py`.
 - Fixed paper bookmarks jumping the page back to the beginning.

@@ -1639,3 +1639,95 @@ researchers:
       - LLM serving infrastructure
     paper_ids:
       - mooncake-2025
+  - id: carlos-baquero
+    name: Carlos Baquero
+    areas:
+      - Distributed Systems
+    topics:
+      - logical clocks
+      - causality tracking
+      - CRDTs
+      - eventual consistency
+    paper_ids:
+      - dotted-version-vectors-2010
+      - dotted-version-vectors-podc-2012
+      - dvv-sets-2014
+      - logical-clocks-easy-2016
+  - id: nuno-preguica
+    name: Nuno Preguiça
+    areas:
+      - Distributed Systems
+    topics:
+      - logical clocks
+      - causality tracking
+      - CRDTs
+      - geo-replication
+    paper_ids:
+      - dotted-version-vectors-2010
+      - dotted-version-vectors-podc-2012
+      - dvv-sets-2014
+      - logical-clocks-easy-2016
+  - id: paulo-sergio-almeida
+    name: Paulo Sérgio Almeida
+    areas:
+      - Distributed Systems
+    topics:
+      - causality tracking
+      - version vectors
+      - CRDTs
+    paper_ids:
+      - dotted-version-vectors-2010
+      - dotted-version-vectors-podc-2012
+      - dvv-sets-2014
+  - id: victor-fonte
+    name: Victor Fonte
+    areas:
+      - Distributed Systems
+    topics:
+      - causality tracking
+      - version vectors
+    paper_ids:
+      - dotted-version-vectors-2010
+      - dotted-version-vectors-podc-2012
+      - dvv-sets-2014
+  - id: ricardo-goncalves
+    name: Ricardo Gonçalves
+    areas:
+      - Distributed Systems
+    topics:
+      - causality tracking
+      - version vectors
+      - Riak
+    paper_ids:
+      - dotted-version-vectors-2010
+      - dotted-version-vectors-podc-2012
+      - dvv-sets-2014
+  - id: werner-vogels
+    name: Werner Vogels
+    areas:
+      - Distributed Systems
+      - Databases
+    topics:
+      - eventual consistency
+      - highly available storage
+    paper_ids:
+      - dynamo-2007
+      - eventually-consistent-2009
+  - id: d-stott-parker
+    name: D. Stott Parker Jr.
+    areas:
+      - Distributed Systems
+    topics:
+      - version vectors
+      - replication
+    paper_ids:
+      - mutual-inconsistency-detection-1983
+  - id: gerald-popek
+    name: Gerald J. Popek
+    areas:
+      - Distributed Systems
+    topics:
+      - distributed operating systems
+      - replication
+    paper_ids:
+      - mutual-inconsistency-detection-1983
