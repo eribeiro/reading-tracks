@@ -1,6 +1,6 @@
 # ReadingTracks
 
-> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 311 papers grouped into 45 reading tracks, with 322 'read A before B' edges.
+> Papers, researchers, venues, and reading tracks for a Systems & AI reading club. A hand-curated catalog of 313 papers grouped into 45 reading tracks, with 326 'read A before B' edges.
 
 The catalog's value is its curation: which papers belong together and what to read first. Edges are conceptual reading-order hints, not a citation graph. Prefer the structured data below over scraping the HTML page.
 
@@ -494,6 +494,8 @@ The catalog's value is its curation: which papers belong together and what to re
 - [The Adaptive Radix Tree: ARTful Indexing for Main-Memory Databases (2013)](https://doi.org/10.1109/ICDE.2013.6544812): Introduces a radix tree whose node representation adapts to local fanout, combining cache-efficient point lookups with ordered scans and compact memory use.
 - [The Bw-Tree: A B-tree for New Hardware Platforms (2013)](https://doi.org/10.1109/ICDE.2013.6544834): Replaces in-place page updates and latches with indirection and delta records, adapting B-tree indexing to multicore processors and flash storage.
 - [In-Memory Performance for Big Data (2014)](https://research.google/pubs/in-memory-performance-for-big-data/): Shows how pointer swizzling can nearly eliminate buffer-pool overhead for resident data while retaining transparent secondary-storage support and graceful degradation when a working set outgrows memory.
+- [Design Tradeoffs of Data Access Methods (2016)](https://doi.org/10.1145/2882903.2912569): A tutorial that walks through how tree, hash, LSM, bitmap, and adaptive access methods trade read cost against update cost and space, and how hardware and workload shifts move the balance.
+- [Designing Access Methods: The RUM Conjecture (2016)](https://doi.org/10.5441/002/edbt.2016.42): Conjectures that an access method cannot minimize read, update, and memory overhead at once, since bounding any two sets a floor on the third, and maps B-trees, LSM-trees, hashing, and bitmaps onto that tradeoff space.
 - [I/O Characteristics of MongoDB and Trim-Based Optimization in Flash SSDs (2016)](https://doi.org/10.1145/3007818.3007844): Examines WiredTiger's collection, index, journal, and checkpoint I/O patterns, then shows how coordinating its space reclamation with SSD TRIM affects performance.
 - [WiscKey: Separating Keys from Values in SSD-Conscious Storage (2016)](https://www.usenix.org/conference/fast16/technical-sessions/presentation/lu): Separates values into an append-only log while retaining keys in the LSM tree, sharply reducing compaction write amplification and exploiting SSD random-read parallelism at the cost of new garbage-collection and scan tradeoffs.
 - [Monkey: Optimal Navigable Key-Value Store (2017)](https://dl.acm.org/doi/10.1145/3035918.3064054): Replaces uniform Bloom-filter allocation with a cost-derived distribution across levels, revealing how a small change in memory placement can exponentially reduce lookup cost and making LSM tuning an explicit optimization problem.

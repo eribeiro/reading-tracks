@@ -203,6 +203,8 @@ lineages:
     - bwtree-2013
     - wisckey-2016
     - wiredtiger-io-2016
+    - rum-conjecture-2016
+    - access-methods-tradeoffs-2016
     - monkey-2017
     - pebblesdb-2017
     - dostoevsky-2018
@@ -9899,4 +9901,66 @@ papers:
       paper: https://doi.org/10.1109/ICDE.2019.00022
     predecessors:
       - delta-state-crdts-2018
+    successors: []
+  - id: rum-conjecture-2016
+    title: 'Designing Access Methods: The RUM Conjecture'
+    year: 2016
+    authors:
+      - Manos Athanassoulis
+      - Michael S. Kester
+      - Lukas M. Maas
+      - Radu Stoica
+      - Stratos Idreos
+      - Anastasia Ailamaki
+      - Mark Callaghan
+    venue: EDBT
+    areas:
+      - Databases
+      - Data management
+    tags:
+      - access methods
+      - RUM conjecture
+      - read amplification
+      - write amplification
+      - space amplification
+      - design tradeoffs
+    type: essential
+    lineages:
+      - storage-engines
+    why_read: Conjectures that an access method cannot minimize read, update, and memory overhead at once, since bounding any two sets a floor on the third, and maps B-trees, LSM-trees, hashing, and bitmaps onto that tradeoff space.
+    difficulty: introductory
+    reading_time_minutes: 30
+    links:
+      paper: https://doi.org/10.5441/002/edbt.2016.42
+    predecessors:
+      - lsm-1996
+      - modern-btree-techniques-2011
+    successors:
+      - access-methods-tradeoffs-2016
+      - monkey-2017
+  - id: access-methods-tradeoffs-2016
+    title: Design Tradeoffs of Data Access Methods
+    year: 2016
+    authors:
+      - Manos Athanassoulis
+      - Stratos Idreos
+    venue: SIGMOD
+    areas:
+      - Databases
+      - Data management
+    tags:
+      - access methods
+      - RUM conjecture
+      - design tradeoffs
+      - tutorial
+    type: classic
+    lineages:
+      - storage-engines
+    why_read: A tutorial that walks through how tree, hash, LSM, bitmap, and adaptive access methods trade read cost against update cost and space, and how hardware and workload shifts move the balance.
+    difficulty: introductory
+    reading_time_minutes: 30
+    links:
+      paper: https://doi.org/10.1145/2882903.2912569
+    predecessors:
+      - rum-conjecture-2016
     successors: []

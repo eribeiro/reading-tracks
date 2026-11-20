@@ -286,3 +286,9 @@ venues:
   areas:
   - Distributed Systems
   tier: journal
+- id: edbt
+  name: International Conference on Extending Database Technology
+  organization: OpenProceedings
+  areas:
+  - Databases
+  tier: major

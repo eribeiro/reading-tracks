@@ -967,6 +967,8 @@ researchers:
       - monetdb-two-decades-2012
       - monkey-2017
       - dostoevsky-2018
+      - rum-conjecture-2016
+      - access-methods-tradeoffs-2016
   - id: viktor-leis
     name: Viktor Leis
     areas:
@@ -2022,3 +2024,36 @@ researchers:
       - edge computing
     paper_ids:
       - efficient-sync-crdts-2019
+  - id: manos-athanassoulis
+    name: Manos Athanassoulis
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - access methods
+      - RUM conjecture
+      - LSM-trees
+      - data systems design
+    paper_ids:
+      - rum-conjecture-2016
+      - access-methods-tradeoffs-2016
+      - monkey-2017
+  - id: anastasia-ailamaki
+    name: Anastasia Ailamaki
+    areas:
+      - Databases
+    topics:
+      - database architecture
+      - hardware-conscious data systems
+    paper_ids:
+      - rum-conjecture-2016
+  - id: mark-callaghan
+    name: Mark Callaghan
+    areas:
+      - Databases
+    topics:
+      - storage engines
+      - LSM-trees
+      - MySQL
+    paper_ids:
+      - rum-conjecture-2016
