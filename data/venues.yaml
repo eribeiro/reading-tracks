@@ -292,3 +292,19 @@ venues:
   areas:
   - Databases
   tier: major
+- id: acm-tods
+  name: ACM Transactions on Database Systems
+  organization: ACM
+  areas:
+  - Databases
+  - Data management
+  tier: journal
+- id: communications-of-the-acm
+  name: Communications of the ACM
+  organization: ACM
+  areas:
+  - Distributed Systems
+  - Databases
+  - AI
+  - Infrastructure
+  tier: magazine

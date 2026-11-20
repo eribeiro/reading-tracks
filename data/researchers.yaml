@@ -217,6 +217,7 @@ researchers:
       - DynamoDB
     paper_ids:
       - dynamodb-2022
+      - session-guarantees-1994
   - id: eduardo-alchieri
     name: Eduardo Alchieri
     areas:
@@ -402,6 +403,7 @@ researchers:
     paper_ids:
       - transaction-concept-1981
       - ansi-isolation-1995
+      - paxos-commit-2006
   - id: joe-hellerstein
     name: Joseph M. Hellerstein
     areas:
@@ -470,6 +472,7 @@ researchers:
     paper_ids:
       - architecture-db-2007
       - keep-calm-crdt-on-2022
+      - keeping-calm-2020
   - id: ken-birman
     name: Ken Birman
     areas:
@@ -501,6 +504,7 @@ researchers:
       - lamport-time-clocks-1978
       - byzantine-generals-1982
       - paxos-1998
+      - paxos-commit-2006
   - id: luiz-barroso
     name: Luiz André Barroso
     areas:
@@ -537,7 +541,8 @@ researchers:
       - consensus
       - replication
       - fault tolerance
-    paper_ids: []
+    paper_ids:
+      - walter-psi-2011
   - id: martin-kleppmann
     name: Martin Kleppmann
     areas:
@@ -712,6 +717,7 @@ researchers:
       - ramp-transactions-2014
       - macrobase-2017
       - feral-concurrency-control-2015
+      - acidrain-2017
   - id: peter-boncz
     name: Peter Boncz
     areas:
@@ -1484,6 +1490,8 @@ researchers:
     paper_ids:
       - analyzing-metastable-failures-2025
       - formal-analysis-metastable-failures-2025
+      - keeping-calm-2020
+      - elle-2020
   - id: faisal-nawab
     name: Faisal Nawab
     areas:
@@ -1514,6 +1522,7 @@ researchers:
       - BFT
     paper_ids:
       - characterizing-metastable-faults-2026
+      - seeing-is-believing-2017
   - id: yaohui-wang
     name: Yaohui Wang
     areas:
@@ -2117,3 +2126,190 @@ researchers:
       - consistency models
     paper_ids:
       - keep-calm-crdt-on-2022
+      - seeing-is-believing-2017
+  - id: atul-adya
+    name: Atul Adya
+    areas:
+      - Databases
+      - Distributed Systems
+    topics:
+      - isolation levels
+      - weak consistency
+      - optimistic concurrency control
+    paper_ids:
+      - adya-2000
+      - adya-thesis-1999
+  - id: youer-pu
+    name: Youer Pu
+    areas:
+      - Distributed Systems
+      - Databases
+    topics:
+      - isolation levels
+      - consistency models
+    paper_ids:
+      - seeing-is-believing-2017
+  - id: allen-clement
+    name: Allen Clement
+    areas:
+      - Distributed Systems
+    topics:
+      - fault tolerance
+      - consistency models
+    paper_ids:
+      - seeing-is-believing-2017
+  - id: yair-sovran
+    name: Yair Sovran
+    areas:
+      - Distributed Systems
+      - Databases
+    topics:
+      - geo-replication
+      - transactions
+    paper_ids:
+      - walter-psi-2011
+  - id: russell-power
+    name: Russell Power
+    areas:
+      - Distributed Systems
+    topics:
+      - geo-replication
+      - transactions
+    paper_ids:
+      - walter-psi-2011
+  - id: jinyang-li
+    name: Jinyang Li
+    areas:
+      - Distributed Systems
+    topics:
+      - geo-replication
+      - transactions
+      - distributed storage
+    paper_ids:
+      - walter-psi-2011
+  - id: wyatt-lloyd
+    name: Wyatt Lloyd
+    areas:
+      - Distributed Systems
+    topics:
+      - causal consistency
+      - geo-replication
+    paper_ids:
+      - cops-2011
+  - id: michael-j-freedman
+    name: Michael J. Freedman
+    areas:
+      - Distributed Systems
+    topics:
+      - causal consistency
+      - distributed storage
+    paper_ids:
+      - cops-2011
+  - id: michael-kaminsky
+    name: Michael Kaminsky
+    areas:
+      - Distributed Systems
+    topics:
+      - causal consistency
+      - distributed storage
+    paper_ids:
+      - cops-2011
+  - id: david-g-andersen
+    name: David G. Andersen
+    areas:
+      - Distributed Systems
+    topics:
+      - causal consistency
+      - distributed storage
+    paper_ids:
+      - cops-2011
+  - id: alan-j-demers
+    name: Alan J. Demers
+    areas:
+      - Distributed Systems
+    topics:
+      - weak consistency
+      - replication
+      - Bayou
+    paper_ids:
+      - session-guarantees-1994
+  - id: karin-petersen
+    name: Karin Petersen
+    areas:
+      - Distributed Systems
+    topics:
+      - weak consistency
+      - replication
+      - Bayou
+    paper_ids:
+      - session-guarantees-1994
+  - id: mike-j-spreitzer
+    name: Mike J. Spreitzer
+    areas:
+      - Distributed Systems
+    topics:
+      - weak consistency
+      - replication
+      - Bayou
+    paper_ids:
+      - session-guarantees-1994
+  - id: marvin-m-theimer
+    name: Marvin M. Theimer
+    areas:
+      - Distributed Systems
+    topics:
+      - weak consistency
+      - replication
+      - Bayou
+    paper_ids:
+      - session-guarantees-1994
+  - id: brent-b-welch
+    name: Brent B. Welch
+    areas:
+      - Distributed Systems
+    topics:
+      - weak consistency
+      - replication
+      - Bayou
+    paper_ids:
+      - session-guarantees-1994
+  - id: hector-garcia-molina
+    name: Hector Garcia-Molina
+    areas:
+      - Databases
+      - Data management
+    topics:
+      - transactions
+      - long-lived transactions
+      - distributed databases
+    paper_ids:
+      - sagas-1987
+  - id: kenneth-salem
+    name: Kenneth Salem
+    areas:
+      - Databases
+    topics:
+      - transactions
+      - long-lived transactions
+    paper_ids:
+      - sagas-1987
+  - id: todd-warszawski
+    name: Todd Warszawski
+    areas:
+      - Databases
+    topics:
+      - isolation anomalies
+      - database security
+    paper_ids:
+      - acidrain-2017
+  - id: kyle-kingsbury
+    name: Kyle Kingsbury
+    areas:
+      - Distributed Systems
+      - Databases
+    topics:
+      - Jepsen
+      - isolation anomalies
+      - distributed systems testing
+    paper_ids:
+      - elle-2020

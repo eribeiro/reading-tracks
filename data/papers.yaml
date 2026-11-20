@@ -16,6 +16,8 @@ lineages:
     - dvv-sets-2014
     - logical-clocks-easy-2016
     - logical-physical-clocks-2014
+    - session-guarantees-1994
+    - cops-2011
   physical-hybrid-time:
     - lamport-time-clocks-1978
     - maintaining-time-distributed-1983
@@ -52,6 +54,7 @@ lineages:
     - conflict-free-replicated-relations-2020
     - keep-calm-crdt-on-2022
     - synql-2024
+    - keeping-calm-2020
   systems-design-principles:
     - hints-computer-system-design-1983
     - end-to-end-1984
@@ -84,6 +87,7 @@ lineages:
     - bunchbft-2022
     - leaseguard-2026
     - evaluating-distributed-coordination-2026
+    - paxos-commit-2006
   distributed-storage:
     - gfs-2003
     - bigtable-2006
@@ -156,6 +160,13 @@ lineages:
     - slog-2019
     - detock-2023
     - mongodb-distributed-transactions-verification-2025
+    - sagas-1987
+    - paxos-commit-2006
+    - walter-psi-2011
+    - cops-2011
+    - keeping-calm-2020
+    - percolator-2010
+    - cockroachdb-2020
   cloud-databases:
     - snowflake-2016
     - aurora-2017
@@ -183,6 +194,7 @@ lineages:
     - transaction-concept-1981
     - aries-1992
     - instant-recovery-wal-2015
+    - sagas-1987
   isolation-concurrency:
     - granularity-locks-1976
     - ansi-isolation-1995
@@ -197,6 +209,10 @@ lineages:
     - postgresql-ssi-2012
     - tictoc-2016
     - allocating-isolation-levels-2005
+    - adya-thesis-1999
+    - seeing-is-believing-2017
+    - acidrain-2017
+    - elle-2020
   storage-engines:
     - five-minute-rule-1997
     - modern-btree-techniques-2011
@@ -431,6 +447,7 @@ lineages:
     - fest-2026
     - pilot-2026
     - themis-2026
+    - elle-2020
   self-driving-databases:
     - self-driving-dbms-2017
     - ottertune-2017
@@ -4867,6 +4884,7 @@ papers:
     lineages:
       - cloud-databases
       - physical-hybrid-time
+      - distributed-transactions
     why_read: Extends the Spanner lineage directly — Raft-replicated, horizontally-scalable SQL with serializable geo-distributed transactions — but without Spanner's specialized TrueTime hardware, using hybrid-logical clocks instead.
     difficulty: advanced
     reading_time_minutes: 80
@@ -5430,6 +5448,7 @@ papers:
     type: essential
     lineages:
       - batch-to-Dataflow
+      - distributed-transactions
     why_read: Percolator fills the gap between batch MapReduce and online databases by combining small ACID transactions with notifications, enabling Google to update its web index incrementally at enormous scale.
     difficulty: advanced
     reading_time_minutes: 75
@@ -10052,4 +10071,282 @@ papers:
       paper: https://doi.org/10.1007/978-3-031-62638-8_2
     predecessors:
       - conflict-free-replicated-relations-2020
+    successors: []
+  - id: adya-thesis-1999
+    title: 'Weak Consistency: A Generalized Theory and Optimistic Implementations for Distributed Transactions'
+    year: 1999
+    authors:
+      - Atul Adya
+    venue: PhD Thesis, MIT
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - isolation
+      - weak consistency
+      - dependency graphs
+      - optimistic concurrency control
+    type: foundational
+    lineages:
+      - isolation-concurrency
+    why_read: The full treatment behind the ICDE isolation definitions, specifying the ANSI levels and several new ones as cycles in a serialization graph, then showing optimistic client-server schemes that implement them efficiently.
+    difficulty: advanced
+    reading_time_minutes: 300
+    links:
+      paper: https://dspace.mit.edu/handle/1721.1/149899
+    predecessors:
+      - adya-2000
+    successors: []
+  - id: seeing-is-believing-2017
+    title: 'Seeing is Believing: A Client-Centric Specification of Database Isolation'
+    year: 2017
+    authors:
+      - Natacha Crooks
+      - Youer Pu
+      - Lorenzo Alvisi
+      - Allen Clement
+    venue: PODC
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - isolation
+      - client-centric specification
+      - snapshot isolation
+      - formal methods
+    type: current
+    lineages:
+      - isolation-concurrency
+    why_read: Defines isolation levels by the database states clients can observe rather than by histories of internal operations, giving implementation-independent definitions that are easier to reason about and check.
+    difficulty: advanced
+    reading_time_minutes: 75
+    links:
+      paper: https://doi.org/10.1145/3087801.3087802
+    predecessors:
+      - adya-2000
+    successors: []
+  - id: walter-psi-2011
+    title: Transactional Storage for Geo-Replicated Systems
+    year: 2011
+    authors:
+      - Yair Sovran
+      - Russell Power
+      - Marcos K. Aguilera
+      - Jinyang Li
+    venue: SOSP
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - parallel snapshot isolation
+      - geo-replication
+      - Walter
+      - transactions
+    type: essential
+    lineages:
+      - distributed-transactions
+    why_read: Introduces parallel snapshot isolation, which relaxes snapshot isolation so each site can commit locally and replicate asynchronously while still forbidding write-write conflicts, and builds it into the Walter key-value store.
+    difficulty: advanced
+    reading_time_minutes: 75
+    links:
+      paper: https://doi.org/10.1145/2043556.2043592
+    predecessors:
+      - ansi-isolation-1995
+    successors: []
+  - id: cops-2011
+    title: "Don't Settle for Eventual: Scalable Causal Consistency for Wide-Area Storage with COPS"
+    year: 2011
+    authors:
+      - Wyatt Lloyd
+      - Michael J. Freedman
+      - Michael Kaminsky
+      - David G. Andersen
+    venue: SOSP
+    areas:
+      - Distributed Systems
+      - Databases
+    tags:
+      - causal consistency
+      - geo-replication
+      - COPS
+      - read-only transactions
+    type: essential
+    lineages:
+      - causality-tracking
+      - distributed-transactions
+    why_read: Defines causal+ consistency and shows a geo-replicated key-value store can provide it at scale by tracking dependencies explicitly, adding read-only transactions that return a causally consistent snapshot.
+    difficulty: intermediate
+    reading_time_minutes: 60
+    links:
+      paper: https://doi.org/10.1145/2043556.2043593
+    predecessors:
+      - lamport-time-clocks-1978
+      - session-guarantees-1994
+    successors:
+      - bolt-on-causal-consistency-2013
+  - id: session-guarantees-1994
+    title: Session Guarantees for Weakly Consistent Replicated Data
+    year: 1994
+    authors:
+      - Doug Terry
+      - Alan J. Demers
+      - Karin Petersen
+      - Mike J. Spreitzer
+      - Marvin M. Theimer
+      - Brent B. Welch
+    venue: PDIS
+    areas:
+      - Distributed Systems
+      - Databases
+    tags:
+      - session guarantees
+      - read your writes
+      - monotonic reads
+      - weak consistency
+      - Bayou
+    type: classic
+    lineages:
+      - causality-tracking
+    why_read: Defines four per-session guarantees (read your writes, monotonic reads, writes follow reads, monotonic writes) that give each client a consistent view of a weakly consistent replicated store without global coordination.
+    difficulty: introductory
+    reading_time_minutes: 40
+    links:
+      paper: https://doi.org/10.1109/PDIS.1994.331722
+    predecessors: []
+    successors:
+      - cops-2011
+      - hat-2014
+  - id: paxos-commit-2006
+    title: Consensus on Transaction Commit
+    year: 2006
+    authors:
+      - Jim Gray
+      - Leslie Lamport
+    venue: ACM TODS
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - atomic commit
+      - two-phase commit
+      - Paxos
+      - Paxos Commit
+    type: classic
+    lineages:
+      - distributed-transactions
+      - consensus-replication
+    why_read: Treats atomic commit as a consensus problem, running Paxos on each participant's vote to remove two-phase commit's blocking coordinator while matching its message delay in the fault-free case.
+    difficulty: advanced
+    reading_time_minutes: 75
+    links:
+      paper: https://doi.org/10.1145/1132863.1132867
+    predecessors:
+      - transaction-concept-1981
+      - paxos-1998
+    successors:
+      - spanner-2012
+  - id: sagas-1987
+    title: Sagas
+    year: 1987
+    authors:
+      - Hector Garcia-Molina
+      - Kenneth Salem
+    venue: SIGMOD
+    areas:
+      - Databases
+    tags:
+      - long-lived transactions
+      - compensating transactions
+      - sagas
+    type: foundational
+    lineages:
+      - transactions-recovery
+      - distributed-transactions
+    why_read: Splits a long-lived transaction into a sequence of local transactions, each paired with a compensating transaction that semantically undoes it, so the database never holds locks for the whole activity.
+    difficulty: introductory
+    reading_time_minutes: 40
+    links:
+      paper: https://doi.org/10.1145/38713.38742
+    predecessors:
+      - transaction-concept-1981
+    successors:
+      - life-beyond-transactions-2007
+  - id: keeping-calm-2020
+    title: 'Keeping CALM: When Distributed Consistency is Easy'
+    year: 2020
+    authors:
+      - Joseph M. Hellerstein
+      - Peter Alvaro
+    venue: Communications of the ACM
+    areas:
+      - Distributed Systems
+      - Databases
+    tags:
+      - CALM theorem
+      - monotonicity
+      - coordination-free
+      - consistency
+    type: essential
+    lineages:
+      - distributed-transactions
+      - replicated-data-types
+    why_read: Explains the CALM theorem, which says a problem has a consistent, coordination-free distributed implementation exactly when it is monotonic, and what that means for designing systems that avoid coordination.
+    difficulty: intermediate
+    reading_time_minutes: 45
+    links:
+      paper: https://doi.org/10.1145/3369736
+    predecessors: []
+    successors:
+      - keep-calm-crdt-on-2022
+  - id: acidrain-2017
+    title: 'ACIDRain: Concurrency-Related Attacks on Database-Backed Web Applications'
+    year: 2017
+    authors:
+      - Todd Warszawski
+      - Peter Bailis
+    venue: SIGMOD
+    areas:
+      - Databases
+    tags:
+      - isolation anomalies
+      - security
+      - web applications
+      - concurrency attacks
+    type: current
+    lineages:
+      - isolation-concurrency
+    why_read: Shows that weak isolation and missing transactions in real e-commerce applications can be exploited by concurrent requests, such as spending a gift card twice, and finds these anomalies from database query logs.
+    difficulty: intermediate
+    reading_time_minutes: 60
+    links:
+      paper: https://doi.org/10.1145/3035918.3064037
+    predecessors:
+      - feral-concurrency-control-2015
+    successors: []
+  - id: elle-2020
+    title: 'Elle: Inferring Isolation Anomalies from Experimental Observations'
+    year: 2020
+    authors:
+      - Kyle Kingsbury
+      - Peter Alvaro
+    venue: PVLDB
+    areas:
+      - Databases
+      - Distributed Systems
+    tags:
+      - isolation anomalies
+      - Jepsen
+      - testing
+      - dependency graphs
+    type: current
+    lineages:
+      - isolation-concurrency
+      - distributed-Systems-testing
+    why_read: Checks recorded database histories for isolation violations by inferring Adya-style dependency graphs from specially designed workloads, scaling to long histories and finding anomalies in production databases.
+    difficulty: intermediate
+    reading_time_minutes: 60
+    links:
+      paper: https://doi.org/10.14778/3430915.3430918
+    predecessors:
+      - adya-2000
     successors: []
